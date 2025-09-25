@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+.about {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem 8%;
+  gap: 3rem;
+  position: relative;
+}
+@media (max-width: 900px) {
+  .about {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+}
+.about .text {
+  flex: 1;
+}
+.about .text h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+.about .text h2 span {
+  background: linear-gradient(90deg, #2563eb, #9333ea);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@media (max-width: 768px) {
+  .about .text h2 {
+    font-size: 2rem;
+  }
+}
+.about .text p {
+  font-size: 1.05rem;
+  color: #444;
+  font-family: "Roboto", sans-serif;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+.about .imageWrapper {
+  flex: 1;
+  position: relative;
+  max-width: 500px;
+}
+.about .imageWrapper .imageBackground {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #2563eb, #9333ea);
+  border-radius: 30px;
+  z-index: 1;
+}
+@media (max-width: 900px) {
+  .about .imageWrapper .imageBackground {
+    top: -10px;
+    left: -10px;
+  }
+}
+.about .imageWrapper img {
+  height: auto;
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 20px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 900px) {
+  .about .imageWrapper {
+    margin-top: 2rem;
+  }
+  .about .imageWrapper .imageBackground {
+    display: none;
+  }
+}/*# sourceMappingURL=About.module.css.map */

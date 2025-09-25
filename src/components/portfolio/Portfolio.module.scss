@@ -1,0 +1,131 @@
+@use "../../styles/mixin" as *;
+
+.portfolio {
+  padding: 6rem 8%;
+  background: radial-gradient(circle at top right, #f9fafb, #eef2ff);
+
+  h2 {
+    @include Text(2.5rem, #111);
+    font-weight: 800;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .categories {
+    @include Flex(row, center, center);
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+
+    button {
+      @include Text(1rem, #2563eb);
+      background: transparent;
+      border: 2px solid #2563eb;
+      padding: 0.5rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: #2563eb;
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+      }
+
+      &.active {
+        background: linear-gradient(135deg, #2563eb, #9333ea);
+        color: #fff;
+        border: none;
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+      }
+    }
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+
+  .image-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; // 16:9 aspect ratio
+    overflow: hidden;
+    border-radius: 16px;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  &:hover img {
+    transform: scale(1.1);
+  }
+
+
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(37, 99, 235, 0.6);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: all 0.3s ease;
+      text-align: center;
+      padding: 1rem;
+      backdrop-filter: blur(2px);
+
+      h3 {
+        margin-bottom: 0.5rem;
+        font-size: 1.3rem;
+        font-weight: 700;
+      }
+
+      span {
+        font-size: 1rem;
+        opacity: 0.9;
+      }
+    }
+
+    &:hover .overlay {
+      opacity: 1;
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .portfolio {
+    padding: 4rem 4%;
+  }
+
+  .categories {
+    gap: 0.5rem;
+  }
+
+  .card img {
+    height: 180px;
+  }
+}

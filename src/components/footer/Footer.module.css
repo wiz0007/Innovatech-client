@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+.footer {
+  background: linear-gradient(135deg, #111827, #1f2937);
+  color: #e5e7eb;
+  padding: 4rem 8% 2rem;
+  position: relative;
+}
+.footer .top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+@media (max-width: 768px) {
+  .footer .top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}
+.footer .brand {
+  flex: 1;
+}
+.footer .brand img {
+  height: 50px;
+  width: 50px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 50%;
+  margin-bottom: 0.8rem;
+}
+.footer .brand h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+}
+.footer .brand p {
+  font-size: 0.95rem;
+  color: #9ca3af;
+  font-family: "Roboto", sans-serif;
+  margin-top: 0.6rem;
+  max-width: 280px;
+}
+.footer .links {
+  flex: 1;
+}
+.footer .links h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+.footer .links ul {
+  list-style: none;
+  padding: 0;
+}
+.footer .links ul li {
+  margin-bottom: 0.6rem;
+}
+.footer .links ul li a {
+  color: #d1d5db;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.footer .links ul li a:hover {
+  color: #60a5fa;
+}
+.footer .socials {
+  flex: 1;
+}
+.footer .socials h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+.footer .socials .icons {
+  display: flex;
+  gap: 1rem;
+}
+.footer .socials .icons a {
+  font-size: 1.4rem;
+  color: #d1d5db;
+  transition: all 0.3s ease;
+}
+.footer .socials .icons a:hover {
+  color: #60a5fa;
+  transform: translateY(-3px);
+}
+@media (max-width: 768px) {
+  .footer .socials .icons {
+    justify-content: center;
+  }
+}
+.footer .bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.2rem;
+  text-align: center;
+}
+.footer .bottom p {
+  font-size: 0.9rem;
+  color: #9ca3af;
+}/*# sourceMappingURL=Footer.module.css.map */

@@ -1,0 +1,80 @@
+@use "../../styles/mixin" as *;
+
+.team {
+  padding: 6rem 8%;
+  text-align: center;
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 3rem;
+
+    span {
+      background: linear-gradient(90deg, #2563eb, #9333ea);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2.5rem;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 2rem 1rem 1.5rem;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .imageWrapper {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 1rem;
+      border-radius: 50%;
+      overflow: hidden;
+      img {
+        @include Image(100%, 100%);
+      }
+    }
+
+    h3 {
+      @include Text(1.2rem, #111);
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    p {
+      @include Text(0.95rem, #555);
+      margin-bottom: 0.8rem;
+    }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+
+      a {
+        font-size: 1.2rem;
+        color: #555;
+        transition: all 0.3s ease;
+
+        &:hover {
+          color: #2563eb;
+        }
+      }
+    }
+  }
+}

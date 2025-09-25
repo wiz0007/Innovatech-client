@@ -1,0 +1,76 @@
+@use "../../styles/mixin" as *;
+
+.about {
+  @include Flex(row, space-between, center);
+  padding: 6rem 8%;
+  gap: 3rem;
+  position: relative;
+
+  @media (max-width: 900px) {
+    @include Flex(column, center, center);
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+
+  .text {
+    flex: 1;
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+
+      span {
+        background: linear-gradient(90deg, #2563eb, #9333ea);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      @media (max-width: 768px) {
+        font-size: 2rem;
+      }
+    }
+
+    p {
+      @include Text(1.05rem, #444);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .imageWrapper {
+    flex: 1;
+    position: relative;
+    max-width: 500px;
+
+    .imageBackground {
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #2563eb, #9333ea);
+      border-radius: 30px;
+      z-index: 1;
+      @media (max-width: 900px) {
+        top: -10px;
+        left: -10px;
+      }
+    }
+
+    img {
+      @include Image(auto, 100%);
+      border-radius: 20px;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 900px) {
+      margin-top: 2rem;
+      .imageBackground {
+        display: none;
+      }
+    }
+  }
+}
