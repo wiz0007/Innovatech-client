@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import Allroutes from "./routes/AllRoutes";
+import Allroutes from "./routes/AllRoutes.jsx";
 
 function App() {
   return (
