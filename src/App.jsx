@@ -1,11 +1,12 @@
-import { useState } from 'react'
-import './App.css'
-
-import AllRoutes from './routes/AllRoutes'
+import { useState } from "react";
+import "./App.css";
+import Allroutes from "./routes/AllRoutes";
 
 function App() {
   return (
-    <div className='app'><AllRoutes/></div>    
-  )
+    <div className="app">
+      <Allroutes />
+    </div>
+  );
 }
-export default App
+export default App;

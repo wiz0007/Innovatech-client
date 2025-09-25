@@ -30,7 +30,7 @@ const members = [
     github: "",
   },
   {
-    name: "N/A",
+    name: "N/A_",
     role: "Mobile App Developer",
     photo: member4,
     twitter: "",

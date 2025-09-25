@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 import { Routes, Route } from "react-router-dom";
-import HomePage from "../pages/home/HomePage";
+import HomePage from '../pages/home/HomePage';
 
 const AllRoutes = () => {
   return (
@@ -8,6 +8,6 @@ const AllRoutes = () => {
       <Route path="/" element={<HomePage />} />
     </Routes>
   );
-};
+}
 
-export default AllRoutes;
+export default AllRoutes

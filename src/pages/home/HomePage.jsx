@@ -9,7 +9,7 @@ import Contact from '../../components/contact/Contact'
 import Footer from '../../components/footer/Footer'
 import Team from '../../components/team/Team'
 
-const Home = () => {
+const HomePage = () => {
   return (
     <div>
       <Navbar/>
@@ -26,4 +26,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomePage
