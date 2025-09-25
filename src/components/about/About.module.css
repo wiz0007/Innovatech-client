@@ -20,6 +20,7 @@
 }
 .about .text {
   flex: 1;
+  max-width: 600px;
 }
 .about .text h2 {
   font-size: 2.5rem;
@@ -46,8 +47,8 @@
 }
 .about .imageWrapper {
   flex: 1;
-  position: relative;
   max-width: 500px;
+  position: relative;
 }
 .about .imageWrapper .imageBackground {
   position: absolute;
@@ -61,8 +62,7 @@
 }
 @media (max-width: 900px) {
   .about .imageWrapper .imageBackground {
-    top: -10px;
-    left: -10px;
+    display: none;
   }
 }
 .about .imageWrapper img {
@@ -74,12 +74,11 @@
   position: relative;
   z-index: 2;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  height: auto;
 }
 @media (max-width: 900px) {
   .about .imageWrapper {
     margin-top: 2rem;
-  }
-  .about .imageWrapper .imageBackground {
-    display: none;
   }
 }/*# sourceMappingURL=About.module.css.map */

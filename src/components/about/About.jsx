@@ -8,8 +8,8 @@ const About = () => {
     <section className={styles.about} id="about">
       <motion.div
         className={styles.text}
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
@@ -30,9 +30,9 @@ const About = () => {
 
       <motion.div
         className={styles.imageWrapper}
-        initial={{ opacity: 0, x: 50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
         viewport={{ once: true }}
       >
         <div className={styles.imageBackground}></div>

@@ -5,6 +5,7 @@
   padding: 6rem 8%;
   gap: 3rem;
   background: linear-gradient(135deg, #f9fafb, #eef2ff);
+  overflow: hidden;
 
   @media (max-width: 900px) {
     @include Flex(column, center, center);
@@ -51,9 +52,11 @@
         color: #2563eb;
         font-weight: 600;
         text-decoration: none;
+        transition: all 0.3s ease;
 
         &:hover {
           text-decoration: underline;
+          color: #1d4ed8;
         }
       }
     }
@@ -62,14 +65,16 @@
 
 .form {
   flex: 1;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.85);
   padding: 2.5rem;
   border-radius: 20px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(12px);
+  transition: all 0.4s ease;
 
   @media (max-width: 900px) {
     width: 100%;
+    margin-top: 2rem;
   }
 
   .inputGroup {
@@ -102,6 +107,7 @@
       color: #666;
       pointer-events: none;
       transition: 0.3s ease;
+      background: transparent;
     }
 
     input:focus + label,
@@ -130,10 +136,45 @@
     cursor: pointer;
     box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
     transition: all 0.3s ease;
+    position: relative;
 
     &:hover {
       background: linear-gradient(135deg, #1d4ed8, #7e22ce);
       box-shadow: 0 8px 28px rgba(37, 99, 235, 0.4);
+      transform: translateY(-2px);
     }
+  }
+}
+
+/* Sequential input animation styling */
+.inputGroup {
+  &:nth-child(1) { transition-delay: 0.1s; }
+  &:nth-child(2) { transition-delay: 0.25s; }
+  &:nth-child(3) { transition-delay: 0.4s; }
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  .contact {
+    padding: 3rem 1.5rem;
+  }
+
+  .left h2 {
+    font-size: 1.8rem;
+  }
+
+  .form {
+    padding: 2rem 1.5rem;
+  }
+
+  .inputGroup input,
+  .inputGroup textarea {
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 0.9rem;
   }
 }
