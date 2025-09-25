@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "../pages/home/HomePage";
 
-const Allroutes = () => {
+const AllRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
@@ -10,4 +10,4 @@ const Allroutes = () => {
   );
 };
 
-export default Allroutes;
+export default AllRoutes;
