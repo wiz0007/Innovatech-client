@@ -2,7 +2,7 @@
 import member1 from "../team/ayushImg.jpg"
 import member2 from "../team/AnuImg.jpg"
 import member3 from "../../assets/webApp.png"
-import member4 from "../../assets/webApp.png"
+import member4 from "../team/tanuj.jpg"
 
 const members = [
   {
@@ -30,12 +30,12 @@ const members = [
     github: "",
   },
   {
-    name: "N/A_",
+    name: "Tanuj Joshi",
     role: "Mobile App Developer",
     photo: member4,
     twitter: "",
-    linkedin: "https://www.linkedin.com/in/davidkim/",
-    github: "https://github.com/davidkim",
+    linkedin: "https://www.linkedin.com/in/tara-chandra-joshi-39637b276?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    github: "https://github.com/tanujjoshi95",
   },
 ];
 

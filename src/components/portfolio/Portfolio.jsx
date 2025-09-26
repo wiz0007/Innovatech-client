@@ -4,6 +4,9 @@ import styles from "./Portfolio.module.scss";
 import myKart from "../../assets/myKart.png";
 import Landing from "../../assets/Landing.png";
 import image from "../../assets/webApp.png"
+import instaUI from "../../assets/instaUI.jpg"
+import book from "../../assets/BookReading.jpg"
+import movie from "../../assets/MovieApp.jpg"
 
 const projects = [
   {
@@ -13,15 +16,15 @@ const projects = [
     link: "https://my-kart-taupe.vercel.app/",
   },
   {
-    title: "Social Media Mobile App",
+    title: "Book Reading App",
     category: "Mobile",
-    image: image,
+    image: book,
     link: "https://mysocialapp.com",
   },
   {
-    title: "SaaS Dashboard UI",
+    title: "Instagram Profile Page UI",
     category: "UI/UX",
-    image: image,
+    image: instaUI,
     link: "https://mysaasdashboard.com",
   },
   {
@@ -31,9 +34,9 @@ const projects = [
     link: "https://myportfolio.com",
   },
   {
-    title: "Fitness Tracker App",
+    title: "Movie App",
     category: "Mobile",
-    image: image,
+    image: movie,
     link: "https://myfitnessapp.com",
   },
   {
