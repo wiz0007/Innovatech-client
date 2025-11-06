@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Navbar.module.scss";
-import logo from "../../assets/CompanyLogo.png";
+import logo from "../../assets/Logo.png";
 
 const navLinks = [
   { name: "Home", href: "#home" },
