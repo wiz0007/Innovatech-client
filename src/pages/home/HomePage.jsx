@@ -20,7 +20,7 @@ const MotionButton = motion.button;
 const MotionH1 = motion.h1;
 const MotionP = motion.p;
 
-const focusLinks = ["Motion", "Interaction", "UI / UX", "Web design", "Visuals"];
+const focusLinks = ["Launch-ready web apps", "Mobile product flows", "AI-assisted systems", "Conversion-focused UI", "Motion & interaction"];
 
 const services = [
   {
@@ -170,7 +170,7 @@ const HomePage = () => {
 
         <MotionDiv className={styles.heroCopy} style={{ y: heroY }}>
           <MotionP className={styles.eyebrow} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.15 }}>
-            InnovaTech / Creative app studio
+            InnovaTech / product engineering team
           </MotionP>
           <MotionH1 data-text="Creative Digital Experiences" initial={{ opacity: 0, y: 52, filter: "blur(18px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}>
             Creative Digital Experiences
@@ -280,7 +280,7 @@ const HomePage = () => {
         <div className={styles.aboutCopy}>
           <p>About InnovaTech</p>
           <h2>We transform ideas into digital products that engage, inspire, and scale.</h2>
-          <span>At Alphaflow, we craft web and mobile applications that combine sleek design with seamless performance. From startups to established teams, every build is shaped to feel sharp, responsive, and memorable.</span>
+          <span>At InnovaTech, we craft web and mobile applications that combine sleek design with seamless performance. From startups to established teams, every build is shaped to feel sharp, responsive, and memorable.</span>
         </div>
         <div className={styles.aboutVisual}>
           <img src={aboutImage} alt="About InnovaTech" />
@@ -337,7 +337,8 @@ const HomePage = () => {
       </MotionSection>
 
       <footer className={styles.footer}>
-        <div>
+        <div className={styles.footerBrand}>
+          <img src="/innovatech-mark.svg" alt="" />
           <h2>InnovaTech</h2>
           <p>Building modern digital experiences with impact.</p>
         </div>
@@ -360,6 +361,9 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+
+
 
 
 
