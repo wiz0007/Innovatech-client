@@ -1,132 +1,61 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import styles from "./Navbar.module.scss";
-import logo from "../../assets/Logo.png";
+
+const MotionDiv = motion.div;
+const MotionHeader = motion.header;
 
 const navLinks = [
-  { name: "Home", href: "#home" },
   { name: "Services", href: "#services" },
-  { name: "Portfolio", href: "#portfolio" },
+  { name: "Work", href: "#portfolio" },
+  { name: "Process", href: "#process" },
   { name: "About", href: "#about" },
-  { name: "Contact", href: "#contact", cta: true },
+  { name: "Team", href: "#team" },
+  { name: "Contact", href: "#contact" },
 ];
 
 const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Observe sections in viewport
-  useEffect(() => {
-    const sections = document.querySelectorAll("section[id]");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: "-50% 0px -50% 0px" }
-    );
-    sections.forEach((sec) => observer.observe(sec));
-    return () => sections.forEach((sec) => observer.unobserve(sec));
-  }, []);
-
-  // Scroll progress
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.body.scrollHeight - window.innerHeight;
-      const scrolled = (scrollTop / docHeight) * 100;
+      const scrolled = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
       setScrollProgress(scrolled);
     };
+
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
-      {/* Scroll Progress Bar */}
-      <motion.div
-        className={styles.scrollBar}
-        style={{ scaleX: scrollProgress / 100 }}
-      />
+      <MotionDiv className={styles.scrollBar} style={{ scaleX: scrollProgress / 100 }} />
 
-      <motion.header className={styles.navbar}>
-        {/* Logo */}
-        <div className={styles.logo}>
-          <img src={logo} alt="Logo" />
-          <span>InnovaTech</span>
-        </div>
+      <MotionHeader
+        className={styles.navbar}
+        initial={{ opacity: 0, y: -18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <a className={styles.logo} href="#home" aria-label="Go to home">
+          <span className={styles.logoMark}>IX</span>
+          <span>Innova Experiments</span>
+        </a>
 
-        {/* Desktop Links */}
-        <nav className={styles.links}>
-          {navLinks.map((link, i) => (
-            <a
-              key={i}
-              href={link.href}
-              className={`${link.cta ? styles.cta : ""} ${
-                activeSection === link.href.replace("#", "") ? styles.active : ""
-              }`}
-            >
+        <nav className={styles.links} aria-label="Primary navigation">
+          {navLinks.map((link) => (
+            <a key={link.name} href={link.href}>
               {link.name}
             </a>
           ))}
         </nav>
-
-        {/* Hamburger */}
-        <div
-          className={`${styles.hamburger} ${menuOpen ? styles.toggle : ""}`}
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </motion.header>
-
-      {/* Mobile Overlay */}
-      <AnimatePresence>
-        {menuOpen && (
-          <>
-            <motion.div
-              className={styles.mobileOverlay}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setMenuOpen(false)}
-            />
-            <motion.nav
-              className={styles.mobileMenu}
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", stiffness: 80 }}
-            >
-              {navLinks.map((link, index) => (
-                <motion.a
-                  key={link.name}
-                  href={link.href}
-                  className={`${link.cta ? styles.cta : ""} ${
-                    activeSection === link.href.replace("#", "")
-                      ? styles.active
-                      : ""
-                  }`}
-                  onClick={() => setMenuOpen(false)}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.05 * index }}
-                >
-                  {link.name}
-                </motion.a>
-              ))}
-            </motion.nav>
-          </>
-        )}
-      </AnimatePresence>
+      </MotionHeader>
     </>
   );
 };
 
 export default Navbar;
+

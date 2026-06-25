@@ -1,8 +1,8 @@
 // Import member images
-import member1 from "../team/ayushImg.jpg"
-import member2 from "../team/AnuImg.jpg"
-import member3 from "../team/nikImg.jpg"
-import member4 from "../team/tanuj.jpg"
+import member1 from "./ayushImg.jpg"
+import member2 from "./AnuImg.jpg"
+import member3 from "./nikImg.jpg"
+import member4 from "./tanuj.jpg"
 
 const members = [
   {
@@ -40,3 +40,6 @@ const members = [
 ];
 
 export default members;
+
+
+
