@@ -99,8 +99,15 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Right: Contact CTA */}
+          {/* Right: Inquiries & Contact CTA */}
           <div className={styles.rightNav}>
+            <NavLink
+              to="/inquiries"
+              className={({ isActive }) => `${styles.inquiriesLink} ${isActive ? styles.activeInquiriesLink : ""}`}
+            >
+              Inquiries
+            </NavLink>
+
             <Link to="/contact" className={styles.contactBtn}>
               <span className={styles.statusDot} />
               <span>Contact</span>
