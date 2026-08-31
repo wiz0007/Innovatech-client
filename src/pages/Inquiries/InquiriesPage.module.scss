@@ -1,0 +1,419 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.inquiriesPage {
+  background-color: #03040b;
+  min-height: 100vh;
+}
+
+.scopingSection {
+  padding: clamp(60px, 8vw, 100px) 0;
+}
+
+.container {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 48px);
+}
+
+.scopingGrid {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: clamp(32px, 4vw, 56px);
+  align-items: start;
+
+  @include tablet-down {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Left Configurator Column
+.configCol {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.configGroup {
+  padding: clamp(24px, 3.5vw, 36px);
+  border-radius: $radius-xl;
+  @include glass-panel($bg: rgba(6, 9, 22, 0.7), $border: rgba(255, 255, 255, 0.08), $blur: 16px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+.groupHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.stepNum {
+  font-family: $font-mono;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: $accent-cyan;
+  padding: 4px 10px;
+  border-radius: $radius-full;
+  background: rgba(98, 242, 255, 0.1);
+  border: 1px solid rgba(98, 242, 255, 0.3);
+}
+
+.groupTitle {
+  @include display-heading;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+// 1. Platforms Grid
+.platformsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.platformCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: $radius-lg;
+  padding: 18px 20px;
+  text-align: left;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(98, 242, 255, 0.35);
+  }
+
+  &.platformActive {
+    background: rgba(98, 242, 255, 0.1);
+    border-color: $accent-cyan;
+    box-shadow: 0 0 20px rgba(98, 242, 255, 0.18);
+  }
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.cardLabel {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.checkCircle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #03040b;
+  background: transparent;
+
+  .platformActive & {
+    background: $accent-cyan;
+    border-color: $accent-cyan;
+  }
+}
+
+.cardDesc {
+  font-size: 0.78rem;
+  color: $text-secondary;
+  line-height: 1.4;
+}
+
+// 2. Timeline Grid
+.timelinesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.timelineCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: $radius-lg;
+  padding: 18px 16px;
+  text-align: left;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(98, 242, 255, 0.35);
+  }
+
+  &.timelineActive {
+    background: rgba(98, 242, 255, 0.1);
+    border-color: $accent-cyan;
+    box-shadow: 0 0 20px rgba(98, 242, 255, 0.18);
+  }
+}
+
+.timelineDuration {
+  display: inline-block;
+  font-family: $font-mono;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: $accent-cyan;
+  margin-bottom: 6px;
+}
+
+.timelineLabel {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.timelineDesc {
+  font-size: 0.75rem;
+  color: $text-secondary;
+  line-height: 1.4;
+}
+
+// 3. Capabilities
+.capsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.capBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: $radius-full;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  &.capActive {
+    background: rgba(98, 242, 255, 0.15);
+    border-color: rgba(98, 242, 255, 0.5);
+    color: #ffffff;
+  }
+}
+
+.capDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+
+  .capActive & {
+    background: $accent-cyan;
+    box-shadow: 0 0 8px $accent-cyan;
+  }
+}
+
+// 4. Fields Grid
+.fieldsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.inputField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  input,
+  select,
+  textarea {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: $radius-md;
+    padding: 12px 16px;
+    color: #ffffff;
+    font-size: 0.88rem;
+    outline: none;
+    transition: border-color $transition-fast, box-shadow $transition-fast;
+
+    &:focus {
+      border-color: $accent-cyan;
+      box-shadow: 0 0 16px rgba(98, 242, 255, 0.2);
+    }
+  }
+
+  select {
+    color: #ffffff;
+    option {
+      background: #080c1e;
+      color: #ffffff;
+    }
+  }
+}
+
+// Right Summary Card
+.summaryCol {
+  position: sticky;
+  top: 100px;
+}
+
+.tiltWrapper {
+  width: 100%;
+}
+
+.summaryCard {
+  padding: 32px 28px;
+  border-radius: $radius-xl;
+  @include glass-panel($bg: rgba(6, 9, 22, 0.85), $border: rgba(98, 242, 255, 0.25), $blur: 24px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(98, 242, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.summaryHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+
+  h4 {
+    @include display-heading;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+}
+
+.summarySparkle {
+  color: $accent-cyan;
+}
+
+.summaryItems {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid $border-subtle;
+  margin-bottom: 22px;
+}
+
+.summaryRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rowLabel {
+  font-size: 0.84rem;
+  color: $text-secondary;
+}
+
+.rowVal {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.guaranteeBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: $radius-md;
+  background: rgba(98, 242, 255, 0.06);
+  border: 1px solid rgba(98, 242, 255, 0.18);
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.4;
+  margin-bottom: 24px;
+
+  .shieldIcon {
+    color: $accent-cyan;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+}
+
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px;
+  border-radius: $radius-full;
+  background: linear-gradient(135deg, $accent-violet, $accent-cyan);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.92rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(98, 242, 255, 0.25);
+  transition: transform $transition-fast, box-shadow $transition-fast;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px rgba(98, 242, 255, 0.4);
+  }
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+}
+
+.statusAlert {
+  margin-top: 18px;
+  padding: 12px 16px;
+  border-radius: $radius-md;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.successAlert {
+  background: rgba(46, 213, 115, 0.12);
+  border: 1px solid rgba(46, 213, 115, 0.4);
+  color: #2ed573;
+}
+
+.errorAlert {
+  background: rgba(255, 71, 87, 0.12);
+  border: 1px solid rgba(255, 71, 87, 0.4);
+  color: #ff4757;
+}
