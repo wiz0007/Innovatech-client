@@ -40,9 +40,11 @@ const Navbar = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       >
-        <a className={styles.logo} href="#home" aria-label="Go to home">
-          <span className={styles.logoMark}><img src="/innovatech-mark.svg" alt="" /></span>
-          <span>InnovaTech</span>
+        <a className={styles.logo} href="#home" aria-label="RogueAI Home">
+          <span className={styles.logoMark}>
+            <img src="/rogue-mark.svg" alt="RogueAI" />
+          </span>
+          <span>RogueAI</span>
         </a>
 
         <nav className={styles.links} aria-label="Primary navigation">
@@ -58,6 +60,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
-

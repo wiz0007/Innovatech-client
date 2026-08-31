@@ -1,0 +1,323 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.servicesPage {
+  position: relative;
+  width: 100%;
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.heroActionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: $radius-full;
+  background: linear-gradient(135deg, $accent-violet, $accent-cyan);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.88rem;
+  box-shadow: 0 4px 20px rgba(98, 242, 255, 0.3);
+  transition: transform $transition-fast, box-shadow $transition-fast;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 26px rgba(98, 242, 255, 0.45);
+  }
+}
+
+.detailsSection {
+  padding: clamp(60px, 8vw, 100px) clamp(20px, 5vw, 64px);
+}
+
+.tabBar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: clamp(36px, 5vw, 56px);
+  flex-wrap: wrap;
+}
+
+.tabBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: $radius-full;
+  @include glass-panel($bg: rgba(12, 16, 31, 0.7), $border: rgba(255, 255, 255, 0.1), $blur: 16px);
+  color: rgba(255, 255, 255, 0.75);
+  font-family: $font-display;
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: all $transition-fast;
+
+  &:hover {
+    color: #ffffff;
+    border-color: rgba(98, 242, 255, 0.3);
+  }
+}
+
+.activeTab {
+  background: rgba(98, 242, 255, 0.12) !important;
+  border-color: rgba(98, 242, 255, 0.5) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 24px rgba(98, 242, 255, 0.2);
+}
+
+.tabIcon {
+  color: $accent-cyan;
+  font-size: 0.95rem;
+}
+
+.activeServiceCard {
+  @include glass-panel($bg: rgba(12, 16, 31, 0.85), $border: rgba(255, 255, 255, 0.12), $blur: 24px);
+  border-radius: $radius-xl;
+  padding: clamp(32px, 6vw, 56px);
+  box-shadow: $shadow-lg;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 24px;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.headerIconWrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: $radius-lg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(98, 242, 255, 0.3);
+  box-shadow: 0 0 24px rgba(98, 242, 255, 0.15);
+
+  img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+  }
+}
+
+.activeTitle {
+  @include display-heading;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.activeTagline {
+  font-size: 1rem;
+  font-weight: 600;
+  color: $accent-cyan;
+  margin: 0;
+}
+
+.activeDetails {
+  font-size: clamp(0.98rem, 1.25vw, 1.12rem);
+  line-height: 1.7;
+  color: $text-secondary;
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid $border-subtle;
+}
+
+.cardColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 48px);
+  margin-bottom: 40px;
+
+  @include tablet-down {
+    grid-template-columns: 1fr;
+  }
+}
+
+.infoCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.colHeading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: $font-display;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.stackHeading {
+  margin-top: 28px;
+}
+
+.headingIcon {
+  color: $accent-cyan;
+  font-size: 1rem;
+}
+
+.highlightList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: $text-secondary;
+
+    .checkIcon {
+      color: $accent-cyan;
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+  }
+}
+
+.deliverablesGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.deliverableBadge {
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: $radius-md;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid $border-subtle;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.stackTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.techBadge {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: $radius-full;
+  background: rgba(98, 242, 255, 0.08);
+  border: 1px solid rgba(98, 242, 255, 0.2);
+  color: $accent-cyan;
+}
+
+.cardActionFooter {
+  padding-top: 28px;
+  border-top: 1px solid $border-subtle;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.startServiceBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: $radius-full;
+  background: linear-gradient(135deg, $accent-violet, $accent-cyan);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.88rem;
+  box-shadow: 0 4px 18px rgba(98, 242, 255, 0.25);
+  transition: transform $transition-fast, box-shadow $transition-fast;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 26px rgba(98, 242, 255, 0.4);
+  }
+}
+
+// ENGAGEMENT MODELS
+.engagementSection {
+  padding: clamp(60px, 8vw, 100px) clamp(20px, 5vw, 64px);
+  border-top: 1px solid $border-subtle;
+  background: linear-gradient(180deg, rgba(3, 4, 11, 0) 0%, rgba(6, 9, 20, 0.5) 100%);
+}
+
+.engagementGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 32px);
+
+  @include tablet-down {
+    grid-template-columns: 1fr;
+  }
+}
+
+.engagementCard {
+  @include glass-panel($bg: rgba(12, 16, 31, 0.75), $border: rgba(255, 255, 255, 0.08), $blur: 16px);
+  @include interactive-card;
+  border-radius: $radius-lg;
+  padding: clamp(24px, 4vw, 36px);
+  display: flex;
+  flex-direction: column;
+}
+
+.modelTitle {
+  font-family: $font-display;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.modelTagline {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: $accent-violet;
+  margin-bottom: 14px;
+}
+
+.modelDesc {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: $text-secondary;
+  margin-bottom: 24px;
+}
+
+.modelFeatures {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid $border-subtle;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.84rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.45;
+
+    .modelCheck {
+      color: $accent-cyan;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+  }
+}

@@ -1,0 +1,177 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.timelineWrapper {
+  width: 100%;
+}
+
+.stepsContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2vw, 28px);
+  margin-bottom: clamp(60px, 8vw, 100px);
+
+  @include tablet-down {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stepCard {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(24px, 3vw, 36px);
+  border-radius: $radius-lg;
+  @include glass-panel($bg: rgba(12, 16, 31, 0.75), $border: $border-subtle, $blur: 16px);
+  box-shadow: $shadow-md;
+  transition: transform $transition-fast, border-color $transition-fast;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(98, 242, 255, 0.3);
+  }
+}
+
+.stepHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.stepNumber {
+  font-family: $font-mono;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: $accent-cyan;
+}
+
+.stepDuration {
+  font-family: $font-mono;
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  border-radius: $radius-full;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid $border-subtle;
+  color: $text-secondary;
+}
+
+.phaseTitle {
+  @include display-heading;
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  margin-bottom: 8px;
+}
+
+.tagline {
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  color: $accent-violet;
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+.description {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: $text-secondary;
+  margin-bottom: 24px;
+}
+
+.deliverables {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid $border-subtle;
+}
+
+.deliverablesTitle {
+  font-family: $font-mono;
+  font-size: 0.72rem;
+  color: $text-muted;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.deliverablesList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.84rem;
+    color: $text-secondary;
+    line-height: 1.4;
+  }
+}
+
+.checkIcon {
+  color: $accent-emerald;
+  font-size: 0.75rem;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+/* Principles Section */
+.principlesSection {
+  padding: clamp(36px, 5vw, 56px);
+  border-radius: $radius-xl;
+  background: radial-gradient(circle at 50% 0%, rgba(110, 107, 255, 0.12) 0%, rgba(12, 16, 31, 0.8) 70%);
+  border: 1px solid rgba(110, 107, 255, 0.25);
+  box-shadow: $shadow-lg;
+}
+
+.principlesTag {
+  @include eyebrow;
+}
+
+.principlesHeading {
+  @include display-heading;
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  margin-bottom: 32px;
+}
+
+.principlesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+
+  @include tablet-down {
+    grid-template-columns: 1fr;
+  }
+}
+
+.principleCard {
+  padding: 24px;
+  border-radius: $radius-md;
+  background: rgba(3, 4, 11, 0.6);
+  border: 1px solid $border-subtle;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.principleNum {
+  font-family: $font-mono;
+  font-size: 0.8rem;
+  color: $accent-cyan;
+  font-weight: 700;
+}
+
+.principleTitle {
+  font-family: $font-display;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.principleText {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: $text-secondary;
+}

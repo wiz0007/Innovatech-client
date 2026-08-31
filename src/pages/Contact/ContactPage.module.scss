@@ -1,0 +1,280 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.contactPage {
+  position: relative;
+  width: 100%;
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.formSection {
+  padding: clamp(60px, 8vw, 100px) clamp(20px, 5vw, 64px);
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: flex-start;
+
+  @include tablet-down {
+    grid-template-columns: 1fr;
+  }
+}
+
+.infoCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.statusBox {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border-radius: $radius-full;
+  @include glass-panel($bg: rgba(98, 242, 255, 0.08), $border: rgba(98, 242, 255, 0.25), $blur: 12px);
+  color: $accent-cyan;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  width: fit-content;
+}
+
+.statusPulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: $accent-cyan;
+  box-shadow: 0 0 10px $accent-cyan;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.infoTitle {
+  @include display-heading;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+
+.infoDesc {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: $text-secondary;
+  margin-bottom: 36px;
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px;
+  border-radius: $radius-lg;
+  background: rgba(12, 16, 31, 0.6);
+  border: 1px solid $border-subtle;
+}
+
+.itemIcon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(98, 242, 255, 0.1);
+  border: 1px solid rgba(98, 242, 255, 0.25);
+  color: $accent-cyan;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.itemLabel {
+  display: block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $text-muted;
+  margin-bottom: 4px;
+}
+
+.itemVal {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #ffffff;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $accent-cyan;
+  }
+}
+
+.formCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactForm {
+  @include glass-panel($bg: rgba(12, 16, 31, 0.85), $border: rgba(255, 255, 255, 0.12), $blur: 24px);
+  border-radius: $radius-xl;
+  padding: clamp(28px, 5vw, 44px);
+  box-shadow: $shadow-lg;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formHeading {
+  font-family: $font-display;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: $radius-md;
+    background: rgba(3, 4, 11, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+    font-size: 0.92rem;
+    outline: none;
+    transition: border-color $transition-fast, box-shadow $transition-fast;
+
+    &:focus {
+      border-color: $border-focus;
+      box-shadow: 0 0 0 3px rgba(98, 242, 255, 0.15);
+    }
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.35);
+    }
+  }
+
+  select {
+    cursor: pointer;
+    option {
+      background: #0c101f;
+      color: #ffffff;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+}
+
+.submitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px;
+  border-radius: $radius-md;
+  background: linear-gradient(135deg, $accent-violet 0%, $accent-indigo 50%, $accent-cyan 100%);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+  margin-top: 8px;
+  box-shadow: 0 4px 20px rgba(98, 242, 255, 0.25);
+  transition: transform $transition-fast, box-shadow $transition-fast, opacity $transition-fast;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(98, 242, 255, 0.45);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: wait;
+  }
+}
+
+.successBanner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border-radius: $radius-md;
+  background: rgba(98, 242, 255, 0.1);
+  border: 1px solid rgba(98, 242, 255, 0.3);
+  color: #d7fbff;
+  font-size: 0.88rem;
+  line-height: 1.5;
+
+  .statusIcon {
+    color: $accent-cyan;
+    font-size: 1.1rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.errorBanner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border-radius: $radius-md;
+  background: rgba(255, 90, 120, 0.12);
+  border: 1px solid rgba(255, 90, 120, 0.35);
+  color: #ffe0e7;
+  font-size: 0.88rem;
+  line-height: 1.5;
+
+  .statusIcon {
+    color: #ff5a78;
+    font-size: 1.1rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}

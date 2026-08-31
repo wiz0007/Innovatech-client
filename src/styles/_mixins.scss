@@ -1,0 +1,75 @@
+@use "./variables" as *;
+
+// Glass Card Mixin
+@mixin glass-panel($bg: $bg-surface-1, $border: $border-subtle, $blur: 16px) {
+  background: $bg;
+  border: 1px solid $border;
+  backdrop-filter: blur($blur) saturate(140%);
+  -webkit-backdrop-filter: blur($blur) saturate(140%);
+  box-shadow: $shadow-md, inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+// Interactive Hover Card
+@mixin interactive-card {
+  transition: transform $transition-medium, border-color $transition-medium, box-shadow $transition-medium;
+  
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(98, 242, 255, 0.35);
+    box-shadow: $shadow-lg, $shadow-glow-cyan;
+  }
+}
+
+// Eyebrow Label
+@mixin eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: $font-sans;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: $accent-cyan;
+  margin-bottom: 12px;
+}
+
+// Display Heading
+@mixin display-heading {
+  font-family: $font-display;
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: $text-primary;
+}
+
+// Responsive Breakpoints
+@mixin mobile {
+  @media (max-width: #{$bp-tablet - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$bp-tablet}) and (max-width: #{$bp-laptop - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-down {
+  @media (max-width: #{$bp-laptop - 1px}) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media (min-width: #{$bp-laptop}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$bp-desktop}) {
+    @content;
+  }
+}

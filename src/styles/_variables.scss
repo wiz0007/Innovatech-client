@@ -1,0 +1,44 @@
+// RogueAI Obsidian Dark Design Tokens
+$bg-main: #03040b;
+$bg-surface-1: rgba(12, 16, 31, 0.7);
+$bg-surface-2: rgba(18, 23, 44, 0.85);
+$bg-surface-elevated: #0f1428;
+
+$text-primary: #ffffff;
+$text-secondary: #9da8be;
+$text-muted: #64748b;
+
+$accent-cyan: #62f2ff;
+$accent-violet: #ff5adf;
+$accent-indigo: #6e6bff;
+$accent-amber: #ff9f43;
+
+$border-subtle: rgba(255, 255, 255, 0.08);
+$border-medium: rgba(255, 255, 255, 0.16);
+$border-glow-cyan: rgba(98, 242, 255, 0.35);
+$border-focus: rgba(98, 242, 255, 0.6);
+
+$font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-mono: 'JetBrains Mono', monospace, Consolas, Courier New;
+
+$radius-sm: 6px;
+$radius-md: 12px;
+$radius-lg: 20px;
+$radius-xl: 28px;
+$radius-full: 9999px;
+
+$shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+$shadow-md: 0 10px 30px rgba(0, 0, 0, 0.45);
+$shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.6);
+$shadow-glow-cyan: 0 0 35px rgba(98, 242, 255, 0.22);
+$shadow-glow-violet: 0 0 35px rgba(255, 90, 223, 0.22);
+
+$transition-fast: 0.18s ease;
+$transition-medium: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+$transition-smooth: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+
+$bp-mobile: 480px;
+$bp-tablet: 768px;
+$bp-laptop: 1024px;
+$bp-desktop: 1280px;
