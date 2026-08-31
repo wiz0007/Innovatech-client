@@ -1,0 +1,224 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.triggerWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.pinnedContainer {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 clamp(20px, 4vw, 56px);
+  background: radial-gradient(circle at 70% 30%, rgba(98, 242, 255, 0.05) 0%, transparent 60%);
+  position: relative;
+  overflow: hidden;
+
+  @include tablet-down {
+    height: auto;
+    min-height: auto;
+    padding: clamp(60px, 8vw, 100px) clamp(20px, 4vw, 56px);
+  }
+}
+
+.storyLayout {
+  max-width: 1360px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+
+  @include tablet-down {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.navCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.eyebrow {
+  @include eyebrow;
+}
+
+.sectionTitle {
+  @include display-heading;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  margin-bottom: 36px;
+  text-wrap: balance;
+}
+
+.stepList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stepButton {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  border-radius: $radius-md;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid $border-subtle;
+  color: $text-secondary;
+  text-align: left;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.07);
+    color: #ffffff;
+    border-color: $border-medium;
+  }
+}
+
+.activeStepButton {
+  background: rgba(98, 242, 255, 0.12) !important;
+  border-color: $accent-cyan !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 24px rgba(98, 242, 255, 0.2);
+}
+
+.stepNum {
+  font-family: $font-mono;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: $accent-cyan;
+}
+
+.stepTitle {
+  font-family: $font-display;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.contentCol {
+  width: 100%;
+}
+
+.card {
+  padding: clamp(32px, 4vw, 48px);
+  border-radius: $radius-lg;
+  @include glass-panel($bg: rgba(12, 16, 31, 0.85), $border: rgba(98, 242, 255, 0.2), $blur: 20px);
+  box-shadow: $shadow-lg;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.iconCircle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(98, 242, 255, 0.15);
+  border: 1px solid rgba(98, 242, 255, 0.35);
+  color: $accent-cyan;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.headerMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.badge {
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  color: $accent-violet;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.cardHeadline {
+  font-family: $font-display;
+  font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.25;
+}
+
+.cardDesc {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: $text-secondary;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 18px 0;
+  border-top: 1px solid $border-subtle;
+  border-bottom: 1px solid $border-subtle;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.statBox {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statValue {
+  font-family: $font-display;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: $accent-cyan;
+}
+
+.statLabel {
+  font-family: $font-mono;
+  font-size: 0.72rem;
+  color: $text-muted;
+}
+
+.techStack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.techLabel {
+  font-family: $font-mono;
+  font-size: 0.74rem;
+  color: $text-muted;
+  text-transform: uppercase;
+}
+
+.tagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  font-family: $font-mono;
+  font-size: 0.72rem;
+  padding: 4px 10px;
+  border-radius: $radius-full;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid $border-subtle;
+  color: $text-secondary;
+}

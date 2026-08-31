@@ -1,0 +1,61 @@
+@use "../../styles/variables" as *;
+
+.cursorDot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background-color: $accent-cyan;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.15s ease, background-color 0.2s ease;
+  mix-blend-mode: exclusion;
+
+  &.visible {
+    opacity: 1;
+  }
+
+  &.hovered {
+    transform: translate(-50%, -50%) scale(1.8);
+    background-color: $accent-violet;
+  }
+}
+
+.cursorFollower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(98, 242, 255, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.25s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  box-shadow: 0 0 16px rgba(98, 242, 255, 0.2);
+
+  &.visible {
+    opacity: 1;
+  }
+
+  &.hovered {
+    width: 60px;
+    height: 60px;
+    border-color: rgba(255, 90, 223, 0.7);
+    background: rgba(255, 90, 223, 0.08);
+    box-shadow: 0 0 24px rgba(255, 90, 223, 0.3);
+  }
+}
+
+@media (pointer: coarse) {
+  .cursorDot,
+  .cursorFollower {
+    display: none !important;
+  }
+}

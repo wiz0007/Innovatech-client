@@ -1,0 +1,263 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.navbarWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 24px clamp(20px, 4vw, 56px);
+  transition: background-color $transition-smooth, backdrop-filter $transition-smooth, padding $transition-smooth, border-color $transition-smooth;
+
+  &.scrolled {
+    padding: 16px clamp(20px, 4vw, 56px);
+    background: rgba(3, 4, 11, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+.navContainer {
+  max-width: 1560px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Left Navigation
+.leftNav {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2.2vw, 32px);
+  flex: 1;
+
+  @include tablet-down {
+    display: none;
+  }
+}
+
+.navLink {
+  font-family: $font-sans;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.72);
+  letter-spacing: 0.02em;
+  transition: color $transition-fast;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  outline: none;
+
+  &:hover {
+    color: #ffffff;
+  }
+
+  &:focus-visible {
+    outline: none;
+    color: #ffffff;
+  }
+}
+
+.activeNavLink {
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+.dropdownWrapper {
+  position: relative;
+}
+
+.chevron {
+  font-size: 0.62rem;
+  opacity: 0.6;
+  transition: transform $transition-fast;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: -16px;
+  width: 280px;
+  padding: 10px;
+  border-radius: $radius-lg;
+  @include glass-panel($bg: rgba(6, 9, 22, 0.95), $border: rgba(255, 255, 255, 0.12), $blur: 24px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dropdownItem {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 14px;
+  border-radius: $radius-md;
+  transition: background $transition-fast;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+.itemTitle {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 2px;
+}
+
+.itemDesc {
+  font-size: 0.72rem;
+  color: $text-muted;
+}
+
+// Center Brandmark
+.centerBrand {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.brandTitle {
+  font-family: $font-display;
+  font-size: clamp(1.4rem, 2vw, 1.85rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  text-decoration: none;
+  background: linear-gradient(180deg, #ffffff 30%, rgba(255, 255, 255, 0.75) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: transform $transition-fast, opacity $transition-fast;
+
+  &:hover {
+    transform: scale(1.03);
+    opacity: 0.9;
+  }
+}
+
+// Right Nav
+.rightNav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(16px, 2vw, 28px);
+  flex: 1;
+}
+
+.inquiriesLink {
+  font-family: $font-sans;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.72);
+  transition: color $transition-fast;
+
+  &:hover {
+    color: #ffffff;
+  }
+
+  @include tablet-down {
+    display: none;
+  }
+}
+
+.contactBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 20px;
+  border-radius: $radius-full;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  color: #ffffff;
+  font-size: 0.84rem;
+  font-weight: 600;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(98, 242, 255, 0.45);
+    box-shadow: 0 0 20px rgba(98, 242, 255, 0.2);
+  }
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: $accent-cyan;
+  box-shadow: 0 0 8px $accent-cyan;
+}
+
+.mobileToggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 1.3rem;
+  cursor: pointer;
+
+  @include tablet-down {
+    display: block;
+  }
+}
+
+// Mobile Drawer
+.mobileDrawer {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  right: 0;
+  background: rgba(4, 6, 16, 0.98);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 24px clamp(20px, 5vw, 40px) 36px;
+  z-index: 999;
+}
+
+.mobileNavLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.mobileNavLink {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 6px 0;
+}
+
+.activeMobileNavLink {
+  color: $accent-cyan !important;
+}
+
+.mobileCtaWrapper {
+  margin-top: 14px;
+}
+
+.mobileCtaBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px;
+  border-radius: $radius-full;
+  background: linear-gradient(135deg, $accent-violet, $accent-cyan);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.92rem;
+}

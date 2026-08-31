@@ -1,38 +1,58 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap");
-
 :root {
-  color: #f7fbff;
-  background: #03040b;
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-synthesis: none;
-  text-rendering: geometricPrecision;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  color-scheme: dark;
+  --bg-main: #03040b;
+  --text-main: #f8fbff;
+  --accent-cyan: #62f2ff;
+  --accent-violet: #ff5adf;
 }
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
   scroll-behavior: smooth;
-  background: #03040b;
+  background-color: #03040b;
+  color: #f8fbff;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   min-width: 320px;
   min-height: 100vh;
-  margin: 0;
+  background-color: #03040b;
+  color: #f8fbff;
   overflow-x: hidden;
-  background:
-    radial-gradient(circle at 12% 12%, rgba(117, 55, 255, 0.2), transparent 32rem),
-    radial-gradient(circle at 82% 10%, rgba(0, 221, 255, 0.13), transparent 30rem),
-    #03040b;
+  position: relative;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #03040b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(98, 242, 255, 0.4);
 }
 
 ::selection {
-  color: #051018;
-  background: #78f7ff;
+  color: #03040b;
+  background: #62f2ff;
 }
 
 a {
@@ -40,18 +60,33 @@ a {
   text-decoration: none;
 }
 
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
+button {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  font: inherit;
+  color: inherit;
 }
 
+input, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Accessibility: Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

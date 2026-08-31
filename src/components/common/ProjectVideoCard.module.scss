@@ -1,0 +1,261 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.tiltWrapper {
+  height: 100%;
+}
+
+.card {
+  @include glass-panel($bg: rgba(12, 16, 31, 0.85), $border: rgba(255, 255, 255, 0.1), $blur: 20px);
+  border-radius: $radius-xl;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  transition: border-color $transition-fast, box-shadow $transition-fast;
+
+  &:hover {
+    border-color: rgba(98, 242, 255, 0.4);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 32px rgba(98, 242, 255, 0.18);
+  }
+}
+
+.mediaWrapper {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  background: #000;
+  overflow: hidden;
+}
+
+.posterImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.45s ease, transform 0.5s ease;
+
+  &.posterHidden {
+    opacity: 0;
+  }
+}
+
+.previewVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  filter: brightness(0.9) contrast(1.1);
+  transition: opacity 0.45s ease, transform 0.5s ease;
+  transform: scale(1.05);
+
+  &.videoActive {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scanlineOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.3) 50%
+  );
+  background-size: 100% 3px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.5;
+}
+
+.categoryBadge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 5px 12px;
+  border-radius: $radius-full;
+  @include glass-panel($bg: rgba(3, 4, 11, 0.85), $border: rgba(98, 242, 255, 0.4), $blur: 12px);
+  color: $accent-cyan;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  z-index: 3;
+}
+
+.liveBadge {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: $radius-full;
+  @include glass-panel($bg: rgba(3, 4, 11, 0.8), $border: rgba(255, 255, 255, 0.15), $blur: 10px);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: $text-secondary;
+  z-index: 3;
+  transition: all $transition-fast;
+
+  &.liveBadgeActive {
+    color: #ffffff;
+    border-color: rgba(98, 242, 255, 0.5);
+    background: rgba(98, 242, 255, 0.18);
+  }
+}
+
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: $accent-cyan;
+  box-shadow: 0 0 8px $accent-cyan;
+}
+
+.quickViewBtn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: $radius-full;
+  @include glass-panel($bg: rgba(3, 4, 11, 0.85), $border: rgba(255, 255, 255, 0.18), $blur: 12px);
+  color: #ffffff;
+  font-size: 0.74rem;
+  font-weight: 700;
+  z-index: 3;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba(98, 242, 255, 0.2);
+    border-color: rgba(98, 242, 255, 0.5);
+    color: #ffffff;
+  }
+}
+
+.cardDetails {
+  padding: clamp(22px, 3.5vw, 30px);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.metaRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $text-muted;
+  margin-bottom: 10px;
+}
+
+.title {
+  @include display-heading;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: $text-secondary;
+  margin-bottom: 18px;
+}
+
+.outcomeBox {
+  padding: 14px;
+  border-radius: $radius-md;
+  background: rgba(3, 4, 11, 0.55);
+  border: 1px solid rgba(98, 242, 255, 0.15);
+  margin-bottom: 20px;
+}
+
+.outcomeLabel {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $accent-cyan;
+  margin-bottom: 4px;
+}
+
+.outcomeText {
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.tagsRow {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: $radius-full;
+  background: rgba(98, 242, 255, 0.08);
+  border: 1px solid rgba(98, 242, 255, 0.18);
+  color: $accent-cyan;
+}
+
+.cardActions {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18px;
+  border-top: 1px solid $border-subtle;
+  gap: 12px;
+}
+
+.demoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #ffffff;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $accent-cyan;
+  }
+}
+
+.gitLink {
+  color: $text-secondary;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: #ffffff;
+  }
+}
+
+.deepDiveBtn {
+  margin-left: auto;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: $accent-violet;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: #ffffff;
+  }
+}
