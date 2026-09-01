@@ -1,0 +1,54 @@
+name: CI Quality & Security Gateway
+
+on:
+  push:
+    branches:
+      - main
+      - development
+      - website-*
+      - feature/*
+  pull_request:
+    branches:
+      - main
+      - development
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Code Quality, Build & Security
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run ESLint (Code Quality & Syntax Integrity)
+        run: npm run lint
+
+      - name: Verify Production Build (Vite Compilation)
+        run: npm run build
+
+      - name: Verify Build Artifacts
+        run: |
+          test -f dist/index.html || (echo "Error: dist/index.html missing!" && exit 1)
+          echo "Production build verified successfully."
+
+      - name: Dependency Security Audit
+        run: npm audit --audit-level=critical
+        continue-on-error: true
