@@ -34,7 +34,10 @@ const ProjectVideoCard = ({ project, onSelect, className = "" }) => {
           <img
             src={project.image}
             alt={project.title}
+            width={640}
+            height={360}
             loading="lazy"
+            decoding="async"
             className={`${styles.posterImage} ${isHovered && project.videoPreview ? styles.posterHidden : ""}`}
           />
 

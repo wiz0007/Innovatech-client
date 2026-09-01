@@ -8,7 +8,7 @@ const PageHero = ({
   title,
   subtitle,
   description,
-  imageSrc = "/assets/services-bg.jpg",
+  imageSrc = "/assets/services-bg.webp",
   children
 }) => {
   const containerRef = useRef(null);
@@ -97,10 +97,11 @@ const PageHero = ({
 
   return (
     <section ref={containerRef} className={styles.hero}>
-      {/* Bespoke 4K Cinematic Backdrop for this specific page */}
+      {/* Bespoke 4K WebP Optimized Backdrop */}
       <BespokeCinematicBackdrop
         imageSrc={imageSrc}
         alt={`${mainHeadline} Engineering Backdrop`}
+        isLCP={true}
       />
 
       <div className={styles.container}>

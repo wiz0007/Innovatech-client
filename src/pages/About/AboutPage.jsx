@@ -8,7 +8,7 @@ import SectionHeader from "../../components/common/SectionHeader";
 import CTASection from "../../components/common/CTASection";
 import TiltCard from "../../components/common/TiltCard";
 import teamMembers from "../../content/teamData";
-import aboutImg from "../../assets/About.png";
+import aboutImg from "../../assets/About.webp";
 import styles from "./AboutPage.module.scss";
 
 const values = [
@@ -41,7 +41,7 @@ const AboutPage = () => {
         headline="ABOUT"
         subtitle="Studio narrative and engineering leadership"
         description="A collective of product architects, mobile engineers, and systems designers dedicated to software that feels crisp and enduring."
-        imageSrc="/assets/about-bg.jpg"
+        imageSrc="/assets/about-bg.webp"
       />
 
       {/* STORY & MISSION */}

@@ -45,7 +45,7 @@ const ProcessPage = () => {
         headline="PROCESS"
         subtitle="Agile cadence and quality gateways"
         description="A battle-tested 4-phase delivery system that eliminates technical ambiguity and ensures high engineering standards."
-        imageSrc="/assets/process-bg.jpg"
+        imageSrc="/assets/process-bg.webp"
       />
 
       {/* 4 PHASES BREAKDOWN */}

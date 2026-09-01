@@ -13,7 +13,14 @@ const PinnedStackedWork = ({ projects }) => {
             {/* Visual Media Column */}
             <div className={styles.imageCol}>
               <div className={styles.imageWrapper}>
-                <img src={project.image} alt={project.title} loading="lazy" />
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  width={600}
+                  height={380}
+                  loading="lazy"
+                  decoding="async"
+                />
                 <span className={styles.categoryBadge}>{project.category}</span>
               </div>
             </div>

@@ -1,6 +1,6 @@
-import webIcon from "../assets/webApp.png";
-import mobileIcon from "../assets/mobileApp.png";
-import aiIcon from "../assets/AISolu.png";
+import webIcon from "../assets/webApp.webp";
+import mobileIcon from "../assets/mobileApp.webp";
+import aiIcon from "../assets/AISolu.webp";
 
 export const servicesData = [
   {

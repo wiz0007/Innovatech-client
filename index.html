@@ -11,6 +11,13 @@
       content="RogueAI is a product engineering team building high-performance web, mobile, and AI digital experiences."
     />
     <title>RogueAI • Web, Mobile & AI Product Studio</title>
+
+    {/* Preconnect to backend API */}
+    <link rel="preconnect" href="https://innovatech-server.onrender.com" crossOrigin="anonymous" />
+    <link rel="dns-prefetch" href="https://innovatech-server.onrender.com" />
+
+    {/* Critical LCP Image Preload */}
+    <link rel="preload" as="image" href="/assets/home-bg.webp" type="image/webp" fetchPriority="high" />
   </head>
   <body>
     <div id="root"></div>
