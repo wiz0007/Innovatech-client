@@ -9,6 +9,7 @@
   z-index: 0;
   background: #03040b;
   isolation: isolate;
+  contain: strict;
 }
 
 .backdropImage {
@@ -19,10 +20,15 @@
   object-fit: cover;
   opacity: 0.65;
   filter: brightness(0.72) contrast(1.18) saturate(1.25);
-  transform: scale(1.06);
+  transform: scale(1.06) translate3d(0, 0, 0);
   transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
   will-change: transform;
   animation: slowBreathe 18s ease-in-out infinite alternate;
+
+  &.paused {
+    animation-play-state: paused;
+    will-change: auto;
+  }
 }
 
 .scanlineOverlay {
@@ -36,6 +42,7 @@
   pointer-events: none;
   z-index: 1;
   opacity: 0.4;
+  contain: paint;
 }
 
 .vignetteOverlay {
@@ -44,6 +51,7 @@
   background: radial-gradient(circle at 50% 50%, rgba(3, 4, 11, 0.1) 0%, rgba(3, 4, 11, 0.65) 75%, #03040b 100%);
   pointer-events: none;
   z-index: 2;
+  contain: paint;
 }
 
 .colorGradeLayer {
@@ -52,6 +60,7 @@
   background: linear-gradient(180deg, rgba(3, 4, 11, 0.4) 0%, transparent 40%, rgba(3, 4, 11, 0.7) 100%);
   pointer-events: none;
   z-index: 2;
+  contain: paint;
 }
 
 @keyframes slowBreathe {
@@ -63,5 +72,12 @@
   }
   100% {
     filter: brightness(0.68) contrast(1.15) saturate(1.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdropImage {
+    animation: none;
+    transition: none;
   }
 }

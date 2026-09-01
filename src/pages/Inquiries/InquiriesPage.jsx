@@ -126,7 +126,7 @@ ${formData.notes || "No additional notes provided."}
         headline="INQUIRIES"
         subtitle="Project scope and architecture estimator"
         description="Configure your digital product requirements below for an instant scoping breakdown and technical discovery brief."
-        imageSrc="/assets/inquiries-bg.jpg"
+        imageSrc="/assets/inquiries-bg.webp"
       />
 
       {/* Interactive Estimator & Configurator Section */}

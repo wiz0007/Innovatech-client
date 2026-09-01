@@ -81,7 +81,7 @@ const ContactPage = () => {
         headline="CONTACT"
         subtitle="Contact details and form"
         description="Digital product engineering studio in Bengaluru — get in touch directly about bookings, system architecture or project scope."
-        imageSrc="/assets/contact-bg.jpg"
+        imageSrc="/assets/contact-bg.webp"
       />
 
       <section className={styles.formSection}>

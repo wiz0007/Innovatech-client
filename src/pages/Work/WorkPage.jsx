@@ -31,7 +31,7 @@ const WorkPage = () => {
         headline="PROJECTS"
         subtitle="Selected case studies and engineering proof"
         description="A curated gallery of recent web platforms, mobile ecosystems, and UI architectures shipped into production."
-        imageSrc="/assets/work-bg.jpg"
+        imageSrc="/assets/work-bg.webp"
       />
 
       {/* FILTER BAR & GALLERY */}

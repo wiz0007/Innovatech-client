@@ -13,7 +13,7 @@ const VideoHero = ({
   primaryCtaLink = "/contact",
   secondaryCtaText = "Explore Selected Work",
   secondaryCtaLink = "/work",
-  imageSrc = "/assets/home-bg.jpg"
+  imageSrc = "/assets/home-bg.webp"
 }) => {
   const containerRef = useRef(null);
   const titleLeftRef = useRef(null);
@@ -95,10 +95,11 @@ const VideoHero = ({
 
   return (
     <section ref={containerRef} className={styles.videoHeroSection}>
-      {/* Bespoke 4K Cinematic AI Neural Core Backdrop */}
+      {/* Bespoke 4K Optimized WebP Cinematic Backdrop */}
       <BespokeCinematicBackdrop
         imageSrc={imageSrc}
         alt="RogueAI Neural Computing Core"
+        isLCP={true}
       />
 
       {/* Hero Content Stage */}

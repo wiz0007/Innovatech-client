@@ -70,7 +70,7 @@ const ServicesPage = () => {
         headline="SERVICES"
         subtitle="Capabilities and technical solutions"
         description="Full-lifecycle digital product engineering across high-throughput web applications, mobile platforms, and AI systems."
-        imageSrc="/assets/services-bg.jpg"
+        imageSrc="/assets/services-bg.webp"
       >
         <MagneticButton>
           <Link to="/contact" className={styles.heroActionBtn}>
