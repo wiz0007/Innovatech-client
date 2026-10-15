@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaExternalLinkAlt, FaGithub, FaTimes, FaCheckCircle, FaBolt } from "react-icons/fa";
-import { Sparkles, ArrowUpRight, CheckCircle2, X } from "lucide-react";
+import { FaExternalLinkAlt, FaGithub, FaBolt } from "react-icons/fa";
+import { CheckCircle2, X } from "lucide-react";
 import SEO from "../../components/common/SEO";
-import PageHero from "../../components/common/PageHero";
+import ProjectFeaturedHero from "../../components/common/ProjectFeaturedHero";
 import CTASection from "../../components/common/CTASection";
-import TiltCard from "../../components/common/TiltCard";
 import ProjectVideoCard from "../../components/common/ProjectVideoCard";
-import MagneticButton from "../../components/common/MagneticButton";
 import projectsData, { categories } from "../../content/projectsData";
 import styles from "./WorkPage.module.scss";
 
@@ -27,12 +25,8 @@ const WorkPage = () => {
         description="Explore RogueAI's portfolio of production web applications, mobile platforms, and UI/UX systems."
       />
 
-      <PageHero
-        headline="PROJECTS"
-        subtitle="Selected case studies and engineering proof"
-        description="A curated gallery of recent web platforms, mobile ecosystems, and UI architectures shipped into production."
-        imageSrc="/assets/work-bg.webp"
-      />
+      {/* FEATURED CYBERNETIC HERO SECTION WITH REAL HANDSHAKE ANIMATION */}
+      <ProjectFeaturedHero />
 
       {/* FILTER BAR & GALLERY */}
       <section className={styles.gallerySection}>

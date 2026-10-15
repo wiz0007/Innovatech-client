@@ -6,7 +6,7 @@ import { Sparkles, Terminal, Cpu, Smartphone, Globe, ArrowUpRight, CheckCircle2 
 import SEO from "../../components/common/SEO";
 import SectionHeader from "../../components/common/SectionHeader";
 import CTASection from "../../components/common/CTASection";
-import VideoHero from "../../components/common/VideoHero";
+import EngineeringGridHero from "../../components/common/EngineeringGridHero";
 import TiltCard from "../../components/common/TiltCard";
 import CapabilityCard from "../../components/common/CapabilityCard";
 import ProjectVideoCard from "../../components/common/ProjectVideoCard";
@@ -41,16 +41,8 @@ const HomePage = () => {
         description="RogueAI engineers high-performance web applications, fluid mobile ecosystems, and practical AI integrations for ambitious companies."
       />
 
-      {/* CINEMATIC HERO WITH LOCAL REAL VIDEO & CHOREOGRAPHED SCROLL SEQUENCE */}
-      <VideoHero
-        headline="ROGUEAI"
-        subtitle="Digital systems and product engineering"
-        description="We design, architect, and ship high-throughput web apps, fluid mobile platforms, and reliable AI workflows for startups and enterprises demanding uncompromised performance."
-        primaryCtaText="Start an Engagement"
-        primaryCtaLink="/contact"
-        secondaryCtaText="Explore Selected Work"
-        secondaryCtaLink="/work"
-      />
+      {/* IMMERSIVE EDITORIAL ENGINEERING HERO */}
+      <EngineeringGridHero variant="home" />
 
       {/* CORE CAPABILITIES / SERVICES SECTION */}
       <section className={styles.servicesSection}>
