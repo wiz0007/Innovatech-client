@@ -6,9 +6,11 @@ import { Sparkles, Terminal, Cpu, Smartphone, Globe, ArrowUpRight, CheckCircle2 
 import SEO from "../../components/common/SEO";
 import SectionHeader from "../../components/common/SectionHeader";
 import CTASection from "../../components/common/CTASection";
-import EngineeringGridHero from "../../components/common/EngineeringGridHero";
+import CelestialHero from "../../components/common/CelestialHero";
 import TiltCard from "../../components/common/TiltCard";
 import CapabilityCard from "../../components/common/CapabilityCard";
+import CircularCapabilitiesDrawer from "../../components/common/CircularCapabilitiesDrawer";
+import SelectedWorkShowcase from "../../components/common/SelectedWorkShowcase";
 import ProjectVideoCard from "../../components/common/ProjectVideoCard";
 import MagneticButton from "../../components/common/MagneticButton";
 import siteConfig from "../../content/siteConfig";
@@ -41,70 +43,25 @@ const HomePage = () => {
         description="RogueAI engineers high-performance web applications, fluid mobile ecosystems, and practical AI integrations for ambitious companies."
       />
 
-      {/* IMMERSIVE EDITORIAL ENGINEERING HERO */}
-      <EngineeringGridHero variant="home" />
+      {/* CELESTIAL PORTAL BRAND HERO */}
+      <CelestialHero />
 
-      {/* CORE CAPABILITIES / SERVICES SECTION */}
-      <section className={styles.servicesSection}>
+      {/* CAPABILITIES SECTION - 3D CAROUSEL (LAPTOP) & PINNED SCROLL FADE (MOBILE) */}
+      <section id="services-section" className={styles.servicesSection}>
         <div className={styles.sectionContainer}>
-          <SectionHeader
-            eyebrow="Capabilities"
-            title="Full-Lifecycle Digital Product Architecture"
-            subtitle="From zero-to-one product engineering to complex AI-assisted workflows, our systems are built for velocity, security, and effortless scale."
-            align="left"
-          />
-
-          <div className={styles.servicesGrid}>
-            {servicesData.map((service, index) => (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 36 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.55, delay: index * 0.12 }}
-              >
-                <CapabilityCard service={service} index={index} />
-              </motion.div>
-            ))}
-          </div>
+          <CircularCapabilitiesDrawer services={servicesData} />
         </div>
       </section>
 
-      {/* SELECTED WORK SHOWCASE */}
-      <section className={styles.workSection}>
+      {/* SELECTED WORK SHOWCASE (WITH SPOTLIGHT STAGE, EDITORIAL ROWS & DEVICE DECK) */}
+      <section id="work-section" className={styles.workSection}>
         <div className={styles.sectionContainer}>
-          <div className={styles.workHeaderRow}>
-            <SectionHeader
-              eyebrow="Selected Proof of Work"
-              title="Tested in Production. Engineered for Impact."
-              subtitle="Explore how we solve complex state, mobile UX, and performance bottlenecks across our recent product builds."
-            />
-            <MagneticButton>
-              <Link to="/work" className={styles.viewAllBtn}>
-                <span>All Projects</span>
-                <FaArrowRight />
-              </Link>
-            </MagneticButton>
-          </div>
-
-          <div className={styles.projectGrid}>
-            {featuredProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.6, delay: index * 0.12 }}
-              >
-                <ProjectVideoCard project={project} />
-              </motion.div>
-            ))}
-          </div>
+          <SelectedWorkShowcase projects={featuredProjects} />
         </div>
       </section>
 
       {/* 4-PHASE DELIVERY PROCESS */}
-      <section className={styles.processSection}>
+      <section id="process-section" className={styles.processSection}>
         <div className={styles.sectionContainer}>
           <SectionHeader
             eyebrow="Delivery Model"

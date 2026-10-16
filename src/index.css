@@ -20,6 +20,8 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
@@ -28,6 +30,7 @@ body {
   background-color: #03040b;
   color: #f8fbff;
   overflow-x: hidden;
+  max-width: 100vw;
   position: relative;
 }
 

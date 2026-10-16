@@ -1,0 +1,386 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.showcaseWrapper {
+  width: 100%;
+  position: relative;
+}
+
+// HEADER ROW CONTROLS
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: clamp(24px, 4vw, 40px);
+
+  @media (max-width: 640px) {
+    margin-bottom: 24px;
+  }
+}
+
+.titleArea {
+  display: flex;
+  align-items: center;
+}
+
+.sectionHeading {
+  font-family: $font-display;
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 45%, #cbd5e1 75%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+
+  @media (max-width: 640px) {
+    font-size: 1.6rem;
+  }
+}
+
+// ALL PROJECTS LINK
+.viewAllBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 20px;
+  border-radius: $radius-full;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  color: #f8fafc;
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+  backdrop-filter: blur(12px);
+  text-decoration: none;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 540px) {
+    padding: 7px 14px;
+    font-size: 0.76rem;
+  }
+}
+
+// ==========================================
+// 3-COLUMN DEVICE DECK
+// ==========================================
+.deckGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3.5vw, 32px);
+  align-items: stretch;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.deckItemWrapper {
+  height: 100%;
+}
+
+.deviceCard {
+  border-radius: $radius-xl;
+  background: rgba(10, 13, 22, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease,
+              box-shadow 0.4s ease;
+
+  // REFINED SUBTLE ELEVATION HOVER (NO AGGRESSIVE 3D TILT)
+  &:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 255, 255, 0.28);
+    box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.75), 0 0 24px rgba(255, 255, 255, 0.05);
+
+    .deviceImg {
+      transform: scale(1.025);
+    }
+
+    .glassSheen {
+      left: 150%;
+    }
+
+    .dotRed {
+      opacity: 1;
+    }
+    .dotYellow {
+      opacity: 1;
+    }
+    .dotGreen {
+      opacity: 1;
+    }
+  }
+}
+
+// HARDWARE SCREEN BEZEL
+.deviceScreenBezel {
+  position: relative;
+  width: 100%;
+  background: #020307;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bezelBar {
+  height: 32px;
+  background: rgba(6, 8, 16, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 12px;
+}
+
+.bezelDots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  .bDot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    transition: opacity $transition-fast;
+  }
+
+  .dotRed {
+    background: #ff5f56;
+    opacity: 0.75;
+  }
+
+  .dotYellow {
+    background: #ffbd2e;
+    opacity: 0.75;
+  }
+
+  .dotGreen {
+    background: #27c93f;
+    opacity: 0.75;
+  }
+}
+
+.bezelUrl {
+  font-family: $font-mono;
+  font-size: 0.65rem;
+  color: #64748b;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.deviceDisplay {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  background: #03040b;
+  overflow: hidden;
+}
+
+.deviceImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+
+// SPECULAR GLASS SHIMMER REFLECTION ON HOVER
+.glassSheen {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.04) 30%,
+    rgba(255, 255, 255, 0.12) 50%,
+    rgba(255, 255, 255, 0.04) 70%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+  transition: left 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+.deviceBadges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.platformBadge {
+  padding: 4px 10px;
+  border-radius: $radius-full;
+  background: rgba(3, 4, 11, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  color: #cbd5e1;
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+// CARD DETAILS
+.deviceDetails {
+  padding: clamp(18px, 2.8vw, 24px);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.deviceMetaRow {
+  display: flex;
+  justify-content: space-between;
+  font-family: $font-mono;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.deviceTitle {
+  font-family: $font-display;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  margin-bottom: 5px;
+  line-height: 1.25;
+}
+
+.deviceSubtitle {
+  font-size: 0.84rem;
+  line-height: 1.48;
+  color: #94a3b8;
+  margin-bottom: 12px;
+}
+
+.deviceIdeaBox {
+  margin-bottom: 12px;
+}
+
+.deviceIdeaBadge {
+  display: inline-flex;
+  align-items: center;
+  font-family: $font-mono;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  padding: 5px 11px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.deviceTagsRow {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.deviceTag {
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+}
+
+.deviceActions {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 12px;
+}
+
+.deviceCaseLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 6px 14px;
+  border-radius: $radius-full;
+  text-decoration: none;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.45);
+    transform: translateY(-1px);
+  }
+}
+
+.deviceSubActions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.deviceDemoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: #ffffff;
+  }
+}
+
+.deviceGitLink {
+  color: #94a3b8;
+  display: inline-flex;
+  align-items: center;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: #ffffff;
+  }
+}

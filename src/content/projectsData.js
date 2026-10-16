@@ -1,7 +1,7 @@
-import myKartImg from "../assets/myKart.webp";
-import bookReadingImg from "../assets/BookReading.webp";
+import myKartImg from "../assets/myKart_mockup.jpg";
+import bookReadingImg from "../assets/bookReading_mockup.jpg";
 import instaUIImg from "../assets/instaUI.webp";
-import movieAppImg from "../assets/MovieApp.webp";
+import movieAppImg from "../assets/movieApp_mockup.jpg";
 import landingImg from "../assets/Landing.webp";
 
 export const categories = ["All", "Web", "Mobile", "UI/UX", "AI"];

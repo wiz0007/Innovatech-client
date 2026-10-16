@@ -2,12 +2,12 @@ import React from "react";
 import { motion } from "framer-motion";
 import styles from "./SectionHeader.module.scss";
 
-const SectionHeader = ({ eyebrow, title, subtitle, align = "left", centered = false }) => {
+const SectionHeader = ({ eyebrow, title, subtitle, align = "left", centered = false, className = "", theme = "default" }) => {
   const isCentered = centered || align === "center";
 
   return (
     <motion.div
-      className={`${styles.header} ${isCentered ? styles.centered : ""}`}
+      className={`${styles.header} ${isCentered ? styles.centered : ""} ${theme === "silver" ? styles.silverTheme : ""} ${className}`}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}

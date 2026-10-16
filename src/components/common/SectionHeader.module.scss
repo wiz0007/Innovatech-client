@@ -34,3 +34,20 @@
   margin: 0;
   text-wrap: balance;
 }
+
+.silverTheme {
+  .eyebrow {
+    color: #cbd5e1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    padding: 4px 12px;
+    border-radius: $radius-full;
+    box-shadow: 0 0 16px rgba(255, 255, 255, 0.08);
+  }
+
+  .title {
+    background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 45%, #cbd5e1 75%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}

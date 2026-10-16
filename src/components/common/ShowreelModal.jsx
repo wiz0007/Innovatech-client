@@ -5,7 +5,7 @@ import styles from "./ShowreelModal.module.scss";
 
 const SHOWREEL_VIDEO_URL = "https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-with-graphs-and-data-31913-large.mp4";
 
-const ShowreelModal = ({ isOpen, onClose }) => {
+const ShowreelModal = ({ isOpen, onClose, videoUrl, title }) => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
@@ -73,7 +73,7 @@ const ShowreelModal = ({ isOpen, onClose }) => {
           <div className={styles.modalHeader}>
             <div className={styles.reelBadge}>
               <span className={styles.liveDot} />
-              <span>ROGUEAI // 2026 DIGITAL REEL</span>
+              <span>{title || "ROGUEAI // 2026 DIGITAL REEL"}</span>
             </div>
             <button className={styles.closeBtn} onClick={onClose} aria-label="Close Showreel">
               <X size={20} />
@@ -84,7 +84,7 @@ const ShowreelModal = ({ isOpen, onClose }) => {
           <div className={styles.videoWrapper} onClick={togglePlay}>
             <video
               ref={videoRef}
-              src={SHOWREEL_VIDEO_URL}
+              src={videoUrl || SHOWREEL_VIDEO_URL}
               autoPlay
               loop
               muted={isMuted}
