@@ -6,8 +6,11 @@
 }
 
 .card {
-  @include glass-panel($bg: rgba(12, 16, 31, 0.85), $border: rgba(255, 255, 255, 0.1), $blur: 20px);
   border-radius: $radius-xl;
+  background: rgba(10, 13, 22, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -16,15 +19,21 @@
   transition: border-color $transition-fast, box-shadow $transition-fast;
 
   &:hover {
-    border-color: rgba(98, 242, 255, 0.4);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 32px rgba(98, 242, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 255, 255, 0.08);
+  }
+}
+
+.showcaseCard {
+  .cardDetails {
+    padding: clamp(18px, 2.8vw, 24px);
   }
 }
 
 .mediaWrapper {
   position: relative;
   width: 100%;
-  height: 240px;
+  height: 220px;
   background: #000;
   overflow: hidden;
 }
@@ -67,18 +76,21 @@
   background-size: 100% 3px;
   pointer-events: none;
   z-index: 2;
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 .categoryBadge {
   position: absolute;
   top: 14px;
   left: 14px;
-  padding: 5px 12px;
+  padding: 4px 11px;
   border-radius: $radius-full;
-  @include glass-panel($bg: rgba(3, 4, 11, 0.85), $border: rgba(98, 242, 255, 0.4), $blur: 12px);
-  color: $accent-cyan;
-  font-size: 0.72rem;
+  background: rgba(3, 4, 11, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  color: #cbd5e1;
+  font-family: $font-mono;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -94,18 +106,20 @@
   gap: 6px;
   padding: 4px 10px;
   border-radius: $radius-full;
-  @include glass-panel($bg: rgba(3, 4, 11, 0.8), $border: rgba(255, 255, 255, 0.15), $blur: 10px);
+  background: rgba(3, 4, 11, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
   font-size: 0.65rem;
   font-weight: 800;
   letter-spacing: 0.06em;
-  color: $text-secondary;
+  color: #94a3b8;
   z-index: 3;
   transition: all $transition-fast;
 
   &.liveBadgeActive {
     color: #ffffff;
-    border-color: rgba(98, 242, 255, 0.5);
-    background: rgba(98, 242, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.14);
   }
 }
 
@@ -113,8 +127,8 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: $accent-cyan;
-  box-shadow: 0 0 8px $accent-cyan;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
 }
 
 .quickViewBtn {
@@ -124,9 +138,11 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 12px;
+  padding: 5px 12px;
   border-radius: $radius-full;
-  @include glass-panel($bg: rgba(3, 4, 11, 0.85), $border: rgba(255, 255, 255, 0.18), $blur: 12px);
+  background: rgba(3, 4, 11, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(12px);
   color: #ffffff;
   font-size: 0.74rem;
   font-weight: 700;
@@ -134,14 +150,14 @@
   transition: all $transition-fast;
 
   &:hover {
-    background: rgba(98, 242, 255, 0.2);
-    border-color: rgba(98, 242, 255, 0.5);
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.45);
     color: #ffffff;
   }
 }
 
 .cardDetails {
-  padding: clamp(22px, 3.5vw, 30px);
+  padding: clamp(20px, 3.2vw, 26px);
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -150,35 +166,60 @@
 .metaRow {
   display: flex;
   justify-content: space-between;
-  font-size: 0.74rem;
+  font-family: $font-mono;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: $text-muted;
-  margin-bottom: 10px;
+  color: #64748b;
+  margin-bottom: 8px;
 }
 
 .title {
-  @include display-heading;
-  font-size: 1.3rem;
+  font-family: $font-display;
+  font-size: 1.25rem;
   font-weight: 700;
   color: #ffffff;
-  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+  margin-bottom: 5px;
+  line-height: 1.25;
 }
 
 .subtitle {
-  font-size: 0.88rem;
-  line-height: 1.55;
-  color: $text-secondary;
-  margin-bottom: 18px;
+  font-size: 0.84rem;
+  line-height: 1.48;
+  color: #94a3b8;
+  margin-bottom: 14px;
+}
+
+/* Showcase Idea Highlight Box */
+.showcaseIdeaBox {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.ideaBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: $font-mono;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  padding: 5px 11px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  letter-spacing: 0.02em;
 }
 
 .outcomeBox {
-  padding: 14px;
+  padding: 12px 14px;
   border-radius: $radius-md;
   background: rgba(3, 4, 11, 0.55);
-  border: 1px solid rgba(98, 242, 255, 0.15);
-  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: 16px;
 }
 
 .outcomeLabel {
@@ -187,12 +228,12 @@
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: $accent-cyan;
+  color: #cbd5e1;
   margin-bottom: 4px;
 }
 
 .outcomeText {
-  font-size: 0.84rem;
+  font-size: 0.82rem;
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.45;
   margin: 0;
@@ -202,17 +243,18 @@
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
-  margin-bottom: 22px;
+  margin-bottom: 18px;
 }
 
 .tag {
-  font-size: 0.7rem;
+  font-family: $font-mono;
+  font-size: 0.68rem;
   font-weight: 600;
-  padding: 4px 9px;
-  border-radius: $radius-full;
-  background: rgba(98, 242, 255, 0.08);
-  border: 1px solid rgba(98, 242, 255, 0.18);
-  color: $accent-cyan;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
 }
 
 .cardActions {
@@ -220,27 +262,55 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 18px;
-  border-top: 1px solid $border-subtle;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   gap: 12px;
+}
+
+.secondaryActions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.caseStudyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 6px 14px;
+  border-radius: $radius-full;
+  text-decoration: none;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.45);
+    transform: translateY(-1px);
+  }
 }
 
 .demoLink {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-decoration: none;
   transition: color $transition-fast;
 
   &:hover {
-    color: $accent-cyan;
+    color: #ffffff;
   }
 }
 
 .gitLink {
-  color: $text-secondary;
+  color: #94a3b8;
   transition: color $transition-fast;
 
   &:hover {
@@ -252,7 +322,10 @@
   margin-left: auto;
   font-size: 0.78rem;
   font-weight: 700;
-  color: $accent-violet;
+  color: #cbd5e1;
+  background: transparent;
+  border: none;
+  cursor: pointer;
   transition: color $transition-fast;
 
   &:hover {

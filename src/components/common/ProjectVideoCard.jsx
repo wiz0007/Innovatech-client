@@ -1,10 +1,17 @@
 import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import { FaExternalLinkAlt, FaGithub, FaPlay, FaPause } from "react-icons/fa";
 import { ArrowUpRight } from "lucide-react";
 import TiltCard from "./TiltCard";
 import styles from "./ProjectVideoCard.module.scss";
 
-const ProjectVideoCard = ({ project, onSelect, className = "" }) => {
+const projectHighlightMap = {
+  "my-kart": "⚡ 99 Lighthouse Score • Instant Cart",
+  "book-reading": "📱 60fps Native Gestures • Offline Sync",
+  "movie-app": "🎬 Zero-Latency Streaming • Instant Modals",
+};
+
+const ProjectVideoCard = ({ project, onSelect, className = "", showcase = false }) => {
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef(null);
 
@@ -25,7 +32,7 @@ const ProjectVideoCard = ({ project, onSelect, className = "" }) => {
   return (
     <TiltCard className={`${styles.tiltWrapper} ${className}`} maxTilt={5}>
       <article
-        className={styles.card}
+        className={`${styles.card} ${showcase ? styles.showcaseCard : ""}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -85,53 +92,109 @@ const ProjectVideoCard = ({ project, onSelect, className = "" }) => {
           <h3 className={styles.title}>{project.title}</h3>
           <p className={styles.subtitle}>{project.subtitle}</p>
 
-          <div className={styles.outcomeBox}>
-            <span className={styles.outcomeLabel}>Impact & Outcome</span>
-            <p className={styles.outcomeText}>{project.outcome}</p>
-          </div>
+          {showcase ? (
+            <>
+              {/* Showcase Idea Highlight */}
+              <div className={styles.showcaseIdeaBox}>
+                <span className={styles.ideaBadge}>
+                  {projectHighlightMap[project.id] || project.outcome?.split(".")[0] || "Tested in Production"}
+                </span>
+              </div>
 
-          <div className={styles.tagsRow}>
-            {project.tags.map((tag) => (
-              <span key={tag} className={styles.tag}>
-                {tag}
-              </span>
-            ))}
-          </div>
+              {/* Curated Tech Stack Tags */}
+              <div className={styles.tagsRow}>
+                {project.tags.slice(0, 3).map((tag) => (
+                  <span key={tag} className={styles.tag}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
 
-          <div className={styles.cardActions}>
-            {project.link && (
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.demoLink}
-              >
-                <span>Live App</span>
-                <FaExternalLinkAlt size={12} />
-              </a>
-            )}
+              <div className={styles.cardActions}>
+                <Link to="/work" className={styles.caseStudyLink}>
+                  <span>Case Study</span>
+                  <ArrowUpRight size={13} />
+                </Link>
 
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.gitLink}
-                aria-label="GitHub Repository"
-              >
-                <FaGithub size={16} />
-              </a>
-            )}
+                <div className={styles.secondaryActions}>
+                  {project.link && !project.link.includes("github.com") && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.demoLink}
+                      title="Open Live Deployment"
+                    >
+                      <span>Live App</span>
+                      <FaExternalLinkAlt size={10} />
+                    </a>
+                  )}
 
-            {onSelect && (
-              <button
-                className={styles.deepDiveBtn}
-                onClick={() => onSelect(project)}
-              >
-                Explore Details →
-              </button>
-            )}
-          </div>
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.gitLink}
+                      aria-label="GitHub Repository"
+                    >
+                      <FaGithub size={15} />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className={styles.outcomeBox}>
+                <span className={styles.outcomeLabel}>Impact & Outcome</span>
+                <p className={styles.outcomeText}>{project.outcome}</p>
+              </div>
+
+              <div className={styles.tagsRow}>
+                {project.tags.map((tag) => (
+                  <span key={tag} className={styles.tag}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className={styles.cardActions}>
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.demoLink}
+                  >
+                    <span>Live App</span>
+                    <FaExternalLinkAlt size={12} />
+                  </a>
+                )}
+
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.gitLink}
+                    aria-label="GitHub Repository"
+                  >
+                    <FaGithub size={16} />
+                  </a>
+                )}
+
+                {onSelect && (
+                  <button
+                    className={styles.deepDiveBtn}
+                    onClick={() => onSelect(project)}
+                  >
+                    Explore Details →
+                  </button>
+                )}
+              </div>
+            </>
+          )}
         </div>
       </article>
     </TiltCard>
