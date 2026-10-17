@@ -1,0 +1,307 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.pipelineWrapper {
+  width: 100%;
+  position: relative;
+}
+
+// HEADER ROW CONTROLS
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: clamp(24px, 4vw, 40px);
+
+  @media (max-width: 640px) {
+    margin-bottom: 24px;
+    gap: 12px;
+  }
+}
+
+.titleArea {
+  display: flex;
+  align-items: center;
+}
+
+.sectionHeading {
+  font-family: $font-display;
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 45%, #cbd5e1 75%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+
+  @media (max-width: 640px) {
+    font-size: 1.55rem;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 380px) {
+    font-size: 1.35rem;
+  }
+}
+
+// ALL PROJECTS / PROCESS LINK
+.viewAllBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 20px;
+  border-radius: $radius-full;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  color: #f8fafc;
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+  backdrop-filter: blur(12px);
+  text-decoration: none;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 540px) {
+    padding: 7px 14px;
+    font-size: 0.76rem;
+  }
+}
+
+// ==========================================
+// 4-PHASE TIMELINE GRID
+// ==========================================
+.timelineGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2.2vw, 24px);
+  align-items: stretch;
+  width: 100%;
+
+  @media (max-width: 1100px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+}
+
+.timelineCardWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.timelineCard {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: $radius-xl;
+  background: rgba(10, 13, 22, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: clamp(20px, 2.6vw, 28px);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease,
+              box-shadow 0.4s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 255, 255, 0.28);
+    box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.75), 0 0 24px rgba(255, 255, 255, 0.05);
+
+    .iconCircle {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.4);
+      color: #ffffff;
+      box-shadow: 0 0 16px rgba(255, 255, 255, 0.25);
+    }
+
+    .durationPill {
+      border-color: rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.25) 50%, transparent 100%);
+    pointer-events: none;
+  }
+}
+
+// CARD HEADER
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.stepBadgeGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.iconCircle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cbd5e1;
+  transition: all $transition-fast;
+}
+
+.stepNumber {
+  font-family: $font-mono;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.06em;
+}
+
+.durationPill {
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  padding: 3px 9px;
+  border-radius: $radius-full;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  letter-spacing: 0.02em;
+  transition: all $transition-fast;
+}
+
+// PHASE TITLES
+.phaseTitle {
+  font-family: $font-display;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.015em;
+  margin: 0 0 4px 0;
+  line-height: 1.25;
+}
+
+.phaseFocus {
+  font-family: $font-mono;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #94a3b8;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.phaseTagline {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0 0 16px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// MILESTONES BOX
+.milestonesBox {
+  margin-top: auto;
+  padding: 12px 14px;
+  border-radius: $radius-md;
+  background: rgba(3, 4, 11, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 16px;
+}
+
+.milestonesLabel {
+  display: block;
+  font-family: $font-mono;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.milestonesList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.milestoneItem {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.76rem;
+  color: #e2e8f0;
+  line-height: 1.35;
+
+  span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.checkIcon {
+  color: #cbd5e1;
+  flex-shrink: 0;
+}
+
+// CARD FOOTER
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: auto;
+}
+
+.phaseCtaLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: $font-mono;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #cbd5e1;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: all $transition-fast;
+
+  &:hover {
+    color: #ffffff;
+    transform: translateX(3px);
+  }
+}

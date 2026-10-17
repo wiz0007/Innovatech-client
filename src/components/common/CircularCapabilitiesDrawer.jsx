@@ -191,11 +191,18 @@ const CircularCapabilitiesDrawer = ({ services = [] }) => {
       <div ref={containerRef} className={styles.pinnedContainer}>
         {/* Pinned Capabilities Header - Always visible on screen during scroll */}
         <div className={styles.sectionHeaderRow}>
-          <h2 className={styles.capabilitiesHeading}>Capabilities</h2>
+          <div className={styles.titleArea}>
+            <h2 className={styles.capabilitiesHeading}>Capabilities</h2>
+          </div>
+          <Link to="/services" className={styles.capabilitiesHeaderCta}>
+            <span className={styles.desktopCtaText}>Engineering Services</span>
+            <span className={styles.mobileCtaText}>Services</span>
+            <ArrowUpRight size={14} />
+          </Link>
         </div>
 
         {/* =========================================================================
-            LAPTOP / DESKTOP VIEW: 3-Element 3D Deck Carousel (Retained as Requested)
+            LAPTOP / DESKTOP VIEW: 3-Element 3D Deck Carousel (Compact Auto-Fit)
             ========================================================================= */}
         <div className={styles.desktopCarouselStage}>
           {services.map((service, index) => {
@@ -252,9 +259,9 @@ const CircularCapabilitiesDrawer = ({ services = [] }) => {
                   <h3 className={styles.cardTitle}>{service.title}</h3>
                   <p className={styles.cardTagline}>{service.tagline}</p>
 
-                  {/* Highlights (3 concise bullets) */}
+                  {/* Highlights (2 concise bullets) */}
                   <ul className={styles.highlightsList}>
-                    {service.highlights.slice(0, 3).map((highlight, hIdx) => (
+                    {service.highlights.slice(0, 2).map((highlight, hIdx) => (
                       <li key={hIdx} className={styles.highlightItem}>
                         <CheckCircle2 size={14} className={styles.checkIcon} />
                         <span>{highlight}</span>
@@ -324,9 +331,9 @@ const CircularCapabilitiesDrawer = ({ services = [] }) => {
                   <h3 className={styles.mobileItemTitle}>{service.title}</h3>
                   <p className={styles.mobileItemTagline}>{service.tagline}</p>
 
-                  {/* Production Highlights - All 4 highlights for complete content */}
+                  {/* Production Highlights - 2 concise bullets */}
                   <ul className={styles.mobileHighlightsList}>
-                    {service.highlights.slice(0, 4).map((highlight, hIdx) => (
+                    {service.highlights.slice(0, 2).map((highlight, hIdx) => (
                       <li key={hIdx} className={styles.mobileHighlightItem}>
                         <CheckCircle2 size={14} className={styles.mobileCheckIcon} />
                         <span>{highlight}</span>
