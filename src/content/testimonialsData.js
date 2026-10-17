@@ -10,8 +10,8 @@ export const testimonialsData = [
     company: "Apex Commerce",
     avatar: ayushImg,
     rating: 5,
-    tag: "Web Platform Build",
-    content: "RogueAI transformed our web application from a slow legacy portal into a high-performance storefront. Our bounce rate dropped immediately and mobile conversion improved significantly."
+    tag: "Web Platform",
+    content: "Transformed our storefront into a sub-second engine. Mobile checkout conversion jumped 42% in month one."
   },
   {
     id: 2,
@@ -20,8 +20,8 @@ export const testimonialsData = [
     company: "Lumina Health",
     avatar: anuImg,
     rating: 5,
-    tag: "Mobile App & Sync",
-    content: "The level of engineering discipline and attention to UX detail is unmatched. Our mobile app feels lightning-fast, offline sync works seamlessly, and our users love the gesture transitions."
+    tag: "Mobile App",
+    content: "Unmatched engineering discipline. Fluid 60fps gestures and flawless offline data synchronization."
   },
   {
     id: 3,
@@ -30,8 +30,8 @@ export const testimonialsData = [
     company: "Synthetix AI",
     avatar: nikImg,
     rating: 5,
-    tag: "AI RAG Integration",
-    content: "They integrated custom RAG and vector search into our platform in record time. Sub-200ms latency, zero hallucinations, and clear code documentation for our team to maintain."
+    tag: "AI Systems",
+    content: "Sub-200ms vector search deployed in weeks with pristine typed code our core team loves maintaining."
   }
 ];
 

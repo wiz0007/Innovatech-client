@@ -193,26 +193,26 @@ const CelestialHero = () => {
           </AnimatePresence>
         </div>
 
-        {/* Dual Separate Descriptions & Respective CTAs (Left & Right - Seamlessly Melting into Background) */}
+        {/* Dual Minimal Descriptions & Action CTAs */}
         <div className={styles.dualDescriptionGrid}>
           {/* Left: Product Engineering & Explore Projects CTA */}
           <div className={styles.descriptionColLeft}>
             <p className={styles.descriptionText}>
-              An ultra-high-throughput engineering studio designed to architect, ship, and scale mission-critical digital products from zero to one.
+              Zero-to-one product architecture & high-throughput scaling.
             </p>
             <button onClick={scrollToWork} className={styles.primarySilverCta}>
-              <span>Explore Projects</span>
+              <span>Explore Projects ↓</span>
             </button>
           </div>
 
           {/* Right: Dedicated Partnership & Start An Engagement CTA */}
           <div className={styles.descriptionColRight}>
             <p className={styles.descriptionText}>
-              Partner with dedicated senior product engineers to eliminate bottlenecks, build proprietary AI systems, and deploy with dependable velocity.
+              Senior engineering partnership for mission-critical systems.
             </p>
             <Link to="/contact" className={styles.secondarySmokedCta}>
               <span>Start An Engagement</span>
-              <ArrowRight size={13} />
+              <ArrowRight size={14} />
             </Link>
           </div>
         </div>

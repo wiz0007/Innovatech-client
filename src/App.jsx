@@ -6,6 +6,11 @@ import "./App.css";
 
 function App() {
   useEffect(() => {
+    // Disable browser default scroll restoration so it doesn't fight Lenis/router
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
     // Initialize Lenis smooth scroll
     const lenis = new Lenis({
       duration: 1.2,
@@ -18,6 +23,8 @@ function App() {
       infinite: false,
     });
 
+    window.__lenis = lenis;
+
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -28,6 +35,7 @@ function App() {
     return () => {
       cancelAnimationFrame(animationFrameId);
       lenis.destroy();
+      window.__lenis = null;
     };
   }, []);
 
