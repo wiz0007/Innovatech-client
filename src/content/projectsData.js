@@ -4,7 +4,7 @@ import instaUIImg from "../assets/instaUI.webp";
 import movieAppImg from "../assets/movieApp_mockup.jpg";
 import landingImg from "../assets/Landing.webp";
 
-export const categories = ["All", "Web", "Mobile", "UI/UX", "AI"];
+export const categories = ["All", "Web", "Mobile", "UI/UX"];
 
 export const projectsData = [
   {
@@ -15,7 +15,6 @@ export const projectsData = [
     role: "Full-Stack Product Build",
     year: "2025",
     image: myKartImg,
-    videoPreview: "https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-man-typing-on-a-computer-keyboard-41315-large.mp4",
     featured: true,
     challenge: "Traditional e-commerce templates suffer from heavy render blocking, slow catalog pagination, and checkout friction causing high drop-off rates.",
     approach: "Engineered a reactive React/Node.js storefront featuring optimistic cart updates, indexed instant search, and streamlined 2-step checkout.",
@@ -32,7 +31,6 @@ export const projectsData = [
     role: "Mobile Product Experience",
     year: "2025",
     image: bookReadingImg,
-    videoPreview: "https://assets.mixkit.co/videos/preview/mixkit-person-scrolling-on-a-smartphone-at-night-42878-large.mp4",
     featured: true,
     challenge: "Mobile reading apps often overwhelm readers with cluttered interfaces, distracting banners, and sluggish page transitions.",
     approach: "Designed a content-first mobile interface with customizable reading modes, offline progress sync, and smooth 60fps gesture-based pagination.",
@@ -49,7 +47,6 @@ export const projectsData = [
     role: "Entertainment UI Engineering",
     year: "2025",
     image: movieAppImg,
-    videoPreview: "https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-with-graphs-and-data-31913-large.mp4",
     featured: true,
     challenge: "Media discovery apps need to load rich image backdrops and streaming meta without bogging down device memory or network bandwidth.",
     approach: "Built a touch-first interface using progressive image loading, virtualized horizontal carousels, and responsive TMDB API caching.",
@@ -66,7 +63,6 @@ export const projectsData = [
     role: "Interface Systems Concept",
     year: "2025",
     image: instaUIImg,
-    videoPreview: "https://assets.mixkit.co/videos/preview/mixkit-holding-a-smartphone-with-a-green-screen-42874-large.mp4",
     featured: false,
     challenge: "Complex social feeds require scalable layout structures that remain responsive across varying screen aspect ratios.",
     approach: "Architected modular profile grids, tabbed media feeds, and tactile action sheets with strict CSS Grid and Flexbox alignment.",
@@ -83,7 +79,6 @@ export const projectsData = [
     role: "Conversion Architecture",
     year: "2025",
     image: landingImg,
-    videoPreview: "https://assets.mixkit.co/videos/preview/mixkit-software-developer-working-on-code-screen-close-up-34354-large.mp4",
     featured: false,
     challenge: "SaaS landing pages with weak visual hierarchy and ambiguous CTAs struggle to convert technical buyers.",
     approach: "Reworked the hero narrative, section cadence, interactive feature tabs, and testimonial social proof.",
