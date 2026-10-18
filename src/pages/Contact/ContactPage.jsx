@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import axios from "axios";
-import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaPaperPlane, FaClock, FaShieldAlt } from "react-icons/fa";
 import { Mail, Phone, MapPin, Send, CheckCircle2, Clock, ShieldCheck } from "lucide-react";
 import SEO from "../../components/common/SEO";
 import PageHero from "../../components/common/PageHero";
@@ -42,13 +40,18 @@ const ContactPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormStatus({ type: "loading", message: "Sending your message to RogueAI..." });
-
     try {
-      await axios.post(siteConfig.contact.apiEndpoint, {
-        name: formData.name,
-        email: formData.email,
-        message: `[Service: ${formData.service}] ${formData.message}`,
+      const response = await fetch(siteConfig.contact.apiEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: `[Service: ${formData.service}] ${formData.message}`,
+        }),
       });
+
+      if (!response.ok) throw new Error("Failed to submit contact message");
 
       setFormStatus({
         type: "success",
@@ -80,7 +83,7 @@ const ContactPage = () => {
       <PageHero
         headline="CONTACT"
         subtitle="Contact details and form"
-        description="Digital product engineering studio in Bengaluru — get in touch directly about bookings, system architecture or project scope."
+        description="Digital product engineering studio in Kashipur, Uttarakhand — get in touch directly about bookings, system architecture or project scope."
         imageSrc="/assets/contact-bg.webp"
       />
 
@@ -131,7 +134,7 @@ const ContactPage = () => {
                       <div className={styles.itemIcon}><MapPin size={18} /></div>
                       <div>
                         <span className={styles.itemLabel}>Engineering Headquarters</span>
-                        <span className={styles.itemVal}>{siteConfig?.contact?.location || siteConfig?.location || "Bengaluru, India"}</span>
+                        <span className={styles.itemVal}>{siteConfig?.contact?.location || siteConfig?.location || "Kashipur, Uttarakhand, India"}</span>
                       </div>
                     </div>
 

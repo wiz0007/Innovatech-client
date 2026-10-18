@@ -1,10 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaBars, FaTimes, FaChevronDown } from "react-icons/fa";
-import { navLinks } from "../../content/navigationData";
+import {
+  FaBars,
+  FaTimes,
+  FaChevronDown,
+  FaArrowRight,
+  FaGithub,
+  FaLinkedin,
+  FaTwitter,
+  FaInstagram,
+} from "react-icons/fa";
 import siteConfig from "../../content/siteConfig";
 import styles from "./Navbar.module.scss";
+
+const mobileNavLinks = [
+  { name: "Services", path: "/services" },
+  { name: "Projects", path: "/work" },
+  { name: "Process", path: "/process" },
+  { name: "About", path: "/about" },
+  { name: "Inquiries", path: "/inquiries" },
+  { name: "Contact", path: "/contact" },
+];
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -25,11 +42,34 @@ const Navbar = () => {
     setServicesDropdown(false);
   }, [location.pathname]);
 
+  // Lock body scroll when mobile drawer is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
+  // Handle escape key to close mobile drawer
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape" && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [mobileMenuOpen]);
+
   return (
     <>
       <header className={`${styles.navbarWrapper} ${isScrolled ? styles.scrolled : ""}`}>
         <div className={styles.navContainer}>
-          {/* Left: Navigation Links */}
+          {/* Left: Desktop Navigation Links */}
           <nav className={styles.leftNav} aria-label="Main Navigation">
             <NavLink
               to="/work"
@@ -92,7 +132,7 @@ const Navbar = () => {
             </NavLink>
           </nav>
 
-          {/* Center: Pure RogueAI Luxury Brandmark (NO "ENGINEERING" badge) */}
+          {/* Center: RogueAI Luxury Brandmark */}
           <div className={styles.centerBrand}>
             <Link to="/" className={styles.brandTitle} aria-label="RogueAI Home">
               RogueAI
@@ -113,53 +153,165 @@ const Navbar = () => {
               <span>Contact</span>
             </Link>
 
-            {/* Mobile Menu Toggle */}
+            {/* Mobile Menu Toggle Button */}
             <button
               className={styles.mobileToggle}
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              onClick={() => setMobileMenuOpen(true)}
+              aria-label="Open navigation menu"
             >
-              {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+              <FaBars />
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Drawer */}
+      {/* Full-Height Immersive Mobile Architecture Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
-            className={styles.mobileDrawer}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.25 }}
-          >
-            <div className={styles.mobileNavLinks}>
-              {navLinks.map((link, index) => (
-                <motion.div
-                  key={link.name}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
+          <div className={styles.drawerOverlayContainer}>
+            {/* Dark Frosted Glass Backdrop */}
+            <motion.div
+              className={styles.drawerBackdrop}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              onClick={() => setMobileMenuOpen(false)}
+            />
+
+            {/* Sliding Obsidian Glass Sheet */}
+            <motion.aside
+              className={styles.drawerSheet}
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 30, stiffness: 320 }}
+              aria-label="Mobile Navigation"
+            >
+              {/* Internal Ambient Radial Lighting */}
+              <div className={styles.drawerGlow} aria-hidden="true" />
+
+              {/* Drawer Header */}
+              <div className={styles.drawerHeader}>
+                <div className={styles.drawerBrand}>
+                  <div className={styles.drawerLogoMark}>
+                    <img src="/rogue-mark.svg" alt="RogueAI Logo" />
+                  </div>
+                  <span className={styles.drawerBrandName}>RogueAI</span>
+                </div>
+
+                <button
+                  className={styles.drawerCloseBtn}
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-label="Close navigation menu"
                 >
-                  <NavLink
-                    to={link.path}
-                    className={({ isActive }) =>
-                      `${styles.mobileNavLink} ${isActive ? styles.activeMobileNavLink : ""}`
-                    }
-                  >
-                    {link.name}
-                  </NavLink>
-                </motion.div>
-              ))}
-              <div className={styles.mobileCtaWrapper}>
-                <Link to="/contact" className={styles.mobileCtaBtn}>
-                  <span>Get in Touch</span>
-                </Link>
+                  <FaTimes />
+                </button>
               </div>
-            </div>
-          </motion.div>
+
+              {/* Drawer Content Body: Clean, Compact, Elegant */}
+              <div className={styles.drawerBody}>
+                {/* Navigation Links (No serial numbers, no bloated descriptions) */}
+                <nav className={styles.drawerNavList}>
+                  {mobileNavLinks.map((item, index) => (
+                    <motion.div
+                      key={item.name}
+                      initial={{ opacity: 0, x: 18 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.05 + index * 0.035, duration: 0.22 }}
+                    >
+                      <NavLink
+                        to={item.path}
+                        className={({ isActive }) =>
+                          `${styles.drawerNavLink} ${isActive ? styles.activeDrawerNavLink : ""}`
+                        }
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        <span className={styles.navName}>{item.name}</span>
+                        <FaArrowRight className={styles.navArrow} />
+                      </NavLink>
+                    </motion.div>
+                  ))}
+                </nav>
+
+                {/* Conversion & Direct Actions */}
+                <div className={styles.drawerFooterArea}>
+                  <Link
+                    to="/contact"
+                    className={styles.drawerPrimaryBtn}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <span>Start an Engagement</span>
+                    <FaArrowRight className={styles.ctaArrow} />
+                  </Link>
+
+                  {/* Compact Direct Contact */}
+                  <div className={styles.drawerMeta}>
+                    <a
+                      href={`mailto:${siteConfig?.contact?.email || siteConfig?.email}`}
+                      className={styles.drawerMetaLink}
+                    >
+                      {siteConfig?.contact?.email || siteConfig?.email}
+                    </a>
+                    <a
+                      href={`tel:${(siteConfig?.contact?.phone || siteConfig?.phone || "").replace(/\s+/g, "")}`}
+                      className={styles.drawerMetaLink}
+                    >
+                      {siteConfig?.contact?.phone || siteConfig?.phone}
+                    </a>
+                  </div>
+
+                  {/* Clean Social Matrix */}
+                  <div className={styles.drawerSocials}>
+                    {siteConfig?.socials?.github && (
+                      <a
+                        href={siteConfig.socials.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="GitHub"
+                        className={styles.drawerSocialBtn}
+                      >
+                        <FaGithub />
+                      </a>
+                    )}
+                    {siteConfig?.socials?.linkedin && (
+                      <a
+                        href={siteConfig.socials.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="LinkedIn"
+                        className={styles.drawerSocialBtn}
+                      >
+                        <FaLinkedin />
+                      </a>
+                    )}
+                    {siteConfig?.socials?.twitter && (
+                      <a
+                        href={siteConfig.socials.twitter}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Twitter"
+                        className={styles.drawerSocialBtn}
+                      >
+                        <FaTwitter />
+                      </a>
+                    )}
+                    {siteConfig?.socials?.instagram && (
+                      <a
+                        href={siteConfig.socials.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Instagram"
+                        className={styles.drawerSocialBtn}
+                      >
+                        <FaInstagram />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </motion.aside>
+          </div>
         )}
       </AnimatePresence>
     </>

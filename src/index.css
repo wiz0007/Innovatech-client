@@ -1,9 +1,9 @@
 :root {
   color-scheme: dark;
-  --bg-main: #03040b;
-  --text-main: #f8fbff;
-  --accent-cyan: #62f2ff;
-  --accent-violet: #ff5adf;
+  --bg-main: #050507;
+  --text-main: #ffffff;
+  --accent-cyan: #e2e8f0;
+  --accent-violet: #cbd5e1;
 }
 
 * {
@@ -14,8 +14,8 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #03040b;
-  color: #f8fbff;
+  background-color: #050507;
+  color: #ffffff;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -27,8 +27,8 @@ html {
 body {
   min-width: 320px;
   min-height: 100vh;
-  background-color: #03040b;
-  color: #f8fbff;
+  background-color: #050507;
+  color: #ffffff;
   overflow-x: hidden;
   max-width: 100vw;
   position: relative;
@@ -41,7 +41,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #03040b;
+  background: #050507;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -50,12 +50,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(98, 242, 255, 0.4);
+  background: rgba(255, 255, 255, 0.35);
 }
 
 ::selection {
-  color: #03040b;
-  background: #62f2ff;
+  color: #050507;
+  background: #cbd5e1;
 }
 
 a {

@@ -7,14 +7,14 @@ export const siteConfig = {
   contact: {
     email: "ayush8171wiz@gmail.com",
     phone: "+91 91490 84611",
-    location: "Bengaluru, India",
+    location: "Kashipur, Uttarakhand, India",
     availability: "Available for Q3/Q4 Project Engagements",
     apiEndpoint: "https://innovatech-server.onrender.com/api/contact",
   },
   // Top-level aliases for flexible compatibility
   email: "ayush8171wiz@gmail.com",
   phone: "+91 91490 84611",
-  location: "Bengaluru, India",
+  location: "Kashipur, Uttarakhand, India",
   contactApiUrl: "https://innovatech-server.onrender.com/api/contact",
   socials: {
     github: "https://github.com/wiz0007",

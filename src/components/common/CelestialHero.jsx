@@ -76,7 +76,7 @@ const CelestialHero = () => {
               <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
               <stop offset="20%" stopColor="#e2e8f0" stopOpacity="0.9" />
               <stop offset="50%" stopColor="#94a3b8" stopOpacity="0.45" />
-              <stop offset="100%" stopColor="#03040b" stopOpacity="0" />
+              <stop offset="100%" stopColor="#050507" stopOpacity="0" />
             </radialGradient>
 
             {/* Top Right Organic Silver Flare */}
@@ -84,7 +84,7 @@ const CelestialHero = () => {
               <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
               <stop offset="20%" stopColor="#e2e8f0" stopOpacity="0.9" />
               <stop offset="50%" stopColor="#94a3b8" stopOpacity="0.45" />
-              <stop offset="100%" stopColor="#03040b" stopOpacity="0" />
+              <stop offset="100%" stopColor="#050507" stopOpacity="0" />
             </radialGradient>
 
             {/* Multi-tier Gaussian Blur Filters */}

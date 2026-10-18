@@ -44,7 +44,7 @@ const TiltCard = ({ children, className = "", maxTilt = 8, scale = 1.02 }) => {
       <div
         className={styles.glareLayer}
         style={{
-          background: `radial-gradient(circle at ${glarePosition.x}% ${glarePosition.y}%, rgba(98, 242, 255, 0.4) 0%, transparent 60%)`,
+          background: `radial-gradient(circle at ${glarePosition.x}% ${glarePosition.y}%, rgba(255, 255, 255, 0.22) 0%, transparent 60%)`,
           opacity: glarePosition.opacity,
         }}
       />

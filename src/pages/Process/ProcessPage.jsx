@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaCheckCircle, FaClock, FaLayerGroup } from "react-icons/fa";
-import { CheckCircle2, Clock, ShieldAlert, Cpu, Zap, Activity } from "lucide-react";
+import { FaLayerGroup } from "react-icons/fa";
+import { CheckCircle2, Clock } from "lucide-react";
 import SEO from "../../components/common/SEO";
 import PageHero from "../../components/common/PageHero";
 import SectionHeader from "../../components/common/SectionHeader";

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, ArrowRight, Sparkles, Send, Layers, Clock, Cpu, ShieldCheck } from "lucide-react";
+import { Check, Sparkles, Send, ShieldCheck } from "lucide-react";
 import PageHero from "../../components/common/PageHero";
 import SEO from "../../components/common/SEO";
 import TiltCard from "../../components/common/TiltCard";

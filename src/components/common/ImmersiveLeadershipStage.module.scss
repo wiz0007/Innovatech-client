@@ -96,7 +96,7 @@
 // BASE CARD COMPONENT
 .card {
   position: relative;
-  background: rgba(10, 13, 22, 0.88);
+  background: rgba(14, 14, 16, 0.94);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   backdrop-filter: blur(20px);
@@ -136,8 +136,8 @@
 
 // FLAGSHIP FOUNDER CARD (INTERNAL HIERARCHY EMPHASIS)
 .flagshipCard {
-  background: rgba(13, 17, 28, 0.94);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(18, 18, 22, 0.96);
+  border-color: rgba(255, 255, 255, 0.22);
   box-shadow: 0 18px 44px -10px rgba(0, 0, 0, 0.75), 0 0 24px rgba(255, 255, 255, 0.04);
 
   &::before {
@@ -195,7 +195,7 @@
   background: linear-gradient(
     180deg,
     transparent 65%,
-    rgba(10, 13, 22, 0.88) 100%
+    rgba(14, 14, 16, 0.94) 100%
   );
   pointer-events: none;
   z-index: 3;
@@ -224,7 +224,7 @@
   gap: 6px;
   padding: 4px 10px;
   border-radius: 9999px;
-  background: rgba(3, 4, 11, 0.85);
+  background: rgba(10, 10, 12, 0.88);
   border: 1px solid rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(12px);
   color: #cbd5e1;
@@ -237,7 +237,7 @@
 }
 
 .flagshipBadge {
-  background: rgba(8, 10, 20, 0.9);
+  background: rgba(16, 16, 20, 0.92);
   border-color: rgba(255, 255, 255, 0.3);
   color: #ffffff;
 }

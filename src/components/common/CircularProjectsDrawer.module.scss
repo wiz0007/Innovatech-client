@@ -1,0 +1,668 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+/* ==========================================================================
+   3D CIRCULAR PROJECTS DRAWER
+   Horizontal Cylinder on Desktop / Vertical Revolving Stack on Mobile
+   ========================================================================== */
+
+.drawerSection {
+  position: relative;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: clamp(8px, 1.6vh, 20px) 0;
+  user-select: none;
+}
+
+/* ==========================================================================
+   CATEGORY FILTER PILLS (OBSIDIAN & METALLIC SILVER)
+   ========================================================================== */
+.filterPillsRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: clamp(14px, 2vh, 22px);
+  z-index: 30;
+  position: relative;
+
+  @media (max-width: 768px) {
+    gap: 6px;
+    margin-bottom: 12px;
+    padding: 0 8px;
+    max-width: 100%;
+    justify-content: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.filterPill {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(14, 14, 18, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #94a3b8;
+  font-family: $font-mono;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
+
+  &:hover {
+    color: #f8fafc;
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-1px);
+  }
+
+  &.activePill {
+    background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+    color: #050507;
+    border-color: #ffffff;
+    font-weight: 700;
+    box-shadow: 
+      0 0 20px rgba(255, 255, 255, 0.25),
+      0 4px 14px rgba(0, 0, 0, 0.45);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 768px) {
+    padding: 5px 12px;
+    font-size: 0.68rem;
+  }
+}
+
+/* ==========================================================================
+   3D PERSPECTIVE CIRCULAR STAGE
+   ========================================================================== */
+.circularStage {
+  position: relative;
+  width: 100%;
+  height: clamp(430px, 50vh, 490px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  perspective-origin: 50% 48%;
+  overflow: visible;
+
+  @media (max-width: 768px) {
+    height: clamp(520px, 66vh, 590px);
+    perspective: 900px;
+    perspective-origin: 50% 50%;
+    padding: 24px 0;
+  }
+}
+
+.deckContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+/* ==========================================================================
+   DRAWER CARD (COMPACT GEOMETRY & POLISHED HARDWARE CASING)
+   ========================================================================== */
+.projectDrawerCard {
+  position: absolute;
+  width: clamp(310px, 36vw, 490px);
+  min-height: clamp(370px, 44vh, 430px);
+  border-radius: 14px;
+  background: rgba(12, 12, 16, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(28px) saturate(140%);
+  -webkit-backdrop-filter: blur(28px) saturate(140%);
+  overflow: hidden;
+  box-sizing: border-box;
+  transform-style: preserve-3d;
+  display: flex;
+  flex-direction: column;
+  transition: 
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.5s ease,
+    filter 0.5s ease,
+    box-shadow 0.55s ease,
+    border-color 0.4s ease;
+  will-change: transform, opacity;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.7);
+
+  @media (max-width: 768px) {
+    width: clamp(280px, 90vw, 360px);
+    min-height: 380px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3D POSITIONS: DESKTOP (HORIZONTAL) & MOBILE (VERTICAL)
+   -------------------------------------------------------------------------- */
+.centerCard {
+  transform: translateX(0) translateZ(40px) scale(1) rotateY(0deg);
+  opacity: 1;
+  z-index: 25;
+  pointer-events: auto;
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.85),
+    0 0 35px rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+
+  &:hover .cardPosterImg {
+    transform: scale(1.03);
+  }
+
+  @media (max-width: 768px) {
+    transform: translateY(0) translateZ(35px) scale(1) rotateX(0deg) rotateY(0deg);
+  }
+}
+
+.leftCard {
+  transform: translateX(clamp(-260px, -27vw, -370px)) translateZ(-50px) scale(0.85) rotateY(16deg);
+  opacity: 0.58;
+  z-index: 15;
+  filter: blur(0.3px) brightness(0.82);
+  cursor: pointer;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.09);
+
+  &:hover {
+    opacity: 0.85;
+    filter: blur(0) brightness(0.95);
+    border-color: rgba(255, 255, 255, 0.22);
+    transform: translateX(clamp(-250px, -26vw, -350px)) translateZ(-35px) scale(0.87) rotateY(13deg);
+  }
+
+  @media (max-width: 1024px) {
+    transform: translateX(clamp(-210px, -24vw, -290px)) translateZ(-45px) scale(0.82) rotateY(16deg);
+  }
+
+  /* MOBILE: REVOLVES FROM TOP (PREVIOUS CARD) - SYMMETRICAL PEEK */
+  @media (max-width: 768px) {
+    transform: translateY(clamp(-105px, -14vh, -125px)) translateZ(-40px) scale(0.88) rotateX(-8deg) rotateY(0deg);
+    opacity: 0.5;
+    z-index: 10;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
+
+    &:hover {
+      transform: translateY(clamp(-95px, -13vh, -115px)) translateZ(-30px) scale(0.9) rotateX(-6deg) rotateY(0deg);
+      opacity: 0.8;
+    }
+  }
+}
+
+.rightCard {
+  transform: translateX(clamp(260px, 27vw, 370px)) translateZ(-50px) scale(0.85) rotateY(-16deg);
+  opacity: 0.58;
+  z-index: 15;
+  filter: blur(0.3px) brightness(0.82);
+  cursor: pointer;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.09);
+
+  &:hover {
+    opacity: 0.85;
+    filter: blur(0) brightness(0.95);
+    border-color: rgba(255, 255, 255, 0.22);
+    transform: translateX(clamp(250px, 26vw, 350px)) translateZ(-35px) scale(0.87) rotateY(-13deg);
+  }
+
+  @media (max-width: 1024px) {
+    transform: translateX(clamp(210px, 24vw, 290px)) translateZ(-45px) scale(0.82) rotateY(-16deg);
+  }
+
+  /* MOBILE: REVOLVES FROM BOTTOM (NEXT CARD) - SYMMETRICAL PEEK */
+  @media (max-width: 768px) {
+    transform: translateY(clamp(105px, 14vh, 125px)) translateZ(-40px) scale(0.88) rotateX(8deg) rotateY(0deg);
+    opacity: 0.5;
+    z-index: 10;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
+
+    &:hover {
+      transform: translateY(clamp(95px, 13vh, 115px)) translateZ(-30px) scale(0.9) rotateX(6deg) rotateY(0deg);
+      opacity: 0.8;
+    }
+  }
+}
+
+.farLeftCard {
+  transform: translateX(clamp(-450px, -46vw, -600px)) translateZ(-130px) scale(0.7) rotateY(28deg);
+  opacity: 0.28;
+  z-index: 8;
+  filter: blur(0.8px) brightness(0.6);
+  cursor: pointer;
+  pointer-events: auto;
+
+  &:hover {
+    opacity: 0.5;
+    filter: blur(0.3px) brightness(0.75);
+  }
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    display: block;
+    transform: translateY(-155px) translateZ(-95px) scale(0.74) rotateX(-22deg) rotateY(0deg);
+    opacity: 0.18;
+    z-index: 5;
+  }
+}
+
+.farRightCard {
+  transform: translateX(clamp(450px, 46vw, 600px)) translateZ(-130px) scale(0.7) rotateY(-28deg);
+  opacity: 0.28;
+  z-index: 8;
+  filter: blur(0.8px) brightness(0.6);
+  cursor: pointer;
+  pointer-events: auto;
+
+  &:hover {
+    opacity: 0.5;
+    filter: blur(0.3px) brightness(0.75);
+  }
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    display: block;
+    transform: translateY(155px) translateZ(-95px) scale(0.74) rotateX(22deg) rotateY(0deg);
+    opacity: 0.18;
+    z-index: 5;
+  }
+}
+
+.hiddenCard {
+  transform: translateX(0) translateZ(-240px) scale(0.5);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  @media (max-width: 768px) {
+    transform: translateY(0) translateZ(-220px) scale(0.5);
+  }
+}
+
+/* ==========================================================================
+   METALLIC TOP DRAWER LIP (SLEEK 12PX LUXURY CASING)
+   ========================================================================== */
+.cardHeaderLip {
+  position: relative;
+  height: 12px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.drawerHandleGrip {
+  width: 32px;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* ==========================================================================
+   MEDIA FRAME & CRISP POSTER IMAGE
+   ========================================================================== */
+.cardMediaWrapper {
+  position: relative;
+  width: 100%;
+  height: clamp(145px, 18vh, 185px);
+  overflow: hidden;
+  background: #08080a;
+  flex-shrink: 0;
+
+  @media (max-width: 768px) {
+    height: 135px;
+  }
+}
+
+.cardPosterImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scanlineOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.05) 0%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+  pointer-events: none;
+}
+
+.categoryBadge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 3px 8px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #f1f5f9;
+  font-family: $font-mono;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+
+/* ==========================================================================
+   CARD INFORMATION BODY (COMPACT)
+   ========================================================================== */
+.cardBody {
+  padding: clamp(10px, 1.8vw, 16px);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+  gap: 8px;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding: 11px 13px;
+    gap: 6px;
+  }
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: $font-mono;
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+.roleTag {
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+.yearTag {
+  color: #64748b;
+}
+
+.projectTitle {
+  font-family: $font-display;
+  font-size: clamp(1.05rem, 1.35vw, 1.25rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.projectSubtitle {
+  font-family: $font-sans;
+  font-size: clamp(0.78rem, 0.95vw, 0.84rem);
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Impact & Outcome snippet */
+.outcomeBlock {
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 2px solid rgba(255, 255, 255, 0.45);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.outcomeLabel {
+  font-family: $font-mono;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #cbd5e1;
+  flex-shrink: 0;
+}
+
+.outcomeSnippet {
+  font-family: $font-sans;
+  font-size: 0.74rem;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Tech Stack Pills */
+.techPillsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.techPill {
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: #cbd5e1;
+  font-family: $font-mono;
+  font-size: 0.64rem;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+/* Actions Row */
+.actionsBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+  flex-wrap: wrap;
+}
+
+.liveAppBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: 7px;
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+  color: #050507;
+  font-family: $font-sans;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(255, 255, 255, 0.32);
+  }
+}
+
+.sourceCodeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+  font-family: $font-sans;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+  }
+}
+
+/* ==========================================================================
+   NAVIGATION ARROW BUTTONS (DESKTOP ONLY - NEVER OVERLAPS ON MOBILE)
+   ========================================================================== */
+.navArrowBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(14, 14, 18, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.7),
+    0 0 12px rgba(255, 255, 255, 0.05);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 35;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #ffffff;
+    transform: translateY(-50%) scale(1.08);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.8), 0 0 16px rgba(255, 255, 255, 0.15);
+  }
+
+  &:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+
+  @media (max-width: 768px) {
+    display: none !important;
+  }
+}
+
+.prevBtn {
+  left: clamp(10px, 2.5vw, 32px);
+}
+
+.nextBtn {
+  right: clamp(10px, 2.5vw, 32px);
+}
+
+/* ==========================================================================
+   PROGRESS TRACK (MINIMALIST DOTS & THUMB-FRIENDLY MOBILE CHEVRONS)
+   ========================================================================== */
+.progressDotsTrack {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: clamp(12px, 2vh, 20px);
+  z-index: 30;
+}
+
+.dotsRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dotItem {
+  appearance: none;
+  background: transparent;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dotTrack {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+  overflow: hidden;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
+}
+
+.activeDot .dotTrack {
+  width: 32px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.dotProgressBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 999px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  animation: dotFill 4s linear forwards;
+}
+
+@keyframes dotFill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
