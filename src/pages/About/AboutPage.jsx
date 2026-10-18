@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaTwitter, FaCode, FaLaptopCode, FaRocket } from "react-icons/fa";
-import { Code2, Smartphone, Sparkles, Terminal, Rocket, CheckCircle2 } from "lucide-react";
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { Code2, Terminal, Rocket } from "lucide-react";
 import SEO from "../../components/common/SEO";
 import PageHero from "../../components/common/PageHero";
 import SectionHeader from "../../components/common/SectionHeader";

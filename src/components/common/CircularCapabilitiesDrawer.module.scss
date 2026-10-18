@@ -151,7 +151,7 @@
   width: clamp(340px, 35vw, 470px);
   min-height: clamp(355px, 39vh, 390px);
   border-radius: $radius-xl;
-  background: rgba(10, 13, 22, 0.94);
+  background: rgba(14, 14, 16, 0.96);
   border: 1px solid rgba(255, 255, 255, 0.14);
   backdrop-filter: blur(28px) saturate(140%);
   -webkit-backdrop-filter: blur(28px) saturate(140%);
@@ -381,7 +381,7 @@
   gap: 6px;
   font-size: 0.8rem;
   font-weight: 700;
-  color: #03040b;
+  color: #050507;
   background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 50%, #cbd5e1 100%);
   padding: 7px 16px;
   border-radius: $radius-full;
@@ -595,7 +595,7 @@
   gap: 8px;
   font-size: 0.84rem;
   font-weight: 700;
-  color: #03040b;
+  color: #050507;
   background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 50%, #cbd5e1 100%);
   padding: 12px 28px;
   border-radius: 9999px;

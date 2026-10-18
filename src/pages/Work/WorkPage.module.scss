@@ -97,8 +97,8 @@
   left: 16px;
   padding: 4px 12px;
   border-radius: $radius-full;
-  @include glass-panel($bg: rgba(3, 4, 11, 0.85), $border: rgba(98, 242, 255, 0.35), $blur: 12px);
-  color: $accent-cyan;
+  @include glass-panel($bg: rgba(10, 10, 12, 0.88), $border: rgba(255, 255, 255, 0.2), $blur: 12px);
+  color: #ffffff;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -327,8 +327,8 @@
   left: 20px;
   padding: 6px 14px;
   border-radius: $radius-full;
-  @include glass-panel($bg: rgba(3, 4, 11, 0.85), $border: rgba(98, 242, 255, 0.4), $blur: 12px);
-  color: $accent-cyan;
+  @include glass-panel($bg: rgba(10, 10, 12, 0.88), $border: rgba(255, 255, 255, 0.2), $blur: 12px);
+  color: #ffffff;
   font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.08em;

@@ -107,7 +107,7 @@
   width: 100%;
   box-sizing: border-box;
   border-radius: $radius-xl;
-  background: rgba(10, 13, 22, 0.94);
+  background: rgba(14, 14, 16, 0.96);
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -149,14 +149,14 @@
 .deviceScreenBezel {
   position: relative;
   width: 100%;
-  background: #020307;
+  background: #040405;
   overflow: hidden;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .bezelBar {
   height: 32px;
-  background: rgba(6, 8, 16, 0.95);
+  background: rgba(12, 12, 14, 0.95);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
@@ -206,7 +206,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  background: #03040b;
+  background: #040405;
   overflow: hidden;
 
   @media (min-width: 1025px) {
@@ -258,7 +258,7 @@
 .platformBadge {
   padding: 4px 10px;
   border-radius: $radius-full;
-  background: rgba(3, 4, 11, 0.85);
+  background: rgba(10, 10, 12, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(12px);
   color: #cbd5e1;

@@ -15,8 +15,8 @@
   
   &:hover {
     transform: translateY(-4px);
-    border-color: rgba(98, 242, 255, 0.35);
-    box-shadow: $shadow-lg, $shadow-glow-cyan;
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow: $shadow-lg, 0 0 24px rgba(255, 255, 255, 0.08);
   }
 }
 
@@ -30,7 +30,7 @@
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: $accent-cyan;
+  color: #cbd5e1;
   margin-bottom: 12px;
 }
 

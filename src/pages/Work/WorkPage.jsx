@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaExternalLinkAlt, FaGithub, FaBolt } from "react-icons/fa";
+import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import { CheckCircle2, X } from "lucide-react";
 import SEO from "../../components/common/SEO";
 import ProjectFeaturedHero from "../../components/common/ProjectFeaturedHero";
