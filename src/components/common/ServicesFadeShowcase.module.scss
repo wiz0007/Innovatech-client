@@ -1,0 +1,666 @@
+/* ServicesFadeShowcase.module.scss */
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.fadeShowcaseTrigger {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.pinnedStage {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 72px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: clamp(16px, 3vh, 32px) clamp(16px, 3.5vw, 48px);
+  overflow: hidden;
+
+  /* Mobile: Utilize the full viewport height evenly without leaving empty voids at top and bottom */
+  @media (max-width: 768px) {
+    min-height: calc(100svh - 60px);
+    height: calc(100svh - 60px);
+    justify-content: stretch;
+    padding: clamp(12px, 2.2vh, 18px) 16px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+}
+
+.stageInner {
+  width: 100%;
+  max-width: 1060px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 2.2vh, 22px);
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    height: 100%;
+    max-width: 100%;
+    gap: 0;
+    justify-content: space-between;
+  }
+}
+
+/* ==========================================================================
+   1. TOP TACTILE SELECTOR DOCK (DESKTOP ONLY; HIDDEN ON MOBILE)
+   ========================================================================== */
+.topControlDeck {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 4px 6px;
+  background: rgba(14, 14, 18, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  width: fit-content;
+  max-width: 100%;
+
+  @media (max-width: 768px) {
+    display: none !important;
+  }
+}
+
+.selectorPillsRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.servicePillBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #94a3b8;
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  z-index: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  &:hover {
+    color: #ffffff;
+  }
+}
+
+.activePillBtn {
+  color: #050507 !important;
+  font-weight: 800;
+}
+
+.pillIcon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.pillTitle {
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.activePillGlow {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  z-index: -1;
+}
+
+/* ==========================================================================
+   2. BOX-LESS IMMERSIVE CARD SURFACE (ZERO BORDERS, NATURAL BREATHING ROOM)
+   ========================================================================== */
+.cardsStackStage {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  align-items: stretch;
+  justify-items: stretch;
+
+  @media (max-width: 768px) {
+    height: 100%;
+  }
+}
+
+.fadeElementCard {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 2.2vh, 24px);
+  will-change: opacity, transform, filter;
+  transition: opacity 0.22s ease-out, transform 0.22s ease-out, filter 0.22s ease-out;
+
+  /* On mobile: Space elements evenly across the entire height to use top and bottom space */
+  @media (max-width: 768px) {
+    height: 100%;
+    max-height: 100%;
+    justify-content: space-between;
+    gap: clamp(10px, 1.8vh, 18px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    overscroll-behavior: contain;
+    padding: 0;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+/* Header Strip with Icon, Title & Tagline (No border) */
+.elementHeaderStrip {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding-bottom: 8px;
+  border-bottom: none;
+
+  @media (max-width: 768px) {
+    padding-bottom: 2px;
+    gap: 10px;
+  }
+}
+
+.headerTitleArea {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  min-width: 0;
+
+  @media (max-width: 768px) {
+    gap: 10px;
+  }
+}
+
+.iconEmblem {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+  margin-top: 2px;
+
+  @media (max-width: 768px) {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    margin-top: 1px;
+  }
+}
+
+.headerTitles {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.elementTitle {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+
+  @media (max-width: 768px) {
+    font-size: 1.15rem;
+    line-height: 1.2;
+    word-break: break-word;
+  }
+}
+
+.elementTagline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(0.82rem, 1.1vw, 0.92rem);
+  font-weight: 500;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.35;
+
+  @media (max-width: 768px) {
+    font-size: 0.76rem;
+    line-height: 1.35;
+  }
+}
+
+.elementSummary {
+  font-size: clamp(0.82rem, 1.1vw, 0.88rem);
+  line-height: 1.5;
+  color: #94a3b8;
+  margin: 0;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   A. MONUMENTAL TELEMETRY STATS (ZERO BOXES, ZERO BORDERS, PURE TYPOGRAPHY)
+   ========================================================================== */
+.metricsRow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 3.5vw, 44px);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    gap: 8px;
+    padding: 2px 0;
+  }
+}
+
+.metricItem {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.metricValue {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: clamp(1.4rem, 2.4vw, 2.1rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+  line-height: 1;
+
+  @media (max-width: 768px) {
+    font-size: clamp(1rem, 4.2vw, 1.2rem);
+    line-height: 1.1;
+  }
+}
+
+.metricLabel {
+  font-size: clamp(0.72rem, 1vw, 0.8rem);
+  font-weight: 500;
+  color: #94a3b8;
+  line-height: 1.25;
+
+  @media (max-width: 768px) {
+    font-size: 0.64rem;
+    word-break: break-word;
+    white-space: normal;
+  }
+}
+
+/* ==========================================================================
+   B. ARCHITECTURAL HIGHLIGHTS (ZERO BOXES, ZERO BORDERS, ZERO CAPSULES)
+   ========================================================================== */
+.pillarsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    gap: 5px;
+  }
+}
+
+.sectionHeaderLine {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sectionIcon {
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.sectionTitleText {
+  letter-spacing: 0.08em;
+}
+
+.featureTilesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 2vw, 24px);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px 12px;
+  }
+}
+
+.featureTile {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.tileTitle {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: clamp(0.88rem, 1.2vw, 0.98rem);
+  font-weight: 700;
+  color: #f1f5f9;
+  margin: 0;
+  line-height: 1.25;
+
+  @media (max-width: 768px) {
+    font-size: 0.78rem;
+    line-height: 1.25;
+    word-break: break-word;
+  }
+}
+
+.tileDesc {
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: #94a3b8;
+  margin: 0;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   C. DELIVERABLES & TECH STACK (ZERO BOXES, ZERO BORDERS, NATURAL FLEX WRAP)
+   ========================================================================== */
+.specsDualRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2.4vw, 32px);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding-top: 6px;
+  border-top: none;
+
+  @media (max-width: 768px) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+    padding-top: 0;
+  }
+}
+
+.specSection {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.specSectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  @media (max-width: 768px) {
+    font-size: 0.62rem;
+  }
+}
+
+.specIcon {
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.tokensCluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    gap: 4px 10px;
+  }
+}
+
+.deliverableToken {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #cbd5e1;
+  background: transparent;
+  border: none;
+  padding: 0;
+  transition: color 0.2s ease;
+  white-space: normal;
+  cursor: default;
+
+  &:hover {
+    color: #ffffff;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.72rem;
+    line-height: 1.3;
+  }
+}
+
+.techPill {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #94a3b8;
+  background: transparent;
+  border: none;
+  padding: 0;
+  transition: color 0.2s ease;
+  white-space: normal;
+  cursor: default;
+
+  &:hover {
+    color: #cbd5e1;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.7rem;
+    line-height: 1.3;
+  }
+}
+
+/* ==========================================================================
+   D. ACTION BAR (REFINED, SLEEK CTAs THAT STAY 100% IN-BOUNDS)
+   ========================================================================== */
+.elementActionBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding-top: 10px;
+  border-top: none;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding-top: 4px;
+    gap: 6px;
+    width: 100%;
+  }
+}
+
+.actionLeftNotice {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #64748b;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.actionButtonsGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+.primaryActionBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 20px;
+  border-radius: 9999px;
+  background: #ffffff;
+  color: #050507;
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+
+  &:hover {
+    background: #e2e8f0;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 22px rgba(255, 255, 255, 0.3);
+  }
+
+  /* Mobile: Refined, compact, ergonomic, and strictly contained */
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    height: 36px;
+    padding: 0 14px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    min-width: 0;
+    text-align: center;
+    gap: 6px;
+
+    span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.secondaryActionBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #cbd5e1;
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Mobile: Refined, compact, ergonomic, and strictly contained */
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    height: 36px;
+    padding: 0 14px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    min-width: 0;
+    text-align: center;
+    gap: 5px;
+
+    span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
