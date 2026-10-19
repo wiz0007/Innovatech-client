@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown, ExternalLink } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import styles from "./CircularProjectsDrawer.module.scss";
 
@@ -131,6 +131,16 @@ const CircularProjectsDrawer = ({
           <ChevronLeft size={22} />
         </button>
 
+        {/* Mobile Navigation Button: Top */}
+        <button
+          type="button"
+          onClick={prevCard}
+          className={`${styles.mobileArrowBtn} ${styles.mobileArrowTop}`}
+          aria-label="Previous Project (Rotate Up)"
+        >
+          <ChevronUp size={18} />
+        </button>
+
         {/* Circular Revolving Card Deck */}
         <div className={styles.deckContainer}>
           {filteredProjects.map((project, index) => {
@@ -243,6 +253,16 @@ const CircularProjectsDrawer = ({
             );
           })}
         </div>
+
+        {/* Mobile Navigation Button: Bottom */}
+        <button
+          type="button"
+          onClick={nextCard}
+          className={`${styles.mobileArrowBtn} ${styles.mobileArrowBottom}`}
+          aria-label="Next Project (Rotate Down)"
+        >
+          <ChevronDown size={18} />
+        </button>
 
         {/* Desktop Navigation Button: Right */}
         <button

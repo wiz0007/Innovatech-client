@@ -601,6 +601,58 @@
   right: clamp(10px, 2.5vw, 32px);
 }
 
+/* Mobile Vertical Stack Navigation Arrows */
+.mobileArrowBtn {
+  display: none;
+
+  @media (max-width: 768px) {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(14, 14, 18, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #cbd5e1;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 
+      0 6px 20px rgba(0, 0, 0, 0.8),
+      0 0 12px rgba(255, 255, 255, 0.08);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 35;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.45);
+      color: #ffffff;
+      transform: translateX(-50%) scale(1.1);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.9), 0 0 16px rgba(255, 255, 255, 0.2);
+    }
+
+    &:active {
+      transform: translateX(-50%) scale(0.92);
+    }
+  }
+}
+
+.mobileArrowTop {
+  @media (max-width: 768px) {
+    top: 2px;
+  }
+}
+
+.mobileArrowBottom {
+  @media (max-width: 768px) {
+    bottom: 2px;
+  }
+}
+
 /* ==========================================================================
    PROGRESS TRACK (MINIMALIST DOTS & THUMB-FRIENDLY MOBILE CHEVRONS)
    ========================================================================== */
