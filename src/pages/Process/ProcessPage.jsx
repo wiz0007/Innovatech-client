@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { FaLayerGroup } from "react-icons/fa";
 import { CheckCircle2, Clock } from "lucide-react";
 import SEO from "../../components/common/SEO";
-import PageHero from "../../components/common/PageHero";
+import ProcessCelestialHero from "../../components/common/ProcessCelestialHero";
 import SectionHeader from "../../components/common/SectionHeader";
 import CTASection from "../../components/common/CTASection";
 import TiltCard from "../../components/common/TiltCard";
@@ -41,15 +41,11 @@ const ProcessPage = () => {
         description="Learn about RogueAI's 4-phase agile engineering method, quality checkpoints, and production delivery cadence."
       />
 
-      <PageHero
-        headline="PROCESS"
-        subtitle="Agile cadence and quality gateways"
-        description="A battle-tested 4-phase delivery system that eliminates technical ambiguity and ensures high engineering standards."
-        imageSrc="/assets/process-bg.webp"
-      />
+      {/* MONUMENTAL IMMERSIVE CELESTIAL PROCESS HERO */}
+      <ProcessCelestialHero />
 
       {/* 4 PHASES BREAKDOWN */}
-      <section className={styles.phasesSection}>
+      <section id="process-stages" className={styles.phasesSection}>
         <div className={styles.container}>
           <SectionHeader
             eyebrow="The 4-Stage Method"
