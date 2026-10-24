@@ -1,0 +1,617 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.stagesSection {
+  position: relative;
+  width: 100%;
+  padding: clamp(28px, 3.5vh, 44px) clamp(20px, 4vw, 56px) 0;
+  background: radial-gradient(circle at 50% 0%, rgba(28, 28, 34, 0.35) 0%, rgba(5, 5, 7, 0) 70%);
+  overflow: hidden;
+
+  @media (max-width: 960px) {
+    padding: clamp(48px, 6vw, 84px) clamp(20px, 4vw, 56px);
+  }
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+}
+
+// ==============================================================
+// STATIONARY SECTION HEADER (Stuck in this exact layout)
+// ==============================================================
+.headerBlock {
+  position: relative;
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 18px;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (max-width: 960px) {
+    width: 100%;
+    margin-bottom: 32px;
+  }
+}
+
+.mainTitle {
+  font-family: $font-display;
+  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin: 0 0 6px;
+  background: linear-gradient(180deg, #ffffff 0%, #e4e4e7 45%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.mainSubtitle {
+  font-size: clamp(0.78rem, 0.95vw, 0.86rem);
+  line-height: 1.48;
+  color: #a1a1aa;
+  margin: 0 auto;
+  max-width: 520px;
+}
+
+// ============================================
+// STAGE VIEWPORT (MASKED VIEWING FRAME - SCREEN STICKS HERE)
+// ============================================
+.stageViewport {
+  position: relative;
+  width: 100%;
+  height: clamp(520px, 68vh, 660px);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 6%,
+    black 94%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 6%,
+    black 94%,
+    transparent 100%
+  );
+
+  @media (max-width: 960px) {
+    height: auto;
+    overflow: visible;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+// ============================================
+// EXPANSIVE ALTERNATING CONDUIT PIPELINE (MOVING TRACK)
+// ============================================
+.conduitWrapper {
+  position: relative;
+  width: 100%;
+  will-change: transform;
+}
+
+// DESKTOP SCROLL-DRIVEN SERPENTINE SVG OVERLAY
+.dynamicSvgContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+
+  @media (max-width: 960px) {
+    display: none;
+  }
+}
+
+.dynamicSvg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block;
+}
+
+.guideWirePath {
+  stroke: rgba(255, 255, 255, 0.08);
+  fill: none;
+}
+
+.travelingBeacon {
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+// MOBILE LINEAR SPINE (Visible < 960px)
+.mobileSpine {
+  display: none;
+  position: absolute;
+  top: 24px;
+  bottom: 30px;
+  left: 20px;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+
+  @media (max-width: 960px) {
+    display: block;
+  }
+}
+
+.mobileSpineGlow {
+  position: absolute;
+  top: 0;
+  left: -2px;
+  width: 6px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  filter: blur(4px);
+}
+
+// ============================================
+// ALTERNATING STAGES
+// ============================================
+.alternatingStages {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(48px, 5.5vw, 76px);
+  position: relative;
+  z-index: 2;
+}
+
+.stageRow {
+  position: relative;
+  display: flex;
+  width: 100%;
+
+  @media (max-width: 960px) {
+    padding-left: 48px;
+  }
+}
+
+// Left Card: Card takes left 90%, Right border is the Sideline Conduit
+.rowLeft {
+  justify-content: flex-start;
+
+  .stageCard {
+    width: 90%;
+    margin-right: auto;
+    border-right: 2px solid rgba(255, 255, 255, 0.16);
+
+    @media (max-width: 960px) {
+      width: 100%;
+      margin-right: 0;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      border-left: 2px solid rgba(255, 255, 255, 0.16);
+    }
+  }
+}
+
+// Right Card: Card takes right 90%, Left border is the Sideline Conduit
+.rowRight {
+  justify-content: flex-end;
+
+  .stageCard {
+    width: 90%;
+    margin-left: auto;
+    border-left: 2px solid rgba(255, 255, 255, 0.16);
+
+    @media (max-width: 960px) {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+}
+
+// ============================================
+// COMPACT HORIZONTAL STAGE CARD (STRICT GRAY & BLACK)
+// ============================================
+.stageCard {
+  position: relative;
+  border-radius: 18px;
+  background: rgba(12, 12, 14, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: clamp(22px, 2.8vw, 36px);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.75), 0 0 35px rgba(255, 255, 255, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  }
+}
+
+.cardActiveHighlight {
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.75), 0 0 30px rgba(255, 255, 255, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+// ============================================
+// ORBITAL NODE DOCKED ON THE CARD'S SIDELINE
+// ============================================
+.sidelineNode {
+  position: absolute;
+  top: 30px;
+  width: 44px;
+  height: 44px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+// Docked directly on the Right Sideline border of Left cards
+.nodeRightSideline {
+  right: 0;
+  transform: translateX(50%);
+
+  .sidelineConnectorTab {
+    right: 100%;
+  }
+
+  @media (max-width: 960px) {
+    right: auto;
+    left: 0;
+    transform: translateX(-50%);
+
+    .sidelineConnectorTab {
+      right: auto;
+      left: 100%;
+    }
+  }
+}
+
+// Docked directly on the Left Sideline border of Right cards
+.nodeLeftSideline {
+  left: 0;
+  transform: translateX(-50%);
+
+  .sidelineConnectorTab {
+    left: 100%;
+  }
+}
+
+.nodePulseRing {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 70%);
+  opacity: 0.2;
+  transition: all 0.4s ease;
+}
+
+.nodeCoreCircle {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #09090b;
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transition: all 0.4s ease;
+}
+
+.nodeNumeral {
+  font-family: $font-display;
+  font-size: 0.84rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #a1a1aa;
+  transition: all 0.4s ease;
+}
+
+.sidelineConnectorTab {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-50%);
+  transition: all 0.4s ease;
+}
+
+// LIT UP STATE (Triggered when branch reaches the node)
+.nodeActiveLit {
+  .nodePulseRing {
+    opacity: 1;
+    transform: scale(1.18);
+    animation: nodeAura 2.2s ease-in-out infinite;
+  }
+
+  .nodeCoreCircle {
+    border-color: #ffffff;
+    background: #18181b;
+    box-shadow: 0 0 24px rgba(255, 255, 255, 0.45), inset 0 0 8px rgba(255, 255, 255, 0.35);
+  }
+
+  .nodeNumeral {
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.85);
+  }
+
+  .sidelineConnectorTab {
+    background: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  }
+}
+
+@keyframes nodeAura {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.22);
+  }
+}
+
+// ============================================
+// COMPACT CARD INTERNAL CONTENT (STRICT GRAY & BLACK)
+// ============================================
+.cardTopMeta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stageCodeBadge {
+  font-family: $font-display;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #a1a1aa;
+}
+
+.stageFullTitle {
+  font-family: $font-display;
+  font-size: clamp(1.25rem, 2vw, 1.62rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.metaPillsGroup {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.durationPill,
+.cadencePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #d4d4d8;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  white-space: nowrap;
+
+  svg {
+    color: #a1a1aa;
+  }
+}
+
+.stageTagline {
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-style: italic;
+  color: #d4d4d8;
+  margin: 0 0 8px;
+  line-height: 1.45;
+}
+
+.stageDescription {
+  font-size: 0.85rem;
+  line-height: 1.58;
+  color: #a1a1aa;
+  margin: 0 0 20px;
+  max-width: 960px;
+}
+
+// DELIVERABLES SECTION (COMPACT 4-COLUMN HORIZONTAL GRID)
+.deliverablesSection {
+  margin-bottom: 18px;
+}
+
+.deliverablesHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.deliverablesIconBadge {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.deliverablesHeading {
+  font-family: $font-display;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+}
+
+.deliverablesCount {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #71717a;
+  margin-left: auto;
+}
+
+.deliverablesMatrix {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+
+  @include tablet-down {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.deliverableTile {
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(18, 18, 20, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: rgba(26, 26, 30, 0.9);
+    border-color: rgba(255, 255, 255, 0.18);
+    transform: translateY(-2px);
+  }
+}
+
+.tileHeader {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 4px;
+}
+
+.tileIcon {
+  color: #d4d4d8;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.tileTitle {
+  font-family: $font-display;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.tileDetail {
+  font-size: 0.74rem;
+  line-height: 1.42;
+  color: #a1a1aa;
+  margin: 0;
+}
+
+// QUALITY GATEWAY (STRICT GRAY & BLACK)
+.qualityGateway {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: rgba(16, 16, 18, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.gatewayGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.2) 100%);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+.gatewayIcon {
+  color: #ffffff;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.gatewayInfo {
+  flex: 1;
+}
+
+.gatewayTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.gatewayBadge {
+  font-family: $font-display;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.gatewayEnforced {
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #d4d4d8;
+}
+
+.gatewayCriteria {
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: #d4d4d8;
+  margin: 0;
+}
