@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowDown, ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import styles from "./ProcessCelestialHero.module.scss";
 
 const ROTATING_SUBHEADINGS = [
@@ -35,7 +35,7 @@ const ProcessCelestialHero = () => {
 
   return (
     <section className={styles.heroSection} aria-label="Monumental Celestial Process Hero">
-      {/* 1. Deep Space Atmospheric Radiant Glow */}
+      {/* 1. Deep Space Atmospheric Radiant Glow (Silver/Slate Luxury Theme) */}
       <div className={styles.ambientBacklight} aria-hidden="true" />
 
       {/* 2. Monumental Celestial Portal Arc */}
@@ -150,17 +150,6 @@ const ProcessCelestialHero = () => {
 
       {/* ================= FOREGROUND MONUMENTAL CONTENT ================= */}
       <div className={styles.centerContent}>
-        {/* Subtle Status Pill */}
-        <motion.div
-          className={styles.eyebrowBadge}
-          initial={{ opacity: 0, y: -12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          <Sparkles size={12} className={styles.sparkleIcon} />
-          <span>BATTLE-TESTED DELIVERY CADENCE</span>
-        </motion.div>
-
         {/* Monumental Liquid Silver & Chrome Brand Title */}
         <motion.h1
           className={styles.monumentalTitle}
@@ -193,57 +182,34 @@ const ProcessCelestialHero = () => {
           </AnimatePresence>
         </div>
 
-        {/* Executive Narrative */}
-        <motion.p
-          className={styles.narrativeParagraph}
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.2 }}
-        >
-          A battle-tested 4-phase agile engineering method engineered to eliminate technical ambiguity, 
-          enforce uncompromising code quality, and guarantee on-schedule production deployment.
-        </motion.p>
+        {/* Dual Minimal Descriptions & Action CTAs (Two Separate Components Symmetrical Grid) */}
+        <div className={styles.dualDescriptionGrid}>
+          {/* Component 1 (Left): Delivery Cadence & Explore Stages CTA */}
+          <div className={styles.descriptionColLeft}>
+            <p className={styles.descriptionText}>
+              Deterministic 4-phase agile sprints engineered to eliminate technical debt.
+            </p>
+            <button onClick={scrollToPhases} className={styles.primarySilverCta}>
+              <span>Explore 4-Stage Method ↓</span>
+            </button>
+          </div>
 
-        {/* Action Controls */}
-        <motion.div
-          className={styles.actionCluster}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          <button
-            type="button"
-            onClick={scrollToPhases}
-            className={styles.primaryActionBtn}
-            aria-label="Explore 4-Stage Method"
-          >
-            <span>Explore 4-Stage Method</span>
-            <ArrowDown size={14} className={styles.btnIcon} />
-          </button>
+          {/* Component 2 (Right): Senior Architecture & Scope Discovery CTA */}
+          <div className={styles.descriptionColRight}>
+            <p className={styles.descriptionText}>
+              Direct senior architect partnership with daily Git commits and zero junior delegation.
+            </p>
+            <Link to="/inquiries" className={styles.secondarySmokedCta}>
+              <span>Schedule Technical Discovery</span>
+              <ArrowRight size={14} />
+            </Link>
+          </div>
+        </div>
 
-          <Link
-            to="/inquiries"
-            className={styles.secondaryActionBtn}
-            aria-label="Schedule Technical Discovery"
-          >
-            <span>Schedule Technical Discovery</span>
-            <ArrowUpRight size={14} className={styles.btnIcon} />
-          </Link>
-        </motion.div>
-
-        {/* Micro Confidence Metrics */}
-        <motion.div
-          className={styles.confidenceStrip}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <span>Fixed-Sprint Milestones</span>
-          <span className={styles.dot}>·</span>
-          <span>Zero Junior Handoffs</span>
-          <span className={styles.dot}>·</span>
-          <span>100% Code Ownership</span>
-        </motion.div>
+        {/* Subtext Footer (Cool Steel Gray Monospace) */}
+        <div className={styles.subtextMeta}>
+          <span>Fixed-Sprint Milestones // Zero Junior Handoffs // 100% Code Ownership</span>
+        </div>
       </div>
     </section>
   );
