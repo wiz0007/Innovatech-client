@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   Clock, 
   ShieldCheck, 
@@ -15,6 +16,13 @@ import {
 } from "lucide-react";
 import gsap, { ScrollTrigger } from "../../utils/gsapConfig";
 import styles from "./ProcessStagesPipeline.module.scss";
+
+const ROTATING_PIPELINE_SUBHEADINGS = [
+  "Deterministic Sprints & Verifiable Artifacts",
+  "Non-Negotiable Quality Gates at Every Phase",
+  "Zero Technical Debt & Daily Git Commits",
+  "Senior Architect Partnership & No Junior Handoffs",
+];
 
 const STAGE_ICONS = {
   1: [FileCode2, Database, Workflow, Clock],
@@ -36,8 +44,17 @@ export default function ProcessStagesPipeline({ steps = [] }) {
   const [pathData, setPathData] = useState("");
   const [svgDimensions, setSvgDimensions] = useState({ width: 1240, height: 2000 });
   const [activeNodes, setActiveNodes] = useState({ 1: true, 2: false, 3: false, 4: false });
+  const [subheadingIdx, setSubheadingIdx] = useState(0);
 
-  // Compute exact serpentine path routing directly through the card side lines
+  // Rotating header value proposition timer
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSubheadingIdx((prev) => (prev + 1) % ROTATING_PIPELINE_SUBHEADINGS.length);
+    }, 3200);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Compute exact serpentine / linear conduit path routing directly through the card side lines
   const calculateSerpentinePath = useCallback(() => {
     if (!conduitWrapperRef.current) return;
     const wrapper = conduitWrapperRef.current;
@@ -47,6 +64,8 @@ export default function ProcessStagesPipeline({ steps = [] }) {
 
     if (w === 0 || h === 0) return;
 
+    const isMobile = window.innerWidth <= 960;
+
     const stagesData = [];
     steps.forEach((s, idx) => {
       const cardEl = cardRefs.current[idx];
@@ -54,16 +73,15 @@ export default function ProcessStagesPipeline({ steps = [] }) {
       if (cardEl && nodeEl) {
         const cardRect = cardEl.getBoundingClientRect();
         const nodeRect = nodeEl.getBoundingClientRect();
-        const isEven = idx % 2 === 1; // 0=Left Card (Right Sideline), 1=Right Card (Left Sideline), 2=Left, 3=Right
+        const isEven = idx % 2 === 1;
 
-        // For Left cards, sideline is the right edge of the card.
-        // For Right cards, sideline is the left edge of the card.
-        const sidelineX = isEven
-          ? cardRect.left - wrapperRect.left
-          : cardRect.right - wrapperRect.left;
+        // On mobile, the sideline conduit runs along the left side passing through the node center
+        // On desktop, 0=Left Card (Right Sideline), 1=Right Card (Left Sideline)...
+        const sidelineX = isMobile
+          ? nodeRect.left - wrapperRect.left + nodeRect.width / 2
+          : (isEven ? cardRect.left - wrapperRect.left : cardRect.right - wrapperRect.left);
 
         const nodeY = nodeRect.top - wrapperRect.top + nodeRect.height / 2;
-        // Sideline stroke extends down to near the bottom of the card
         const bottomY = cardRect.bottom - wrapperRect.top - 18;
 
         stagesData.push({
@@ -78,33 +96,37 @@ export default function ProcessStagesPipeline({ steps = [] }) {
 
     if (stagesData.length < 2) return;
 
-    // Start at top center above the first stage
-    let d = `M ${w / 2},0`;
+    let d = "";
+    if (isMobile) {
+      // Mobile: Straight vertical conduit line passing precisely through all orbital nodes
+      const lineX = stagesData[0].sidelineX || 17;
+      d = `M ${lineX},0 L ${lineX},${h}`;
+    } else {
+      // Desktop: Serpentine S-curves connecting alternating card sidelines
+      d = `M ${w / 2},0`;
 
-    // 1. From top center into Node 01 on Stage 1 right sideline
-    const s0 = stagesData[0];
-    d += ` C ${w / 2},${s0.nodeY * 0.45} ${s0.sidelineX},${s0.nodeY * 0.65} ${s0.sidelineX},${s0.nodeY}`;
+      // 1. From top center into Node 01 on Stage 1 right sideline
+      const s0 = stagesData[0];
+      d += ` C ${w / 2},${s0.nodeY * 0.45} ${s0.sidelineX},${s0.nodeY * 0.65} ${s0.sidelineX},${s0.nodeY}`;
 
-    // 2. Travel straight down Stage 1 right sideline
-    d += ` L ${s0.sidelineX},${s0.bottomY}`;
+      // 2. Travel straight down Stage 1 right sideline
+      d += ` L ${s0.sidelineX},${s0.bottomY}`;
 
-    // 3. Connect each stage's bottom sideline to the next stage's top sideline
-    for (let i = 0; i < stagesData.length - 1; i++) {
-      const curr = stagesData[i];
-      const next = stagesData[i + 1];
-      const verticalGap = next.nodeY - curr.bottomY;
+      // 3. Connect each stage's bottom sideline to the next stage's top sideline
+      for (let i = 0; i < stagesData.length - 1; i++) {
+        const curr = stagesData[i];
+        const next = stagesData[i + 1];
+        const verticalGap = next.nodeY - curr.bottomY;
 
-      // S-curve sweeping through the gap from curr sideline to next sideline
-      d += ` C ${curr.sidelineX},${curr.bottomY + verticalGap * 0.55} ${next.sidelineX},${next.nodeY - verticalGap * 0.55} ${next.sidelineX},${next.nodeY}`;
+        d += ` C ${curr.sidelineX},${curr.bottomY + verticalGap * 0.55} ${next.sidelineX},${next.nodeY - verticalGap * 0.55} ${next.sidelineX},${next.nodeY}`;
+        d += ` L ${next.sidelineX},${next.bottomY}`;
+      }
 
-      // Travel straight down next sideline
-      d += ` L ${next.sidelineX},${next.bottomY}`;
+      // 4. From Stage 4 bottom sideline to bottom center
+      const last = stagesData[stagesData.length - 1];
+      const endGap = h - last.bottomY;
+      d += ` C ${last.sidelineX},${last.bottomY + endGap * 0.45} ${w / 2},${last.bottomY + endGap * 0.75} ${w / 2},${h}`;
     }
-
-    // 4. From Stage 4 bottom sideline to bottom center
-    const last = stagesData[stagesData.length - 1];
-    const endGap = h - last.bottomY;
-    d += ` C ${last.sidelineX},${last.bottomY + endGap * 0.45} ${w / 2},${last.bottomY + endGap * 0.75} ${w / 2},${h}`;
 
     setPathData(d);
     setSvgDimensions({ width: w, height: h });
@@ -225,21 +247,31 @@ export default function ProcessStagesPipeline({ steps = [] }) {
       };
     });
 
-    // MOBILE: Natural vertical scroll flow
+    // MOBILE: Pinned presentation (Sticks below mobile navbar, branch moves down, cards scroll through!)
     mm.add("(max-width: 960px)", () => {
-      const mobileTrigger = ScrollTrigger.create({
-        trigger: track,
-        start: "top 78%",
-        end: "bottom 72%",
+      const maxScrollY = Math.max(0, track.scrollHeight - viewport.clientHeight + 24);
+
+      const pinTrigger = ScrollTrigger.create({
+        trigger: section,
+        start: "top 64px",
+        end: `+=${Math.max(1600, maxScrollY * 1.35)}`,
+        pin: true,
         scrub: 0.45,
+        anticipatePin: 1,
         onUpdate: (self) => {
           const progress = Math.max(0, Math.min(1, self.progress));
-          const drawnLength = pathLength * progress;
 
+          // 1. Move ONLY the stage elements through the stationary viewport
+          const currentY = maxScrollY * progress;
+          gsap.set(track, { y: -currentY });
+
+          // 2. Draw the vertical conduit branch downward following the scroll
+          const drawnLength = pathLength * progress;
           gsap.set([glowPath, corePath], {
             strokeDashoffset: pathLength - drawnLength
           });
 
+          // 3. Move the traveling radiant beacon head along the conduit
           if (beacon) {
             if (drawnLength > 5 && progress < 0.99) {
               const pt = glowPath.getPointAtLength(drawnLength);
@@ -253,17 +285,19 @@ export default function ProcessStagesPipeline({ steps = [] }) {
             }
           }
 
+          // 4. Sequentially activate nodes as the branch reaches each stage
           setActiveNodes({
             1: true,
-            2: progress >= 0.35,
-            3: progress >= 0.65,
-            4: progress >= 0.90
+            2: progress >= 0.28,
+            3: progress >= 0.58,
+            4: progress >= 0.88
           });
         }
       });
 
       return () => {
-        mobileTrigger.kill();
+        pinTrigger.kill();
+        gsap.set(track, { clearProps: "transform" });
       };
     });
 
@@ -283,22 +317,27 @@ export default function ProcessStagesPipeline({ steps = [] }) {
             The 4-Stage Delivery Method
           </h2>
 
-          <p className={styles.mainSubtitle}>
-            Deterministic sprints, verifiable artifacts, and non-negotiable quality gates. 
-            No guesswork, no junior delegation, and zero technical debt.
-          </p>
+          <div className={styles.subheadingStage}>
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={ROTATING_PIPELINE_SUBHEADINGS[subheadingIdx]}
+                className={styles.rotatingSubtitle}
+                initial={{ opacity: 0, y: 6, filter: "blur(3px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -6, filter: "blur(3px)" }}
+                transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {ROTATING_PIPELINE_SUBHEADINGS[subheadingIdx]}
+              </motion.p>
+            </AnimatePresence>
+          </div>
         </div>
 
         {/* STAGE VIEWPORT (MASKED VIEWING FRAME - SCREEN STICKS HERE) */}
         <div ref={stageViewportRef} className={styles.stageViewport}>
           {/* MOVING TRACK (ONLY THIS AND ITS ELEMENTS MOVE AS YOU SCROLL) */}
           <div ref={conduitWrapperRef} className={styles.conduitWrapper}>
-            {/* MOBILE LINEAR SPINE (< 960px) */}
-            <div className={styles.mobileSpine} aria-hidden="true">
-              <div className={styles.mobileSpineGlow} />
-            </div>
-
-            {/* DYNAMIC SCROLL-DRIVEN SERPENTINE SVG OVERLAY (DESKTOP) */}
+            {/* DYNAMIC SCROLL-DRIVEN SERPENTINE SVG OVERLAY (DESKTOP & MOBILE) */}
             {pathData && (
               <div className={styles.dynamicSvgContainer} aria-hidden="true">
                 <svg 
@@ -389,10 +428,7 @@ export default function ProcessStagesPipeline({ steps = [] }) {
                     >
                       {/* TOP META BAR */}
                       <div className={styles.cardTopMeta}>
-                        <div className={styles.titleGroup}>
-                          <span className={styles.stageCodeBadge}>{stepItem.stageCode}</span>
-                          <h3 className={styles.stageFullTitle}>{stepItem.fullTitle}</h3>
-                        </div>
+                        <h3 className={styles.stageFullTitle}>{stepItem.fullTitle}</h3>
 
                         <div className={styles.metaPillsGroup}>
                           <span className={styles.durationPill}>
@@ -406,8 +442,7 @@ export default function ProcessStagesPipeline({ steps = [] }) {
                         </div>
                       </div>
 
-                      {/* TAGLINE & DETAILED NARRATIVE */}
-                      <p className={styles.stageTagline}>"{stepItem.tagline}"</p>
+                      {/* DETAILED NARRATIVE */}
                       <p className={styles.stageDescription}>{stepItem.description}</p>
 
                       {/* VERIFIABLE ARTIFACTS MATRIX (EXPANSIVE 4-COLUMN HORIZONTAL GRID) */}
