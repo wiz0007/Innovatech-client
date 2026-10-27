@@ -27,7 +27,7 @@
   position: relative;
   text-align: center;
   max-width: 680px;
-  margin: 0 auto 18px;
+  margin: 0 auto 16px;
   padding: 0 16px;
   display: flex;
   flex-direction: column;
@@ -35,7 +35,8 @@
 
   @media (max-width: 960px) {
     width: 100%;
-    margin-bottom: 32px;
+    margin-bottom: 14px;
+    padding: 0 8px;
   }
 }
 
@@ -50,14 +51,39 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @media (max-width: 640px) {
+    font-size: 1.25rem;
+    margin-bottom: 4px;
+  }
 }
 
-.mainSubtitle {
-  font-size: clamp(0.78rem, 0.95vw, 0.86rem);
-  line-height: 1.48;
-  color: #a1a1aa;
+.subheadingStage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px;
+  width: 100%;
   margin: 0 auto;
-  max-width: 520px;
+  text-align: center;
+}
+
+.rotatingSubtitle {
+  position: absolute;
+  font-family: $font-sans, sans-serif;
+  font-size: clamp(0.76rem, 0.92vw, 0.85rem);
+  font-weight: 500;
+  line-height: 1.4;
+  color: #a1a1aa;
+  text-align: center;
+  margin: 0 auto;
+  white-space: nowrap;
+
+  @media (max-width: 640px) {
+    font-size: 0.72rem;
+    white-space: normal;
+  }
 }
 
 // ============================================
@@ -68,6 +94,7 @@
   width: 100%;
   height: clamp(520px, 68vh, 660px);
   overflow: hidden;
+  box-sizing: border-box;
   -webkit-mask-image: linear-gradient(
     to bottom,
     transparent 0%,
@@ -84,10 +111,22 @@
   );
 
   @media (max-width: 960px) {
-    height: auto;
-    overflow: visible;
-    -webkit-mask-image: none;
-    mask-image: none;
+    height: clamp(480px, calc(100svh - 175px), 620px);
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 4%,
+      black 95%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 4%,
+      black 95%,
+      transparent 100%
+    );
   }
 }
 
@@ -100,7 +139,7 @@
   will-change: transform;
 }
 
-// DESKTOP SCROLL-DRIVEN SERPENTINE SVG OVERLAY
+// SCROLL-DRIVEN SERPENTINE / CONDUIT SVG OVERLAY (DESKTOP & MOBILE)
 .dynamicSvgContainer {
   position: absolute;
   top: 0;
@@ -110,10 +149,6 @@
   pointer-events: none;
   z-index: 1;
   overflow: visible;
-
-  @media (max-width: 960px) {
-    display: none;
-  }
 }
 
 .dynamicSvg {
@@ -133,37 +168,6 @@
   transition: opacity 0.2s ease;
 }
 
-// MOBILE LINEAR SPINE (Visible < 960px)
-.mobileSpine {
-  display: none;
-  position: absolute;
-  top: 24px;
-  bottom: 30px;
-  left: 20px;
-  width: 2px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.4) 0%,
-    rgba(255, 255, 255, 0.15) 50%,
-    rgba(255, 255, 255, 0.02) 100%
-  );
-  pointer-events: none;
-  z-index: 1;
-
-  @media (max-width: 960px) {
-    display: block;
-  }
-}
-
-.mobileSpineGlow {
-  position: absolute;
-  top: 0;
-  left: -2px;
-  width: 6px;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.15);
-  filter: blur(4px);
-}
 
 // ============================================
 // ALTERNATING STAGES
@@ -174,15 +178,22 @@
   gap: clamp(48px, 5.5vw, 76px);
   position: relative;
   z-index: 2;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 960px) {
+    gap: 32px;
+  }
 }
 
 .stageRow {
   position: relative;
   display: flex;
   width: 100%;
+  box-sizing: border-box;
 
   @media (max-width: 960px) {
-    padding-left: 48px;
+    padding-left: 36px;
   }
 }
 
@@ -197,6 +208,8 @@
 
     @media (max-width: 960px) {
       width: 100%;
+      flex: 1;
+      min-width: 0;
       margin-right: 0;
       border-right: 1px solid rgba(255, 255, 255, 0.08);
       border-left: 2px solid rgba(255, 255, 255, 0.16);
@@ -215,7 +228,10 @@
 
     @media (max-width: 960px) {
       width: 100%;
+      flex: 1;
+      min-width: 0;
       margin-left: 0;
+      border-left: 2px solid rgba(255, 255, 255, 0.16);
     }
   }
 }
@@ -233,10 +249,20 @@
   backdrop-filter: blur(20px);
   box-shadow: 0 16px 50px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  box-sizing: border-box;
 
   &:hover {
     border-color: rgba(255, 255, 255, 0.18);
     box-shadow: 0 22px 60px rgba(0, 0, 0, 0.75), 0 0 35px rgba(255, 255, 255, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  }
+
+  @media (max-width: 960px) {
+    padding: 18px 16px;
+    border-radius: 14px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 16px 14px;
   }
 }
 
@@ -258,6 +284,12 @@
   align-items: center;
   justify-content: center;
   pointer-events: none;
+
+  @media (max-width: 960px) {
+    top: 18px;
+    width: 32px;
+    height: 32px;
+  }
 }
 
 // Docked directly on the Right Sideline border of Left cards
@@ -271,12 +303,11 @@
 
   @media (max-width: 960px) {
     right: auto;
-    left: 0;
-    transform: translateX(-50%);
+    left: -36px;
+    transform: translateX(0);
 
     .sidelineConnectorTab {
-      right: auto;
-      left: 100%;
+      display: none;
     }
   }
 }
@@ -288,6 +319,15 @@
 
   .sidelineConnectorTab {
     left: 100%;
+  }
+
+  @media (max-width: 960px) {
+    left: -36px;
+    transform: translateX(0);
+
+    .sidelineConnectorTab {
+      display: none;
+    }
   }
 }
 
@@ -312,6 +352,11 @@
   justify-content: center;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.18);
   transition: all 0.4s ease;
+
+  @media (max-width: 960px) {
+    width: 32px;
+    height: 32px;
+  }
 }
 
 .nodeNumeral {
@@ -321,6 +366,10 @@
   letter-spacing: -0.02em;
   color: #a1a1aa;
   transition: all 0.4s ease;
+
+  @media (max-width: 960px) {
+    font-size: 0.72rem;
+  }
 }
 
 .sidelineConnectorTab {
@@ -379,21 +428,15 @@
   gap: 12px;
   margin-bottom: 12px;
   flex-wrap: wrap;
-}
+  width: 100%;
+  box-sizing: border-box;
 
-.titleGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.stageCodeBadge {
-  font-family: $font-display;
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #a1a1aa;
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
 }
 
 .stageFullTitle {
@@ -404,6 +447,10 @@
   color: #ffffff;
   margin: 0;
   line-height: 1.25;
+
+  @media (max-width: 640px) {
+    font-size: 1.15rem;
+  }
 }
 
 .metaPillsGroup {
@@ -411,6 +458,7 @@
   align-items: center;
   gap: 6px;
   flex-wrap: wrap;
+  max-width: 100%;
 }
 
 .durationPill,
@@ -425,20 +473,20 @@
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  white-space: nowrap;
+  box-sizing: border-box;
+  max-width: 100%;
+
+  @media (max-width: 640px) {
+    font-size: 0.66rem;
+    padding: 3px 8px;
+    white-space: normal;
+    word-break: break-word;
+  }
 
   svg {
     color: #a1a1aa;
+    flex-shrink: 0;
   }
-}
-
-.stageTagline {
-  font-size: 0.9rem;
-  font-weight: 600;
-  font-style: italic;
-  color: #d4d4d8;
-  margin: 0 0 8px;
-  line-height: 1.45;
 }
 
 .stageDescription {
@@ -447,11 +495,23 @@
   color: #a1a1aa;
   margin: 0 0 20px;
   max-width: 960px;
+
+  @media (max-width: 640px) {
+    font-size: 0.78rem;
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
 }
 
 // DELIVERABLES SECTION (COMPACT 4-COLUMN HORIZONTAL GRID)
 .deliverablesSection {
   margin-bottom: 18px;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 640px) {
+    margin-bottom: 14px;
+  }
 }
 
 .deliverablesHeader {
@@ -494,12 +554,19 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
 
   @include tablet-down {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include mobile {
+  @media (max-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  @media (max-width: 360px) {
     grid-template-columns: 1fr;
   }
 }
@@ -510,6 +577,12 @@
   background: rgba(18, 18, 20, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.08);
   transition: all 0.25s ease;
+  box-sizing: border-box;
+
+  @media (max-width: 640px) {
+    padding: 8px 10px;
+    border-radius: 8px;
+  }
 
   &:hover {
     background: rgba(26, 26, 30, 0.9);
@@ -523,6 +596,10 @@
   align-items: center;
   gap: 7px;
   margin-bottom: 4px;
+
+  @media (max-width: 640px) {
+    margin-bottom: 0;
+  }
 }
 
 .tileIcon {
@@ -538,6 +615,10 @@
   font-weight: 700;
   color: #ffffff;
   letter-spacing: -0.01em;
+
+  @media (max-width: 640px) {
+    font-size: 0.74rem;
+  }
 }
 
 .tileDetail {
@@ -545,6 +626,10 @@
   line-height: 1.42;
   color: #a1a1aa;
   margin: 0;
+
+  @media (max-width: 640px) {
+    display: none;
+  }
 }
 
 // QUALITY GATEWAY (STRICT GRAY & BLACK)
@@ -558,6 +643,13 @@
   background: rgba(16, 16, 18, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.12);
   overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
+
+  @media (max-width: 640px) {
+    padding: 10px 12px;
+    gap: 10px;
+  }
 }
 
 .gatewayGlow {
@@ -584,9 +676,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
   margin-bottom: 4px;
   flex-wrap: wrap;
+
+  @media (max-width: 640px) {
+    gap: 6px;
+  }
 }
 
 .gatewayBadge {
@@ -596,6 +692,10 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #ffffff;
+
+  @media (max-width: 640px) {
+    font-size: 0.62rem;
+  }
 }
 
 .gatewayEnforced {
@@ -607,6 +707,10 @@
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: #d4d4d8;
+
+  @media (max-width: 640px) {
+    font-size: 0.58rem;
+  }
 }
 
 .gatewayCriteria {
@@ -614,4 +718,9 @@
   line-height: 1.45;
   color: #d4d4d8;
   margin: 0;
+
+  @media (max-width: 640px) {
+    font-size: 0.72rem;
+    line-height: 1.4;
+  }
 }
