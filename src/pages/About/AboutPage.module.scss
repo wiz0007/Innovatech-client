@@ -2,22 +2,31 @@
 @use "../../styles/mixins" as *;
 
 .aboutPage {
+  position: relative;
   width: 100%;
-}
-
-.storySection {
-  padding: clamp(60px, 8vw, 100px) clamp(20px, 4vw, 56px);
+  background: #050507;
+  color: #f8fafc;
+  overflow-x: clip;
 }
 
 .container {
-  max-width: 1360px;
+  max-width: 1320px;
   margin: 0 auto;
+}
+
+// ============================================
+// STORY & PHILOSOPHY SECTION (COMPACT & BALANCED)
+// ============================================
+.storySection {
+  position: relative;
+  padding: clamp(56px, 7vw, 92px) clamp(20px, 4vw, 56px);
+  background: radial-gradient(circle at 50% 0%, rgba(28, 28, 34, 0.22) 0%, rgba(5, 5, 7, 0) 70%);
 }
 
 .storyGrid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: clamp(40px, 6vw, 80px);
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(32px, 4.5vw, 64px);
   align-items: center;
 
   @include tablet-down {
@@ -28,217 +37,156 @@
 .storyCopy {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
-.sectionEyebrow {
-  @include eyebrow;
-  margin-bottom: 0;
+.storyEyebrow {
+  font-family: monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  &::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.85);
+  }
 }
 
-.storyHeading {
-  @include display-heading;
-  font-size: clamp(2rem, 3.8vw, 3rem);
-  line-height: 1.15;
+.storyTitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.65rem, 2.5vw, 2.3rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  background: linear-gradient(180deg, #ffffff 30%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
 }
 
-.paragraph {
-  font-size: 1.02rem;
+.storyText {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(0.92rem, 1vw, 1.02rem);
   line-height: 1.7;
-  color: $text-secondary;
+  color: #94a3b8;
+  margin: 0;
+  max-width: 580px;
 }
 
-.storyVisual {
-  position: relative;
-  border-radius: $radius-xl;
-  overflow: hidden;
-  border: 1px solid $border-subtle;
-  background: radial-gradient(circle at 50% 50%, rgba(98, 242, 255, 0.1) 0%, rgba(12, 16, 31, 0.8) 70%);
-  padding: 24px;
+.storyPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.storyPill {
+  font-family: monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+}
+
+.storyMedia {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.imageTiltWrapper {
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  img {
-    max-height: 480px;
-    width: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 0 32px rgba(98, 242, 255, 0.2));
-  }
 }
 
-/* Values Section */
-.valuesSection {
-  padding: clamp(60px, 8vw, 100px) clamp(20px, 4vw, 56px);
-  border-top: 1px solid $border-subtle;
-}
-
-.valuesGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-
-  @include tablet-down {
-    grid-template-columns: 1fr;
-  }
-}
-
-.valueCard {
-  padding: clamp(24px, 3vw, 36px);
-  border-radius: $radius-lg;
-  @include glass-panel($bg: rgba(12, 16, 31, 0.75), $border: $border-subtle, $blur: 16px);
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  transition: transform $transition-fast, border-color $transition-fast;
-
-  &:hover {
-    transform: translateY(-4px);
-    border-color: rgba(98, 242, 255, 0.3);
-  }
-}
-
-.valueNum {
-  font-family: $font-mono;
-  font-size: 0.85rem;
-  color: $accent-cyan;
-  font-weight: 700;
-}
-
-.valueTitle {
-  @include display-heading;
-  font-size: 1.3rem;
-  color: #ffffff;
-}
-
-.valueDesc {
-  font-size: 0.92rem;
-  line-height: 1.6;
-  color: $text-secondary;
-}
-
-/* Team Section */
-.teamSection {
-  padding: clamp(60px, 8vw, 100px) clamp(20px, 4vw, 56px) clamp(80px, 10vw, 120px);
-  border-top: 1px solid $border-subtle;
-}
-
-.teamGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-
-  @include tablet-down {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include mobile {
-    grid-template-columns: 1fr;
-  }
-}
-
-.teamCard {
-  padding: 20px;
-  border-radius: $radius-lg;
-  @include glass-panel($bg: rgba(12, 16, 31, 0.75), $border: $border-subtle, $blur: 16px);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  transition: transform $transition-fast, border-color $transition-fast;
-
-  &:hover {
-    transform: translateY(-4px);
-    border-color: rgba(98, 242, 255, 0.3);
-  }
-}
-
-.photoWrapper {
+.imageCard {
+  position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1.05;
-  border-radius: $radius-md;
+  height: 250px;
+  border-radius: 18px;
   overflow: hidden;
-  border: 1px solid $border-subtle;
-  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(180deg, rgba(24, 24, 27, 0.8) 0%, rgba(9, 9, 11, 0.95) 100%);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform $transition-smooth;
+    object-position: center 26%;
+    display: block;
+    filter: contrast(1.04) brightness(0.96);
+    transition: transform 0.45s ease;
   }
 
   &:hover img {
-    transform: scale(1.05);
+    transform: scale(1.03);
   }
 }
 
-.teamInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.memberName {
-  font-family: $font-display;
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #ffffff;
-}
-
-.memberRole {
-  font-family: $font-mono;
-  font-size: 0.72rem;
-  color: $accent-cyan;
-}
-
-.memberBio {
-  font-size: 0.86rem;
-  line-height: 1.5;
-  color: $text-secondary;
-}
-
-.skillTags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 4px;
-}
-
-.skillTag {
-  font-family: $font-mono;
+.imageOverlayBadge {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  right: 14px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(9, 9, 11, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  color: #cbd5e1;
+  font-family: monospace;
   font-size: 0.68rem;
-  padding: 3px 8px;
-  border-radius: $radius-full;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid $border-subtle;
-  color: $text-secondary;
+  letter-spacing: 0.06em;
+  text-align: center;
 }
 
-.socialRow {
-  display: flex;
-  gap: 10px;
-  margin-top: 8px;
-  padding-top: 12px;
-  border-top: 1px solid $border-subtle;
+// ============================================
+// VALUES & CULTURE SECTION (BALANCED PROFESSIONAL SPACING)
+// ============================================
+.valuesSection {
+  padding: clamp(48px, 5.5vw, 68px) clamp(20px, 4vw, 56px) clamp(24px, 3vw, 36px) clamp(20px, 4vw, 56px);
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+}
 
-  a {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid $border-subtle;
-    color: $text-secondary;
-    font-size: 0.88rem;
-    transition: all $transition-fast;
+.teamSection {
+  scroll-margin-top: 90px;
+  padding: clamp(36px, 4.5vw, 52px) clamp(20px, 4vw, 56px) clamp(64px, 8vw, 96px);
+  background: transparent;
+  position: relative;
+}
 
-    &:hover {
-      background: rgba(98, 242, 255, 0.15);
-      border-color: $accent-cyan;
-      color: #ffffff;
-      transform: translateY(-2px);
-    }
+.teamSectionHeader {
+  margin-bottom: clamp(24px, 3.5vw, 36px) !important;
+
+  h2 {
+    font-size: clamp(1.8rem, 2.6vw, 2.3rem) !important;
+    margin-bottom: 8px !important;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    font-size: 0.92rem !important;
+    color: #94a3b8 !important;
   }
 }
+
+
