@@ -4,7 +4,7 @@ import CelestialHero from "../../components/common/CelestialHero";
 import CircularCapabilitiesDrawer from "../../components/common/CircularCapabilitiesDrawer";
 import SelectedWorkShowcase from "../../components/common/SelectedWorkShowcase";
 import DeliveryProcessPipeline from "../../components/common/DeliveryProcessPipeline";
-import ImmersiveLeadershipStage from "../../components/common/ImmersiveLeadershipStage";
+import EngineeringStripe from "../../components/common/EngineeringStripe";
 import CTASection from "../../components/common/CTASection";
 import servicesData from "../../content/servicesData";
 import projectsData from "../../content/projectsData";
@@ -49,12 +49,8 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* TEAM PREVIEW SECTION - IMMERSIVE HORIZON STAGE */}
-      <section className={styles.teamSection}>
-        <div className={styles.sectionContainer}>
-          <ImmersiveLeadershipStage />
-        </div>
-      </section>
+      {/* ENGINEERING STANDARDS & LEADERSHIP TEASER STRIPE */}
+      <EngineeringStripe />
 
       {/* CONVERSION CTA */}
       <CTASection />
