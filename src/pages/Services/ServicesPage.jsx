@@ -29,7 +29,7 @@ const ServicesPage = () => {
         contactLabel="Architecture Discovery"
         contactDesc="Direct 30-minute technical roadmap session with lead systems architects. Zero sales friction."
         contactBtnText="Schedule Technical Discovery"
-        contactLink="/inquiries"
+        contactLink="/contact"
         exploreLabel="Verified Performance"
         exploreDesc="Inspect benchmarked production cases across web, mobile, and machine intelligence platforms."
         exploreBtnText="Explore Client Work"

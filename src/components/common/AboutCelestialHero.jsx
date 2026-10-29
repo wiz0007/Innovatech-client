@@ -197,7 +197,7 @@ const AboutCelestialHero = () => {
             <p className={styles.descriptionText}>
               Direct senior leadership partnership with zero junior delegation and full transparent code ownership.
             </p>
-            <Link to="/inquiries" className={styles.secondarySmokedCta}>
+            <Link to="/contact" className={styles.secondarySmokedCta}>
               <span>Schedule Technical Discovery</span>
               <ArrowRight size={14} />
             </Link>

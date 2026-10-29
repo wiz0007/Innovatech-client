@@ -74,7 +74,7 @@ const ProcessPage = () => {
         contactLabel="Direct Architect Discovery"
         contactDesc="30-minute roadmap & scoping call with senior engineers. We review your architecture, timeline, and deliverables."
         contactBtnText="Schedule Technical Discovery"
-        contactLink="/inquiries"
+        contactLink="/contact"
         exploreLabel="Production Benchmarks"
         exploreDesc="Inspect verified production case studies across web, mobile, and machine intelligence platforms."
         exploreBtnText="Inspect Client Work"

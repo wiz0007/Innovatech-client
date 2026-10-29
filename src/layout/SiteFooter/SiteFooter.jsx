@@ -20,7 +20,6 @@ const SiteFooter = () => {
     { name: "Work", path: "/work" },
     { name: "Process", path: "/process" },
     { name: "About", path: "/about" },
-    { name: "Inquiries", path: "/inquiries" },
     { name: "Contact", path: "/contact" },
   ];
 

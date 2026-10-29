@@ -19,7 +19,6 @@ const mobileNavLinks = [
   { name: "Projects", path: "/work" },
   { name: "Process", path: "/process" },
   { name: "About", path: "/about" },
-  { name: "Inquiries", path: "/inquiries" },
   { name: "Contact", path: "/contact" },
 ];
 
@@ -123,13 +122,6 @@ const Navbar = () => {
             >
               Process
             </NavLink>
-
-            <NavLink
-              to="/about"
-              className={({ isActive }) => `${styles.navLink} ${isActive ? styles.activeNavLink : ""}`}
-            >
-              About
-            </NavLink>
           </nav>
 
           {/* Center: RogueAI Luxury Brandmark */}
@@ -139,13 +131,13 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Right: Inquiries & Contact CTA */}
+          {/* Right: About & Contact CTA (2 Links) */}
           <div className={styles.rightNav}>
             <NavLink
-              to="/inquiries"
-              className={({ isActive }) => `${styles.inquiriesLink} ${isActive ? styles.activeInquiriesLink : ""}`}
+              to="/about"
+              className={({ isActive }) => `${styles.navLink} ${isActive ? styles.activeNavLink : ""}`}
             >
-              Inquiries
+              About
             </NavLink>
 
             <Link to="/contact" className={styles.contactBtn}>

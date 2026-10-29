@@ -65,12 +65,12 @@ const WorkConversionSection = () => {
 
         {/* Action Buttons Row */}
         <div className={styles.actionsRow}>
-          <Link to="/inquiries" className={styles.primarySilverBtn}>
-            <span>Schedule Technical Discovery</span>
+          <Link to="/contact" className={styles.primarySilverBtn}>
+            <span>Start an Engagement</span>
             <ArrowRight size={15} />
           </Link>
-          <Link to="/contact" className={styles.secondaryGlassBtn}>
-            <span>Start an Engagement</span>
+          <Link to="/services" className={styles.secondaryGlassBtn}>
+            <span>Explore Capabilities</span>
             <ArrowUpRight size={14} />
           </Link>
         </div>

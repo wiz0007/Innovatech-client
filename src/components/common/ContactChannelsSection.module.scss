@@ -1,0 +1,220 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.channelsSection {
+  padding: clamp(56px, 7vw, 90px) 0;
+  background: #050507;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 40px);
+}
+
+// ---------------------------------------------------------------------------
+// Status Pill
+// ---------------------------------------------------------------------------
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: $radius-full;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #d4d4d8;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.statusPulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.85);
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.35;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Editorial Horizon Layout
+// ---------------------------------------------------------------------------
+.horizonLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.horizonHeaderBar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-wrap: wrap;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+
+.horizonEyebrow {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a1a1aa;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.horizonTitle {
+  @include display-heading;
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.horizonBands {
+  display: flex;
+  flex-direction: column;
+}
+
+.horizonRow {
+  display: grid;
+  grid-template-columns: 240px 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 30px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  transition: background $transition-fast;
+
+  @media (max-width: #{$bp-desktop - 1px}) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 24px 0;
+  }
+}
+
+.horizonRowMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.horizonMetaTag {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #ffffff;
+}
+
+.horizonMetaSub {
+  font-size: 0.76rem;
+  color: #71717a;
+}
+
+.horizonRowValue {
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  word-break: break-all;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: #cbd5e1;
+  }
+}
+
+.horizonRowActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  @media (max-width: #{$bp-desktop - 1px}) {
+    justify-content: flex-start;
+  }
+}
+
+.horizonActionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: $radius-full;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-family: $font-sans;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.28);
+    transform: translateY(-2px);
+  }
+}
+
+.horizonFooterSpec {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  padding-top: 20px;
+
+  @media (max-width: #{$bp-desktop - 1px}) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.specColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.specLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #71717a;
+}
+
+.specValue {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.specDetail {
+  font-size: 0.78rem;
+  color: #8b8b94;
+  line-height: 1.5;
+}

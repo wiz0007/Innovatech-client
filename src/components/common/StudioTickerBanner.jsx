@@ -26,7 +26,7 @@ const TICKER_ITEMS = [
     badge: "ARCHITECTURE",
     title: "Direct Principal Architect Partnership",
     detail: "100% Code Ownership",
-    link: "/inquiries",
+    link: "/contact",
   },
   {
     badge: "STREAMING UI",

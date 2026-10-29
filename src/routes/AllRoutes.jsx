@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import SiteLayout from "../layout/SiteLayout";
 
 // Route-level code-splitting
@@ -8,7 +8,6 @@ const ServicesPage = lazy(() => import("../pages/Services/ServicesPage"));
 const WorkPage = lazy(() => import("../pages/Work/WorkPage"));
 const ProcessPage = lazy(() => import("../pages/Process/ProcessPage"));
 const AboutPage = lazy(() => import("../pages/About/AboutPage"));
-const InquiriesPage = lazy(() => import("../pages/Inquiries/InquiriesPage"));
 const ContactPage = lazy(() => import("../pages/Contact/ContactPage"));
 const NotFoundPage = lazy(() => import("../pages/NotFound/NotFoundPage"));
 
@@ -102,7 +101,7 @@ const AllRoutes = () => {
             <Route path="work" element={<WorkPage />} />
             <Route path="process" element={<ProcessPage />} />
             <Route path="about" element={<AboutPage />} />
-            <Route path="inquiries" element={<InquiriesPage />} />
+            <Route path="inquiries" element={<Navigate to="/contact" replace />} />
             <Route path="contact" element={<ContactPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>

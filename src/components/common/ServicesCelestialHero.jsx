@@ -200,7 +200,7 @@ const ServicesCelestialHero = () => {
             <p className={styles.descriptionText}>
               Autonomous squads integrated with your leadership for rapid velocity.
             </p>
-            <Link to="/inquiries" className={styles.secondarySmokedCta}>
+            <Link to="/contact" className={styles.secondarySmokedCta}>
               <span>Scope Your Project</span>
               <ArrowRight size={14} />
             </Link>
