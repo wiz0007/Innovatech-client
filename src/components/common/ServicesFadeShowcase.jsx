@@ -595,12 +595,12 @@ const ServicesFadeShowcase = () => {
                     </div>
 
                     <div className={styles.actionButtonsGroup}>
-                      <Link to="/inquiries" className={styles.primaryActionBtn}>
+                      <Link to="/contact" className={styles.primaryActionBtn}>
                         <span>Schedule Technical Discovery</span>
                         <ArrowRight size={13} />
                       </Link>
-                      <Link to="/contact" className={styles.secondaryActionBtn}>
-                        <span>Scope Custom Project</span>
+                      <Link to="/work" className={styles.secondaryActionBtn}>
+                        <span>View Verified Work</span>
                         <ArrowUpRight size={12} />
                       </Link>
                     </div>

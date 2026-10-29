@@ -162,6 +162,12 @@
   justify-content: flex-end;
   gap: clamp(16px, 2vw, 28px);
   flex: 1;
+
+  .navLink {
+    @include tablet-down {
+      display: none;
+    }
+  }
 }
 
 .inquiriesLink {

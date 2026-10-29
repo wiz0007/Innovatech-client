@@ -1,0 +1,1147 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.scopingSection {
+  padding: clamp(28px, 4.5vh, 48px) 0;
+  background: #050507;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 3.5vw, 36px);
+}
+
+// ---------------------------------------------------------------------------
+// Section Header Bar (Compact & Sleek)
+// ---------------------------------------------------------------------------
+.headerBar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+.eyebrowTag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a1a1aa;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.sectionTitle {
+  @include display-heading;
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border-radius: $radius-full;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #d4d4d8;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.statusPulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.85);
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.35;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Feedback Banners
+// ---------------------------------------------------------------------------
+.statusBanner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  border-radius: $radius-md;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  margin-bottom: 18px;
+}
+
+.bannerSuccess {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+
+  svg {
+    color: #e4e4e7;
+    flex-shrink: 0;
+  }
+}
+
+.bannerError {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// UNIFIED MASTER CONSOLE BOX (Compact & Visually Unified)
+// ---------------------------------------------------------------------------
+.masterConsole {
+  @include glass-panel($bg: rgba(18, 18, 22, 0.75), $border: rgba(255, 255, 255, 0.08), $blur: 16px);
+  border-radius: $radius-xl;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+// ---------------------------------------------------------------------------
+// Desktop Full-Width Top Bar (Compact Stepper + Progress Meter)
+// ---------------------------------------------------------------------------
+.consoleTopBar {
+  display: grid;
+  grid-template-columns: 1.45fr auto 1fr;
+  align-items: center;
+  padding: 10px 24px;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+
+  @media (max-width: #{$bp-laptop - 1px}) {
+    display: none;
+  }
+}
+
+.consoleStepperNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.stepNavBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: $radius-md;
+  transition: all $transition-fast;
+  text-align: left;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+.stepIndicatorIcon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #71717a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all $transition-fast;
+
+  .stepNavBtnActive & {
+    background: #ffffff;
+    color: #09090b;
+    border-color: #ffffff;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+  }
+
+  .stepNavBtnComplete:not(.stepNavBtnActive) & {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+.stepNavText {
+  display: flex;
+  flex-direction: column;
+}
+
+.stepStageNum {
+  font-family: $font-mono;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #71717a;
+
+  .stepNavBtnActive & {
+    color: #a1a1aa;
+  }
+}
+
+.stepStageLabel {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #a1a1aa;
+
+  .stepNavBtnActive & {
+    color: #ffffff;
+  }
+
+  .stepNavBtnComplete:not(.stepNavBtnActive) & {
+    color: #e4e4e7;
+  }
+}
+
+.stepConnectorLine {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 0 6px;
+}
+
+.topBarDivider {
+  width: 1px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 0 20px;
+}
+
+.consoleProgressMeter {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.meterMetaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.meterLabel {
+  font-family: $font-mono;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #a1a1aa;
+}
+
+.meterPct {
+  font-family: $font-mono;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.meterTrack {
+  width: 100%;
+  height: 4px;
+  border-radius: $radius-full;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.meterFill {
+  height: 100%;
+  background: linear-gradient(90deg, #a1a1aa, #ffffff);
+  border-radius: $radius-full;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+// ---------------------------------------------------------------------------
+// Mobile Stepper Navigation Bar
+// ---------------------------------------------------------------------------
+.mobileStepperNav {
+  display: none;
+
+  @media (max-width: #{$bp-laptop - 1px}) {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px 18px;
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+}
+
+.mobileStepperTrack {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    top: 50%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+}
+
+.mobileStepperFill {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  height: 2px;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  transform: translateY(-50%);
+  z-index: 2;
+  transition: width 0.35s ease;
+}
+
+.mobileStepCircle {
+  position: relative;
+  z-index: 3;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #18181b;
+  border: 2px solid rgba(255, 255, 255, 0.16);
+  color: #71717a;
+  font-family: $font-mono;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all $transition-fast;
+}
+
+.mobileStepCircleActive {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #09090b;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+.mobileActiveStageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: center;
+}
+
+.mobileStageNum {
+  font-family: $font-mono;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #a1a1aa;
+}
+
+.mobileStageTitle {
+  @include display-heading;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+// ---------------------------------------------------------------------------
+// Console Body Grid (Equal Height Columns on Desktop)
+// ---------------------------------------------------------------------------
+.consoleBodyGrid {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
+  align-items: stretch;
+  flex: 1;
+
+  @media (max-width: #{$bp-laptop - 1px}) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Left Column: Form Configurator Pane
+// ---------------------------------------------------------------------------
+.consoleFormPane {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+
+  @media (max-width: #{$bp-laptop - 1px}) {
+    border-right: none;
+    padding: 18px;
+  }
+}
+
+.paneContentWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.stageContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.stageHeadingBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  @media (max-width: #{$bp-laptop - 1px}) {
+    display: none;
+  }
+}
+
+.stageBadge {
+  font-family: $font-mono;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #a1a1aa;
+}
+
+.stageTitle {
+  @include display-heading;
+  font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.stageSubtitle {
+  font-size: 0.78rem;
+  color: #8b8b94;
+  line-height: 1.4;
+  margin: 0;
+}
+
+// Stage 1: Platforms
+.platformsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.platformTile {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: $radius-md;
+  padding: 12px 14px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.22);
+    background: rgba(0, 0, 0, 0.6);
+  }
+}
+
+.platformTileActive {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.platformTileTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.platformTileName {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.tileCheckBadge {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+
+  .platformTileActive & {
+    background: #ffffff;
+    color: #09090b;
+    border-color: #ffffff;
+  }
+}
+
+.platformTileDesc {
+  font-size: 0.72rem;
+  color: #71717a;
+  line-height: 1.35;
+}
+
+// Stage 2: Cadence & Capabilities
+.subSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.subSectionTitle {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #a1a1aa;
+}
+
+.cadenceGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cadenceTile {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: $radius-md;
+  padding: 10px 12px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.22);
+  }
+}
+
+.cadenceTileActive {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.cadenceDuration {
+  font-family: $font-mono;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.cadenceLabel {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #e4e4e7;
+}
+
+.cadenceDesc {
+  font-size: 0.68rem;
+  color: #71717a;
+  line-height: 1.3;
+}
+
+.capsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.capChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: $radius-full;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #a1a1aa;
+  font-size: 0.74rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.22);
+  }
+}
+
+.capChipActive {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+}
+
+.capDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #71717a;
+
+  .capChipActive & {
+    background: #ffffff;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+  }
+}
+
+// Stage 3: Brief Inputs
+.briefInputsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fieldItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fullRow {
+  grid-column: 1 / -1;
+}
+
+.fieldLabel {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #a1a1aa;
+}
+
+.requiredStar {
+  color: #e4e4e7;
+}
+
+.textInput {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: $radius-md;
+  padding: 8px 12px;
+  color: #ffffff;
+  font-family: $font-sans;
+  font-size: 0.82rem;
+  outline: none;
+  transition: border-color $transition-fast;
+
+  &::placeholder {
+    color: #52525b;
+  }
+
+  &:focus {
+    border-color: rgba(255, 255, 255, 0.35);
+  }
+}
+
+.inputError {
+  border-color: rgba(239, 68, 68, 0.6) !important;
+}
+
+.fieldErrorText {
+  font-size: 0.7rem;
+  color: #fca5a5;
+}
+
+.selectInput {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: $radius-md;
+  padding: 8px 12px;
+  color: #ffffff;
+  font-family: $font-sans;
+  font-size: 0.82rem;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.6)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+
+  option {
+    background: #18181b;
+    color: #ffffff;
+  }
+
+  &:focus {
+    border-color: rgba(255, 255, 255, 0.35);
+  }
+}
+
+.textAreaInput {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: $radius-md;
+  padding: 8px 12px;
+  color: #ffffff;
+  font-family: $font-sans;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  resize: vertical;
+  min-height: 52px;
+  outline: none;
+  transition: border-color $transition-fast;
+
+  &::placeholder {
+    color: #52525b;
+  }
+
+  &:focus {
+    border-color: rgba(255, 255, 255, 0.35);
+  }
+}
+
+// Stage 4: Mobile Review Card
+.mobileReviewCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border-radius: $radius-md;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.reviewItem {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+  &:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.reviewKey {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #71717a;
+}
+
+.reviewVal {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.reviewPillsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.reviewPill {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 2px 7px;
+  border-radius: $radius-full;
+}
+
+.reviewNotesText {
+  font-size: 0.76rem;
+  color: #d4d4d8;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.reviewGuarantee {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: $radius-md;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.72rem;
+  color: #a1a1aa;
+  line-height: 1.35;
+}
+
+.assuranceIcon {
+  color: #e4e4e7;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+// ---------------------------------------------------------------------------
+// Footers for Both Panes (Shared Baseline)
+// ---------------------------------------------------------------------------
+.paneFooterNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 12px;
+  margin-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+  @include mobile {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.stageFooterNote {
+  font-size: 0.74rem;
+  color: #71717a;
+}
+
+.nextStageBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: $radius-full;
+  background: #ffffff;
+  color: #09090b;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all $transition-fast;
+  margin-left: auto;
+
+  &:hover {
+    background: #f4f4f5;
+    transform: translateY(-2px);
+  }
+
+  @include mobile {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.backStageBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: $radius-full;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #d4d4d8;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+  }
+
+  @include mobile {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.desktopSubmitPrompt {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  color: #a1a1aa;
+  margin-left: auto;
+
+  @media (max-width: #{$bp-laptop - 1px}) {
+    display: none;
+  }
+}
+
+.promptSparkle {
+  color: #e4e4e7;
+}
+
+.mobileReviewBtn {
+  display: none;
+
+  @media (max-width: #{$bp-laptop - 1px}) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: $radius-full;
+    background: #ffffff;
+    color: #09090b;
+    border: none;
+    font-size: 0.84rem;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+  }
+}
+
+.submitBriefBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 11px 22px;
+  border-radius: $radius-full;
+  background: #ffffff;
+  color: #09090b;
+  border: none;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover:not(:disabled) {
+    background: #f4f4f5;
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  @include mobile {
+    width: 100%;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Right Column: Live Specification Pane (Equal Height, Stretch Aligned)
+// ---------------------------------------------------------------------------
+.consoleSpecPane {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px 24px;
+  background: rgba(0, 0, 0, 0.28);
+
+  @media (max-width: #{$bp-laptop - 1px}) {
+    display: none;
+  }
+}
+
+.specHeaderRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.specSparkleIcon {
+  color: #e4e4e7;
+}
+
+.specTitle {
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+}
+
+.specItemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.specItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.specKey {
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #71717a;
+}
+
+.specPillsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.specPill {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2px 6px;
+  border-radius: $radius-full;
+}
+
+.specVal {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #e4e4e7;
+}
+
+.specValMuted {
+  font-size: 0.74rem;
+  color: #71717a;
+}
+
+.refGuaranteeBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: $radius-md;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top: 8px;
+}
+
+.refShieldIcon {
+  color: #e4e4e7;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.guaranteeTag {
+  font-family: $font-mono;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.guaranteeDesc {
+  font-size: 0.68rem;
+  color: #8b8b94;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.specNextBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 9px 16px;
+  border-radius: $radius-full;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+}
+
+.specSubmitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 10px 18px;
+  border-radius: $radius-full;
+  background: #ffffff;
+  color: #09090b;
+  border: none;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover:not(:disabled) {
+    background: #f4f4f5;
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}

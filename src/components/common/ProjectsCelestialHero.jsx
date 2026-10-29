@@ -200,7 +200,7 @@ const ProjectsCelestialHero = () => {
             <p className={styles.descriptionText}>
               Senior engineering partnership for mission-critical systems.
             </p>
-            <Link to="/inquiries" className={styles.secondarySmokedCta}>
+            <Link to="/contact" className={styles.secondarySmokedCta}>
               <span>Scope Your Project</span>
               <ArrowRight size={14} />
             </Link>

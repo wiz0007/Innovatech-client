@@ -199,7 +199,7 @@ const ProcessCelestialHero = () => {
             <p className={styles.descriptionText}>
               Direct senior architect partnership with daily Git commits and zero junior delegation.
             </p>
-            <Link to="/inquiries" className={styles.secondarySmokedCta}>
+            <Link to="/contact" className={styles.secondarySmokedCta}>
               <span>Schedule Technical Discovery</span>
               <ArrowRight size={14} />
             </Link>

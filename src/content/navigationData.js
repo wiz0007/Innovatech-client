@@ -3,7 +3,6 @@ export const navLinks = [
   { name: "Work", path: "/work" },
   { name: "Process", path: "/process" },
   { name: "About", path: "/about" },
-  { name: "Inquiries", path: "/inquiries" },
   { name: "Contact", path: "/contact" }
 ];
 
@@ -14,7 +13,6 @@ export const footerLinks = {
     { name: "Work", path: "/work" },
     { name: "Process", path: "/process" },
     { name: "About", path: "/about" },
-    { name: "Inquiries", path: "/inquiries" },
     { name: "Contact", path: "/contact" },
   ],
   capabilities: [
