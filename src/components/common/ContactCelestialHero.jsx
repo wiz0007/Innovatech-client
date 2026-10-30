@@ -207,11 +207,6 @@ const ContactCelestialHero = () => {
             </a>
           </div>
         </div>
-
-        {/* Subtext Footer (Cool Steel Gray Monospace) */}
-        <div className={styles.subtextMeta}>
-          <span>Under 24h Architect SLA // Direct Engineer Access // 100% Code Ownership</span>
-        </div>
       </div>
     </section>
   );
