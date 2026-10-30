@@ -375,18 +375,3 @@
     font-size: 0.78rem;
   }
 }
-
-/* Subtext Meta (Cool Steel Gray) */
-.subtextMeta {
-  font-family: monospace;
-  font-size: 0.64rem;
-  color: #64748b;
-  letter-spacing: 0.08em;
-  margin-top: 4px;
-
-  @media (max-width: 540px) {
-    font-size: 0.58rem;
-    max-width: 290px;
-    text-align: center;
-  }
-}
