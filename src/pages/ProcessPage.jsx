@@ -1,12 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
-import SEO from "../../components/common/SEO";
-import ProcessCelestialHero from "../../components/common/ProcessCelestialHero";
-import ProcessStagesPipeline from "../../components/common/ProcessStagesPipeline";
-import SectionHeader from "../../components/common/SectionHeader";
-import CTASection from "../../components/common/CTASection";
-import TiltCard from "../../components/common/TiltCard";
-import processSteps, { engineeringPrinciples } from "../../content/processData";
+import SEO from "../components/common/SEO";
+import ProcessCelestialHero from "../components/process/ProcessCelestialHero";
+import ProcessStagesPipeline from "../components/process/ProcessStagesPipeline";
+import SectionHeader from "../components/common/SectionHeader";
+import CTASection from "../components/common/CTASection";
+import TiltCard from "../components/common/TiltCard";
+import processSteps, { engineeringPrinciples } from "../content/processData";
 import styles from "./ProcessPage.module.scss";
 
 const ProcessPage = () => {

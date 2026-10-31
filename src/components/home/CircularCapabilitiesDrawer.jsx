@@ -9,7 +9,7 @@ import {
   Sparkles 
 } from "lucide-react";
 import gsap, { ScrollTrigger } from "../../utils/gsapConfig";
-import MagneticButton from "./MagneticButton";
+import MagneticButton from "../common/MagneticButton";
 import styles from "./CircularCapabilitiesDrawer.module.scss";
 
 const serviceIconMap = {

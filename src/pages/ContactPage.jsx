@@ -1,10 +1,10 @@
 import React from "react";
-import SEO from "../../components/common/SEO";
-import ContactCelestialHero from "../../components/common/ContactCelestialHero";
-import ContactTrustBar from "../../components/common/ContactTrustBar";
-import ContactChannelsSection from "../../components/common/ContactChannelsSection";
-import ContactScopingSection from "../../components/common/ContactScopingSection";
-import ContactDirectSection from "../../components/common/ContactDirectSection";
+import SEO from "../components/common/SEO";
+import ContactCelestialHero from "../components/contact/ContactCelestialHero";
+import ContactTrustBar from "../components/contact/ContactTrustBar";
+import ContactChannelsSection from "../components/contact/ContactChannelsSection";
+import ContactScopingSection from "../components/contact/ContactScopingSection";
+import ContactDirectSection from "../components/contact/ContactDirectSection";
 import styles from "./ContactPage.module.scss";
 
 const ContactPage = () => {

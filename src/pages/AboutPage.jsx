@@ -1,14 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
-import SEO from "../../components/common/SEO";
-import AboutCelestialHero from "../../components/common/AboutCelestialHero";
-import StudioTickerBanner from "../../components/common/StudioTickerBanner";
-import AboutValuesUCarousel from "../../components/common/AboutValuesUCarousel";
-import LeadershipShowcase from "../../components/common/LeadershipShowcase";
-import SectionHeader from "../../components/common/SectionHeader";
-import CTASection from "../../components/common/CTASection";
-import TiltCard from "../../components/common/TiltCard";
-import aboutImg from "../../assets/About.webp";
+import SEO from "../components/common/SEO";
+import AboutCelestialHero from "../components/about/AboutCelestialHero";
+import StudioTickerBanner from "../components/about/StudioTickerBanner";
+import AboutValuesUCarousel from "../components/about/AboutValuesUCarousel";
+import LeadershipShowcase from "../components/about/LeadershipShowcase";
+import SectionHeader from "../components/common/SectionHeader";
+import CTASection from "../components/common/CTASection";
+import TiltCard from "../components/common/TiltCard";
+import aboutImg from "../assets/About.webp";
 import styles from "./AboutPage.module.scss";
 
 const AboutPage = () => {

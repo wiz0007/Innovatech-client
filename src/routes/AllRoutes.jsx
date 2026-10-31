@@ -3,13 +3,13 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import SiteLayout from "../layout/SiteLayout";
 
 // Route-level code-splitting
-const HomePage = lazy(() => import("../pages/Home/HomePage"));
-const ServicesPage = lazy(() => import("../pages/Services/ServicesPage"));
-const WorkPage = lazy(() => import("../pages/Work/WorkPage"));
-const ProcessPage = lazy(() => import("../pages/Process/ProcessPage"));
-const AboutPage = lazy(() => import("../pages/About/AboutPage"));
-const ContactPage = lazy(() => import("../pages/Contact/ContactPage"));
-const NotFoundPage = lazy(() => import("../pages/NotFound/NotFoundPage"));
+const HomePage = lazy(() => import("../pages/HomePage"));
+const ServicesPage = lazy(() => import("../pages/ServicesPage"));
+const WorkPage = lazy(() => import("../pages/WorkPage"));
+const ProcessPage = lazy(() => import("../pages/ProcessPage"));
+const AboutPage = lazy(() => import("../pages/AboutPage"));
+const ContactPage = lazy(() => import("../pages/ContactPage"));
+const NotFoundPage = lazy(() => import("../pages/NotFoundPage"));
 
 const RouteFallback = () => (
   <div
