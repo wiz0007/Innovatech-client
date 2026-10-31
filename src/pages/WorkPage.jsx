@@ -1,9 +1,9 @@
 import React from "react";
-import SEO from "../../components/common/SEO";
-import ProjectsCelestialHero from "../../components/common/ProjectsCelestialHero";
-import CircularProjectsDrawer from "../../components/common/CircularProjectsDrawer";
-import WorkConversionSection from "../../components/common/WorkConversionSection";
-import projectsData, { categories } from "../../content/projectsData";
+import SEO from "../components/common/SEO";
+import ProjectsCelestialHero from "../components/work/ProjectsCelestialHero";
+import CircularProjectsDrawer from "../components/work/CircularProjectsDrawer";
+import WorkConversionSection from "../components/work/WorkConversionSection";
+import projectsData, { categories } from "../content/projectsData";
 import styles from "./WorkPage.module.scss";
 
 const WorkPage = () => {

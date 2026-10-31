@@ -1,8 +1,8 @@
 import React from "react";
-import SEO from "../../components/common/SEO";
-import ServicesCelestialHero from "../../components/common/ServicesCelestialHero";
-import ServicesFadeShowcase from "../../components/common/ServicesFadeShowcase";
-import CTASection from "../../components/common/CTASection";
+import SEO from "../components/common/SEO";
+import ServicesCelestialHero from "../components/services/ServicesCelestialHero";
+import ServicesFadeShowcase from "../components/services/ServicesFadeShowcase";
+import CTASection from "../components/common/CTASection";
 import styles from "./ServicesPage.module.scss";
 
 const ServicesPage = () => {

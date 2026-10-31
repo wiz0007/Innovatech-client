@@ -1,14 +1,14 @@
 import React, { useRef } from "react";
-import SEO from "../../components/common/SEO";
-import CelestialHero from "../../components/common/CelestialHero";
-import CircularCapabilitiesDrawer from "../../components/common/CircularCapabilitiesDrawer";
-import SelectedWorkShowcase from "../../components/common/SelectedWorkShowcase";
-import DeliveryProcessPipeline from "../../components/common/DeliveryProcessPipeline";
-import EngineeringStripe from "../../components/common/EngineeringStripe";
-import CTASection from "../../components/common/CTASection";
-import servicesData from "../../content/servicesData";
-import projectsData from "../../content/projectsData";
-import processSteps from "../../content/processData";
+import SEO from "../components/common/SEO";
+import CelestialHero from "../components/home/CelestialHero";
+import CircularCapabilitiesDrawer from "../components/home/CircularCapabilitiesDrawer";
+import SelectedWorkShowcase from "../components/home/SelectedWorkShowcase";
+import DeliveryProcessPipeline from "../components/home/DeliveryProcessPipeline";
+import EngineeringStripe from "../components/home/EngineeringStripe";
+import CTASection from "../components/common/CTASection";
+import servicesData from "../content/servicesData";
+import projectsData from "../content/projectsData";
+import processSteps from "../content/processData";
 import styles from "./HomePage.module.scss";
 
 const HomePage = () => {

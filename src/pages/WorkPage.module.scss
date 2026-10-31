@@ -1,5 +1,5 @@
-@use "../../styles/variables" as *;
-@use "../../styles/mixins" as *;
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
 
 .workPage {
   position: relative;
@@ -11,6 +11,3 @@
   position: relative;
   overflow: hidden;
 }
-
-
-
