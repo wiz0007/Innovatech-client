@@ -1,13 +1,17 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { motion } from "framer-motion";
 import SEO from "../components/common/SEO";
 import ProcessCelestialHero from "../components/process/ProcessCelestialHero";
-import ProcessStagesPipeline from "../components/process/ProcessStagesPipeline";
 import SectionHeader from "../components/common/SectionHeader";
-import CTASection from "../components/common/CTASection";
 import TiltCard from "../components/common/TiltCard";
 import processSteps, { engineeringPrinciples } from "../content/processData";
 import styles from "./ProcessPage.module.scss";
+
+// Lazy-load complex multi-stage pipeline and CTA
+const ProcessStagesPipeline = lazy(() => import("../components/process/ProcessStagesPipeline"));
+const CTASection = lazy(() => import("../components/common/CTASection"));
+
+const SectionFallback = () => <div style={{ minHeight: "220px" }} aria-hidden="true" />;
 
 const ProcessPage = () => {
   return (
@@ -17,11 +21,13 @@ const ProcessPage = () => {
         description="Learn about RogueAI's 4-phase agile engineering method, quality checkpoints, and production delivery cadence."
       />
 
-      {/* MONUMENTAL IMMERSIVE CELESTIAL PROCESS HERO */}
+      {/* MONUMENTAL IMMERSIVE CELESTIAL PROCESS HERO (Eager LCP) */}
       <ProcessCelestialHero />
 
       {/* THE 4-STAGE ARCHITECTURAL DELIVERY PIPELINE */}
-      <ProcessStagesPipeline steps={processSteps} />
+      <Suspense fallback={<SectionFallback />}>
+        <ProcessStagesPipeline steps={processSteps} />
+      </Suspense>
 
       {/* CORE ENGINEERING PRINCIPLES */}
       <section className={styles.principlesSection}>
@@ -46,7 +52,6 @@ const ProcessPage = () => {
                   <div className={styles.principleCard}>
                     <div className={styles.principleTopRow}>
                       <span className={styles.tenetBadge}>CORE TENET</span>
-                      <span className={styles.principleIndex}>{p.index}</span>
                     </div>
 
                     <h3 className={styles.principleTitle}>{p.title}</h3>
@@ -67,19 +72,21 @@ const ProcessPage = () => {
       </section>
 
       {/* TAILORED CONVERSION CTA */}
-      <CTASection
-        badge="BATTLE-TESTED DELIVERY CADENCE"
-        title="Ready to run your next sprint with RogueAI?"
-        subtitle="Direct architectural consultation and deterministic sprint delivery. Zero junior delegation, fixed milestones, and daily Git commits."
-        contactLabel="Direct Architect Discovery"
-        contactDesc="30-minute roadmap & scoping call with senior engineers. We review your architecture, timeline, and deliverables."
-        contactBtnText="Schedule Technical Discovery"
-        contactLink="/contact"
-        exploreLabel="Production Benchmarks"
-        exploreDesc="Inspect verified production case studies across web, mobile, and machine intelligence platforms."
-        exploreBtnText="Inspect Client Work"
-        exploreLink="/work"
-      />
+      <Suspense fallback={<SectionFallback />}>
+        <CTASection
+          badge="BATTLE-TESTED DELIVERY CADENCE"
+          title="Ready to run your next sprint with RogueAI?"
+          subtitle="Direct architectural consultation and deterministic sprint delivery. Zero junior delegation, fixed milestones, and daily Git commits."
+          contactLabel="Direct Architect Discovery"
+          contactDesc="30-minute roadmap & scoping call with senior engineers. We review your architecture, timeline, and deliverables."
+          contactBtnText="Schedule Technical Discovery"
+          contactLink="/contact"
+          exploreLabel="Production Benchmarks"
+          exploreDesc="Inspect verified production case studies across web, mobile, and machine intelligence platforms."
+          exploreBtnText="Inspect Client Work"
+          exploreLink="/work"
+        />
+      </Suspense>
     </div>
   );
 };

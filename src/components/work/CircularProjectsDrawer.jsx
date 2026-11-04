@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown, ExternalLink } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
+import { useViewportLifecycle } from "../../hooks/useViewportLifecycle";
 import styles from "./CircularProjectsDrawer.module.scss";
 
 const CircularProjectsDrawer = ({
   projects = [],
   categories = ["All", "Web", "Mobile", "UI/UX"],
 }) => {
+  const { ref: containerRef, shouldAnimate } = useViewportLifecycle();
   const [activeCategory, setActiveCategory] = useState("All");
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -37,9 +39,9 @@ const CircularProjectsDrawer = ({
     setActiveIndex((prev) => (prev - 1 + total) % total);
   }, [total]);
 
-  // 1. Continuous 4-Second Auto-Rotate Timer (Optimal pace)
+  // 1. Continuous 4-Second Auto-Rotate Timer (Optimal pace, pauses offscreen / tab hidden)
   useEffect(() => {
-    if (total <= 1) return;
+    if (total <= 1 || !shouldAnimate) return;
 
     if (timerRef.current) clearInterval(timerRef.current);
 
@@ -50,7 +52,7 @@ const CircularProjectsDrawer = ({
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [total, activeIndex]);
+  }, [total, activeIndex, shouldAnimate]);
 
   // 2. Keyboard Arrow Navigation (Left/Right or Up/Down)
   useEffect(() => {
@@ -97,6 +99,7 @@ const CircularProjectsDrawer = ({
 
   return (
     <div
+      ref={containerRef}
       className={styles.drawerSection}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
@@ -185,6 +188,7 @@ const CircularProjectsDrawer = ({
                     alt={project.title}
                     className={styles.cardPosterImg}
                     loading="lazy"
+                    decoding="async"
                   />
                   <div className={styles.scanlineOverlay} />
                   <span className={styles.categoryBadge}>{project.category}</span>

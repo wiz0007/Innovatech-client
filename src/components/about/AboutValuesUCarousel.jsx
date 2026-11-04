@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion } from "framer-motion";
 import { Code2, Terminal, Cpu, ShieldCheck, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
+import { useViewportLifecycle } from "../../hooks/useViewportLifecycle";
 import styles from "./AboutValuesUCarousel.module.scss";
 
 // 5 Curated Core Values (Odd number for a symmetrical hero center card)
@@ -47,6 +48,7 @@ const DESKTOP_SLOTS = [
 ];
 
 const AboutValuesUCarousel = () => {
+  const { ref: carouselRef, shouldAnimate } = useViewportLifecycle();
   const [offset, setOffset] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const touchStartX = useRef(0);
@@ -61,15 +63,15 @@ const AboutValuesUCarousel = () => {
   }, []);
 
   // Reliable Auto-rotation: Exactly every 4 seconds (4000ms)
-  // Only pauses if hovered on a genuine cursor device (never freezes on mobile)
+  // Only runs when in viewport, tab is active, and not hovered
   useEffect(() => {
-    if (isHovered) return;
+    if (isHovered || !shouldAnimate) return;
     const interval = setInterval(() => {
       setOffset((prev) => (prev + 1) % VALUES_DATA.length);
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [isHovered]);
+  }, [isHovered, shouldAnimate]);
 
   // Touch swipe support for mobile
   const handleTouchStart = (e) => {
@@ -162,6 +164,7 @@ const AboutValuesUCarousel = () => {
 
   return (
     <div
+      ref={carouselRef}
       className={styles.uCarouselContainer}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

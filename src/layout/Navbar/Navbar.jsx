@@ -14,6 +14,29 @@ import {
 import siteConfig from "../../content/siteConfig";
 import styles from "./Navbar.module.scss";
 
+// Route prefetch mapping for intent-based code chunk preloading
+const routePrefetchers = {
+  "/": () => import("../../pages/HomePage"),
+  "/work": () => import("../../pages/WorkPage"),
+  "/services": () => import("../../pages/ServicesPage"),
+  "/process": () => import("../../pages/ProcessPage"),
+  "/about": () => import("../../pages/AboutPage"),
+  "/contact": () => import("../../pages/ContactPage"),
+};
+
+const prefetchedRoutes = new Set();
+
+const prefetchRoute = (path) => {
+  if (prefetchedRoutes.has(path)) return;
+  const prefetcher = routePrefetchers[path];
+  if (prefetcher) {
+    prefetchedRoutes.add(path);
+    prefetcher().catch(() => {
+      prefetchedRoutes.delete(path);
+    });
+  }
+};
+
 const mobileNavLinks = [
   { name: "Services", path: "/services" },
   { name: "Projects", path: "/work" },
@@ -34,6 +57,25 @@ const Navbar = () => {
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Idle prefetching for top conversion pages when browser resources are idle
+  useEffect(() => {
+    const idleCallback = window.requestIdleCallback
+      ? window.requestIdleCallback(() => {
+          ["/work", "/services"].forEach(prefetchRoute);
+        })
+      : setTimeout(() => {
+          ["/work", "/services"].forEach(prefetchRoute);
+        }, 2500);
+
+    return () => {
+      if (window.cancelIdleCallback && typeof idleCallback === "number") {
+        window.cancelIdleCallback(idleCallback);
+      } else {
+        clearTimeout(idleCallback);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -73,18 +115,24 @@ const Navbar = () => {
             <NavLink
               to="/work"
               className={({ isActive }) => `${styles.navLink} ${isActive ? styles.activeNavLink : ""}`}
+              onMouseEnter={() => prefetchRoute("/work")}
+              onFocus={() => prefetchRoute("/work")}
             >
               Projects
             </NavLink>
 
             <div
               className={styles.dropdownWrapper}
-              onMouseEnter={() => setServicesDropdown(true)}
+              onMouseEnter={() => {
+                setServicesDropdown(true);
+                prefetchRoute("/services");
+              }}
               onMouseLeave={() => setServicesDropdown(false)}
             >
               <NavLink
                 to="/services"
                 className={({ isActive }) => `${styles.navLink} ${isActive ? styles.activeNavLink : ""}`}
+                onFocus={() => prefetchRoute("/services")}
               >
                 <span>Services</span>
                 <FaChevronDown className={`${styles.chevron} ${servicesDropdown ? styles.chevronOpen : ""}`} />
@@ -99,15 +147,30 @@ const Navbar = () => {
                     exit={{ opacity: 0, y: 8 }}
                     transition={{ duration: 0.18 }}
                   >
-                    <Link to="/services" className={styles.dropdownItem}>
+                    <Link
+                      to="/services"
+                      className={styles.dropdownItem}
+                      onMouseEnter={() => prefetchRoute("/services")}
+                      onFocus={() => prefetchRoute("/services")}
+                    >
                       <span className={styles.itemTitle}>Web Applications</span>
                       <span className={styles.itemDesc}>High-throughput reactive systems</span>
                     </Link>
-                    <Link to="/services" className={styles.dropdownItem}>
+                    <Link
+                      to="/services"
+                      className={styles.dropdownItem}
+                      onMouseEnter={() => prefetchRoute("/services")}
+                      onFocus={() => prefetchRoute("/services")}
+                    >
                       <span className={styles.itemTitle}>Mobile Ecosystems</span>
                       <span className={styles.itemDesc}>Fluid 60FPS iOS & Android</span>
                     </Link>
-                    <Link to="/services" className={styles.dropdownItem}>
+                    <Link
+                      to="/services"
+                      className={styles.dropdownItem}
+                      onMouseEnter={() => prefetchRoute("/services")}
+                      onFocus={() => prefetchRoute("/services")}
+                    >
                       <span className={styles.itemTitle}>AI Solutions</span>
                       <span className={styles.itemDesc}>Autonomous agents & LLMs</span>
                     </Link>
@@ -119,6 +182,8 @@ const Navbar = () => {
             <NavLink
               to="/process"
               className={({ isActive }) => `${styles.navLink} ${isActive ? styles.activeNavLink : ""}`}
+              onMouseEnter={() => prefetchRoute("/process")}
+              onFocus={() => prefetchRoute("/process")}
             >
               Process
             </NavLink>
@@ -126,7 +191,13 @@ const Navbar = () => {
 
           {/* Center: RogueAI Luxury Brandmark */}
           <div className={styles.centerBrand}>
-            <Link to="/" className={styles.brandTitle} aria-label="RogueAI Home">
+            <Link
+              to="/"
+              className={styles.brandTitle}
+              aria-label="RogueAI Home"
+              onMouseEnter={() => prefetchRoute("/")}
+              onFocus={() => prefetchRoute("/")}
+            >
               RogueAI
             </Link>
           </div>
@@ -136,11 +207,18 @@ const Navbar = () => {
             <NavLink
               to="/about"
               className={({ isActive }) => `${styles.navLink} ${isActive ? styles.activeNavLink : ""}`}
+              onMouseEnter={() => prefetchRoute("/about")}
+              onFocus={() => prefetchRoute("/about")}
             >
               About
             </NavLink>
 
-            <Link to="/contact" className={styles.contactBtn}>
+            <Link
+              to="/contact"
+              className={styles.contactBtn}
+              onMouseEnter={() => prefetchRoute("/contact")}
+              onFocus={() => prefetchRoute("/contact")}
+            >
               <span className={styles.statusDot} />
               <span>Contact</span>
             </Link>
@@ -187,7 +265,7 @@ const Navbar = () => {
               <div className={styles.drawerHeader}>
                 <div className={styles.drawerBrand}>
                   <div className={styles.drawerLogoMark}>
-                    <img src="/rogue-mark.svg" alt="RogueAI Logo" />
+                    <img src="/rogue-mark.svg" alt="RogueAI Logo" loading="lazy" decoding="async" width="28" height="28" />
                   </div>
                   <span className={styles.drawerBrandName}>RogueAI</span>
                 </div>
@@ -218,6 +296,8 @@ const Navbar = () => {
                           `${styles.drawerNavLink} ${isActive ? styles.activeDrawerNavLink : ""}`
                         }
                         onClick={() => setMobileMenuOpen(false)}
+                        onMouseEnter={() => prefetchRoute(item.path)}
+                        onTouchStart={() => prefetchRoute(item.path)}
                       >
                         <span className={styles.navName}>{item.name}</span>
                         <FaArrowRight className={styles.navArrow} />
@@ -232,6 +312,8 @@ const Navbar = () => {
                     to="/contact"
                     className={styles.drawerPrimaryBtn}
                     onClick={() => setMobileMenuOpen(false)}
+                    onMouseEnter={() => prefetchRoute("/contact")}
+                    onTouchStart={() => prefetchRoute("/contact")}
                   >
                     <span>Start an Engagement</span>
                     <FaArrowRight className={styles.ctaArrow} />

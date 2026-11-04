@@ -44,15 +44,24 @@ const ScrollToTop = () => {
 
         // On next animation frame once DOM is rendered, land directly on target
         const rafId = requestAnimationFrame(() => {
-          if (!scrollToAnchor()) {
-            const timer = setTimeout(scrollToAnchor, 60);
-            return () => clearTimeout(timer);
-          }
+          scrollToAnchor();
         });
+
+        // Resilient settle check: ensures target landing precision as lazy chunks load
+        let pollCount = 0;
+        const pollInterval = setInterval(() => {
+          pollCount++;
+          if (cancelled || pollCount >= 5) {
+            clearInterval(pollInterval);
+            return;
+          }
+          scrollToAnchor();
+        }, 150);
 
         return () => {
           cancelled = true;
           cancelAnimationFrame(rafId);
+          clearInterval(pollInterval);
         };
       } else {
         // Same-page anchor click: smoothly scroll to target

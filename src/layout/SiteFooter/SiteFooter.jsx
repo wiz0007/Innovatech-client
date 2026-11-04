@@ -48,7 +48,7 @@ const SiteFooter = () => {
           <div className={styles.brandCol}>
             <Link to="/" className={styles.brandLogo} aria-label="RogueAI Home">
               <div className={styles.logoMark}>
-                <img src="/rogue-mark.svg" alt="RogueAI Logo" />
+                <img src="/rogue-mark.svg" alt="RogueAI Logo" loading="lazy" decoding="async" width="24" height="24" />
               </div>
               <span className={styles.brandName}>{siteConfig.name}</span>
             </Link>

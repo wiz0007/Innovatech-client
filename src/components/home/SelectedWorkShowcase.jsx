@@ -86,6 +86,7 @@ function DeviceCard({ project }) {
             alt={project.title}
             className={styles.deviceImg}
             loading="lazy"
+            decoding="async"
           />
 
           {/* ELEGANT SPECULAR GLASS REFLECTION SHEEN */}
