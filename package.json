@@ -15,7 +15,7 @@
     "@fortawesome/free-brands-svg-icons": "^7.0.1",
     "@fortawesome/react-fontawesome": "^3.0.2",
     "@gsap/react": "^2.1.2",
-    "@react-three/fiber": "^9.6.1",
+    "@react-three/fiber": "^9.8.2",
     "axios": "^1.12.2",
     "framer-motion": "^12.23.16",
     "gsap": "^3.15.0",
