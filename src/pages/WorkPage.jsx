@@ -1,10 +1,14 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import SEO from "../components/common/SEO";
 import ProjectsCelestialHero from "../components/work/ProjectsCelestialHero";
-import CircularProjectsDrawer from "../components/work/CircularProjectsDrawer";
-import WorkConversionSection from "../components/work/WorkConversionSection";
 import projectsData, { categories } from "../content/projectsData";
 import styles from "./WorkPage.module.scss";
+
+// Lazy-load interactive 3D circular drawer and conversion section
+const CircularProjectsDrawer = lazy(() => import("../components/work/CircularProjectsDrawer"));
+const WorkConversionSection = lazy(() => import("../components/work/WorkConversionSection"));
+
+const SectionFallback = () => <div style={{ minHeight: "260px" }} aria-hidden="true" />;
 
 const WorkPage = () => {
   return (
@@ -14,19 +18,23 @@ const WorkPage = () => {
         description="Explore RogueAI's portfolio of production web applications, mobile platforms, and UI/UX systems."
       />
 
-      {/* MONUMENTAL IMMERSIVE CELESTIAL HERO */}
+      {/* MONUMENTAL IMMERSIVE CELESTIAL HERO (Eager LCP) */}
       <ProjectsCelestialHero />
 
       {/* 3D CIRCULAR REVOLVING DRAWER SHOWCASE */}
       <section id="projects-gallery" className={styles.gallerySection}>
-        <CircularProjectsDrawer
-          projects={projectsData}
-          categories={categories}
-        />
+        <Suspense fallback={<SectionFallback />}>
+          <CircularProjectsDrawer
+            projects={projectsData}
+            categories={categories}
+          />
+        </Suspense>
       </section>
 
       {/* BESPOKE WORK CONVERSION SECTION (3 LIVE SELECTABLE CONCEPTS) */}
-      <WorkConversionSection />
+      <Suspense fallback={<SectionFallback />}>
+        <WorkConversionSection />
+      </Suspense>
     </div>
   );
 };

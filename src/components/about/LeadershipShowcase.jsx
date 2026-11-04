@@ -100,7 +100,13 @@ const LeadershipShowcase = () => {
                   >
                     <div className={styles.cylinderCardInner}>
                       <div className={styles.cylinderAvatarBox}>
-                        <img src={member.photo} alt={member.name} className={styles.cylinderImg} />
+                        <img
+                          src={member.photo}
+                          alt={member.name}
+                          className={styles.cylinderImg}
+                          loading="lazy"
+                          decoding="async"
+                        />
                         <div className={styles.cylinderImgShade} />
                       </div>
 
@@ -199,7 +205,13 @@ const LeadershipShowcase = () => {
               transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className={styles.mobilePhotoWrapper}>
-                <img src={currentTurntable.photo} alt={currentTurntable.name} className={styles.mobilePhoto} />
+                <img
+                  src={currentTurntable.photo}
+                  alt={currentTurntable.name}
+                  className={styles.mobilePhoto}
+                  loading="lazy"
+                  decoding="async"
+                />
                 <div className={styles.mobilePhotoGradient} />
               </div>
 

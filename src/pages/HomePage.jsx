@@ -1,59 +1,71 @@
-import React, { useRef } from "react";
+import React, { Suspense, lazy } from "react";
 import SEO from "../components/common/SEO";
 import CelestialHero from "../components/home/CelestialHero";
-import CircularCapabilitiesDrawer from "../components/home/CircularCapabilitiesDrawer";
-import SelectedWorkShowcase from "../components/home/SelectedWorkShowcase";
-import DeliveryProcessPipeline from "../components/home/DeliveryProcessPipeline";
-import EngineeringStripe from "../components/home/EngineeringStripe";
-import CTASection from "../components/common/CTASection";
 import servicesData from "../content/servicesData";
 import projectsData from "../content/projectsData";
 import processSteps from "../content/processData";
 import styles from "./HomePage.module.scss";
 
-const HomePage = () => {
-  const homeRef = useRef(null);
+// Lazy-loaded below-the-fold features to protect entry payload
+const CircularCapabilitiesDrawer = lazy(() => import("../components/home/CircularCapabilitiesDrawer"));
+const SelectedWorkShowcase = lazy(() => import("../components/home/SelectedWorkShowcase"));
+const DeliveryProcessPipeline = lazy(() => import("../components/home/DeliveryProcessPipeline"));
+const EngineeringStripe = lazy(() => import("../components/home/EngineeringStripe"));
+const CTASection = lazy(() => import("../components/common/CTASection"));
 
+const SectionFallback = () => <div style={{ minHeight: "180px" }} aria-hidden="true" />;
+
+const HomePage = () => {
   const featuredProjects = projectsData.filter(
     (p) => p.featured || p.id === "my-kart" || p.id === "book-reading" || p.id === "movie-app"
   );
 
   return (
-    <div ref={homeRef} className={styles.homeContainer}>
+    <div className={styles.homeContainer}>
       <SEO
         title="Next-Gen Web, Mobile & AI Product Engineering"
         description="RogueAI engineers high-performance web applications, fluid mobile ecosystems, and practical AI integrations for ambitious companies."
       />
 
-      {/* CELESTIAL PORTAL BRAND HERO */}
+      {/* CELESTIAL PORTAL BRAND HERO (Eagerly Loaded LCP Anchor) */}
       <CelestialHero />
 
       {/* CAPABILITIES SECTION - 3D CAROUSEL (LAPTOP) & PINNED SCROLL FADE (MOBILE) */}
       <section id="services-section" className={styles.servicesSection}>
         <div className={styles.sectionContainer}>
-          <CircularCapabilitiesDrawer services={servicesData} />
+          <Suspense fallback={<SectionFallback />}>
+            <CircularCapabilitiesDrawer services={servicesData} />
+          </Suspense>
         </div>
       </section>
 
       {/* SELECTED WORK SHOWCASE (WITH SPOTLIGHT STAGE, EDITORIAL ROWS & DEVICE DECK) */}
       <section id="work-section" className={styles.workSection}>
         <div className={styles.sectionContainer}>
-          <SelectedWorkShowcase projects={featuredProjects} />
+          <Suspense fallback={<SectionFallback />}>
+            <SelectedWorkShowcase projects={featuredProjects} />
+          </Suspense>
         </div>
       </section>
 
       {/* 4-PHASE DELIVERY PROCESS */}
       <section id="process-section" className={styles.processSection}>
         <div className={styles.sectionContainer}>
-          <DeliveryProcessPipeline steps={processSteps} />
+          <Suspense fallback={<SectionFallback />}>
+            <DeliveryProcessPipeline steps={processSteps} />
+          </Suspense>
         </div>
       </section>
 
       {/* ENGINEERING STANDARDS & LEADERSHIP TEASER STRIPE */}
-      <EngineeringStripe />
+      <Suspense fallback={<SectionFallback />}>
+        <EngineeringStripe />
+      </Suspense>
 
       {/* CONVERSION CTA */}
-      <CTASection />
+      <Suspense fallback={<SectionFallback />}>
+        <CTASection />
+      </Suspense>
     </div>
   );
 };

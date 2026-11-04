@@ -1,15 +1,19 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { motion } from "framer-motion";
 import SEO from "../components/common/SEO";
 import AboutCelestialHero from "../components/about/AboutCelestialHero";
 import StudioTickerBanner from "../components/about/StudioTickerBanner";
-import AboutValuesUCarousel from "../components/about/AboutValuesUCarousel";
-import LeadershipShowcase from "../components/about/LeadershipShowcase";
 import SectionHeader from "../components/common/SectionHeader";
-import CTASection from "../components/common/CTASection";
 import TiltCard from "../components/common/TiltCard";
 import aboutImg from "../assets/About.webp";
 import styles from "./AboutPage.module.scss";
+
+// Lazy-load lower narrative sections
+const AboutValuesUCarousel = lazy(() => import("../components/about/AboutValuesUCarousel"));
+const LeadershipShowcase = lazy(() => import("../components/about/LeadershipShowcase"));
+const CTASection = lazy(() => import("../components/common/CTASection"));
+
+const SectionFallback = () => <div style={{ minHeight: "180px" }} aria-hidden="true" />;
 
 const AboutPage = () => {
   return (
@@ -19,6 +23,7 @@ const AboutPage = () => {
         description="Learn about RogueAI's mission, engineering standards, and the specialized leadership team building next-generation digital products."
       />
 
+      {/* Above-the-fold Eager Hero */}
       <AboutCelestialHero />
 
       {/* LIVE STUDIO TELEMETRY & VERIFIED PROJECTS MARQUEE */}
@@ -57,7 +62,7 @@ const AboutPage = () => {
             >
               <TiltCard className={styles.imageTiltWrapper} maxTilt={6}>
                 <div className={styles.imageCard}>
-                  <img src={aboutImg} alt="RogueAI Architecture & Design" loading="lazy" />
+                  <img src={aboutImg} alt="RogueAI Architecture & Design" loading="lazy" decoding="async" />
                   <div className={styles.imageOverlayBadge}>
                     <span>RogueAI Core / Systems & Design</span>
                   </div>
@@ -71,7 +76,9 @@ const AboutPage = () => {
       {/* VALUES & CULTURE (COMPACT ROTATING U-CONVEYOR) */}
       <section className={styles.valuesSection}>
         <div className={styles.container}>
-          <AboutValuesUCarousel />
+          <Suspense fallback={<SectionFallback />}>
+            <AboutValuesUCarousel />
+          </Suspense>
         </div>
       </section>
 
@@ -85,16 +92,20 @@ const AboutPage = () => {
             className={styles.teamSectionHeader}
           />
 
-          <LeadershipShowcase />
+          <Suspense fallback={<SectionFallback />}>
+            <LeadershipShowcase />
+          </Suspense>
         </div>
       </section>
 
       {/* CONVERSION CTA */}
-      <CTASection
-        title="Want to build something impactful with RogueAI?"
-        description="We are currently booking technical discovery sessions for upcoming quarters."
-        buttonText="Get in Touch"
-      />
+      <Suspense fallback={<SectionFallback />}>
+        <CTASection
+          title="Want to build something impactful with RogueAI?"
+          description="We are currently booking technical discovery sessions for upcoming quarters."
+          buttonText="Get in Touch"
+        />
+      </Suspense>
     </div>
   );
 };

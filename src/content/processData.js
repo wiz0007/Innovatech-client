@@ -143,19 +143,16 @@ export const processSteps = [
 
 export const engineeringPrinciples = [
   {
-    index: "01",
     title: "Sub-Second Latency by Default",
     axiom: "If an interaction takes longer than 100ms, the user feels cognitive drag.",
     text: "We optimize bundle sizes, leverage edge networks, and eliminate render bottlenecks so every interaction feels instantaneous across mobile networks."
   },
   {
-    index: "02",
     title: "Zero-Compromise Type Safety",
     axiom: "Runtime errors in production are architectural failures.",
     text: "Strict typing and contract-driven APIs prevent runtime exceptions and make codebases maintainable as teams scale from 2 to 20 engineers without regressions."
   },
   {
-    index: "03",
     title: "Living Component Architecture",
     axiom: "Design systems should be verifiable code primitives, not static screenshots.",
     text: "Every UI pattern is built as a reusable, accessible primitive with dedicated props and variants, keeping interfaces visually cohesive across entire product lifecycles."

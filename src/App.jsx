@@ -11,13 +11,19 @@ function App() {
       window.history.scrollRestoration = "manual";
     }
 
-    // Initialize Lenis smooth scroll
+    // Detect user accessibility motion preferences
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Initialize Lenis smooth scroll with power & accessibility awareness
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: prefersReducedMotion ? 0 : 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
-      smoothWheel: true,
+      smoothWheel: !prefersReducedMotion,
       wheelMultiplier: 1,
       touchMultiplier: 2,
       infinite: false,
@@ -25,15 +31,33 @@ function App() {
 
     window.__lenis = lenis;
 
+    let animationFrameId;
+    let isTabVisible = !document.hidden;
+
     function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
+      if (isTabVisible) {
+        lenis.raf(time);
+      }
+      animationFrameId = requestAnimationFrame(raf);
     }
 
-    const animationFrameId = requestAnimationFrame(raf);
+    animationFrameId = requestAnimationFrame(raf);
+
+    // Pause frame execution and scroll listeners when tab is backgrounded
+    const handleVisibilityChange = () => {
+      isTabVisible = !document.hidden;
+      if (document.hidden) {
+        lenis.stop();
+      } else {
+        lenis.start();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange, { passive: true });
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       lenis.destroy();
       window.__lenis = null;
     };

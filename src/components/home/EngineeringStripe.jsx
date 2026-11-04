@@ -37,7 +37,7 @@ const EngineeringStripe = () => {
             >
               {teamMembers.map((member) => (
                 <div key={member.id} className={styles.avatarThumb} title={member.name}>
-                  <img src={member.photo} alt={member.name} />
+                  <img src={member.photo} alt={member.name} loading="lazy" decoding="async" />
                 </div>
               ))}
             </Link>
