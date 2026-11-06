@@ -348,11 +348,11 @@ export default function ProcessStagesPipeline({ steps = [] }) {
                 >
                   <defs>
                     <linearGradient id="scrollSilverGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
-                      <stop offset="25%" stopColor="#d4d4d8" stopOpacity="1" />
+                      <stop offset="0%" stopColor="#00f2fe" stopOpacity="0.95" />
+                      <stop offset="25%" stopColor="#38bdf8" stopOpacity="1" />
                       <stop offset="50%" stopColor="#ffffff" stopOpacity="1" />
-                      <stop offset="75%" stopColor="#a1a1aa" stopOpacity="1" />
-                      <stop offset="100%" stopColor="#ffffff" stopOpacity="0.95" />
+                      <stop offset="75%" stopColor="#0284c7" stopOpacity="1" />
+                      <stop offset="100%" stopColor="#00f2fe" stopOpacity="0.95" />
                     </linearGradient>
 
                     <filter id="scrollGlowFilter" x="-40%" y="-40%" width="180%" height="180%">
@@ -380,7 +380,7 @@ export default function ProcessStagesPipeline({ steps = [] }) {
                   <path
                     ref={glowPathRef}
                     d={pathData}
-                    stroke="rgba(255, 255, 255, 0.35)"
+                    stroke="rgba(0, 242, 254, 0.45)"
                     strokeWidth="14"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -388,7 +388,7 @@ export default function ProcessStagesPipeline({ steps = [] }) {
                     fill="none"
                   />
 
-                  {/* Layer 2: Radiant Liquid Silver Filament (Drawn Downward with Scroll) */}
+                  {/* Layer 2: Radiant Liquid Cyber Cyan Filament (Drawn Downward with Scroll) */}
                   <path
                     ref={corePathRef}
                     d={pathData}
@@ -399,10 +399,10 @@ export default function ProcessStagesPipeline({ steps = [] }) {
                     fill="none"
                   />
 
-                  {/* Layer 3: Radiant Beacon Sphere Gliding at the Leading Tip */}
+                  {/* Layer 3: Radiant Cyber Beacon Sphere Gliding at the Leading Tip */}
                   <g ref={beaconRef} className={styles.travelingBeacon}>
-                    <circle r="14" fill="rgba(255, 255, 255, 0.25)" filter="url(#scrollGlowFilter)" />
-                    <circle r="8" fill="rgba(255, 255, 255, 0.75)" filter="url(#scrollGlowFilter)" />
+                    <circle r="14" fill="rgba(0, 242, 254, 0.35)" filter="url(#scrollGlowFilter)" />
+                    <circle r="8" fill="rgba(0, 242, 254, 0.85)" filter="url(#scrollGlowFilter)" />
                     <circle r="3.5" fill="#ffffff" />
                   </g>
                 </svg>

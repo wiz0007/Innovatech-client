@@ -1,44 +1,70 @@
-// RogueAI Obsidian Monochrome Luxury Tokens (Strictly Gray & Silver)
-$bg-main: #050507;
-$bg-surface-1: rgba(18, 18, 22, 0.75);
-$bg-surface-2: rgba(26, 26, 30, 0.85);
-$bg-surface-elevated: #141418;
+// =========================================================================
+// ROGUEAI DESIGN SYSTEM — SCSS TOKEN BRIDGE & CONSTANTS
+// Option A: Obsidian Void, Liquid Titanium & Cold Cyber Cyan
+// =========================================================================
 
-$text-primary: #ffffff;
-$text-secondary: #a1a1aa;
-$text-muted: #71717a;
+// Canvas & Surface Elevation
+$bg-main: var(--color-bg-base, #050507);
+$bg-surface-1: var(--color-bg-surface-1, rgba(12, 13, 18, 0.78));
+$bg-surface-2: var(--color-bg-surface-2, rgba(20, 21, 28, 0.88));
+$bg-surface-elevated: var(--color-bg-surface-elevated, #111218);
+$bg-surface-soft: var(--color-bg-surface-soft, rgba(255, 255, 255, 0.04));
+$bg-glass: var(--color-bg-glass, rgba(8, 9, 13, 0.65));
 
-// Accents strictly metallic silver, platinum & liquid chrome
-$accent-cyan: #e2e8f0;
-$accent-violet: #cbd5e1;
-$accent-indigo: #94a3b8;
-$accent-amber: #e2e8f0;
+// Typography Color System
+$text-primary: var(--color-text-primary, #f8fafc);
+$text-secondary: var(--color-text-secondary, #94a3b8);
+$text-muted: var(--color-text-muted, #64748b);
+$text-inverse: var(--color-text-inverse, #050507);
 
-$border-subtle: rgba(255, 255, 255, 0.08);
-$border-medium: rgba(255, 255, 255, 0.16);
-$border-glow-cyan: rgba(255, 255, 255, 0.25);
-$border-focus: rgba(255, 255, 255, 0.5);
+// Primary Kinetic Accent: Cold Cyber Cyan
+$accent-cyan: var(--color-accent, #00f2fe);
+$accent-cyan-hover: var(--color-accent-hover, #38bdf8);
+$accent-cyan-light: var(--color-accent-hover, #38bdf8);
+$accent-cyan-active: var(--color-accent-active, #0284c7);
+$accent-cyan-dim: var(--color-accent-dim, rgba(0, 242, 254, 0.1));
+$accent-glow-cyan: var(--color-accent-glow, rgba(0, 242, 254, 0.35));
+$accent-glow-cyan-lg: var(--shadow-glow-cyan-lg, 0 0 65px rgba(0, 242, 254, 0.45));
 
+// Secondary & Telemetry Accents
+$accent-violet: var(--color-accent-hover, #38bdf8);
+$accent-indigo: #0284c7;
+$accent-amber: #f59e0b;
+$telemetry-live: var(--color-telemetry-live, #10b981);
+$telemetry-live-glow: var(--color-telemetry-live-glow, rgba(16, 185, 129, 0.45));
+
+// Structural Borders & Specular Sheen
+$border-subtle: var(--color-border-subtle, rgba(255, 255, 255, 0.08));
+$border-medium: var(--color-border-medium, rgba(255, 255, 255, 0.15));
+$border-glow-cyan: var(--color-border-accent, rgba(0, 242, 254, 0.38));
+$border-focus: var(--color-border-focus, rgba(0, 242, 254, 0.65));
+
+// Typography Font Families
 $font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 $font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 $font-mono: 'JetBrains Mono', monospace, Consolas, Courier New;
 
+// Dimensional Radii
+$radius-xs: 4px;
 $radius-sm: 6px;
 $radius-md: 12px;
 $radius-lg: 20px;
 $radius-xl: 28px;
 $radius-full: 9999px;
 
-$shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.4);
-$shadow-md: 0 10px 30px rgba(0, 0, 0, 0.6);
-$shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.75);
-$shadow-glow-cyan: 0 0 35px rgba(255, 255, 255, 0.1);
-$shadow-glow-violet: 0 0 35px rgba(203, 213, 225, 0.1);
+// Atmospheric Shadows & Elevation
+$shadow-sm: var(--shadow-sm, 0 4px 12px rgba(0, 0, 0, 0.4));
+$shadow-md: var(--shadow-md, 0 10px 30px rgba(0, 0, 0, 0.6));
+$shadow-lg: var(--shadow-lg, 0 20px 50px rgba(0, 0, 0, 0.75));
+$shadow-glow-cyan: var(--shadow-glow-cyan, 0 0 35px rgba(0, 242, 254, 0.25));
+$shadow-glow-cyan-lg: var(--shadow-glow-cyan-lg, 0 0 65px rgba(0, 242, 254, 0.45));
 
-$transition-fast: 0.18s ease;
+// Fluid Motion Transitions
+$transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 $transition-medium: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 $transition-smooth: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 
+// Responsive Viewport Breakpoints
 $bp-mobile: 480px;
 $bp-tablet: 768px;
 $bp-laptop: 1024px;

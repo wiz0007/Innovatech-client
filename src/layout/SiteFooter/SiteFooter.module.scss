@@ -118,8 +118,8 @@
   height: 200px;
   background: radial-gradient(
     ellipse at 50% 0%,
-    rgba(148, 163, 184, 0.08) 0%,
-    rgba(71, 85, 105, 0.03) 45%,
+    rgba(0, 242, 254, 0.08) 0%,
+    rgba(56, 189, 248, 0.03) 40%,
     transparent 75%
   );
   filter: blur(50px);
@@ -225,11 +225,11 @@
 }
 
 .statusDot {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 0 6px #ffffff;
+  background: var(--color-telemetry-live, #10b981);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.75);
   animation: pulseBeacon 2s infinite ease-in-out;
 }
 

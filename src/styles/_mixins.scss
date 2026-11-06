@@ -1,6 +1,10 @@
 @use "./variables" as *;
 
-// Glass Card Mixin
+// =========================================================================
+// ROGUEAI DESIGN SYSTEM — REUSABLE COMPONENT MIXINS
+// =========================================================================
+
+// Glass Panel Card Mixin
 @mixin glass-panel($bg: $bg-surface-1, $border: $border-subtle, $blur: 16px) {
   background: $bg;
   border: 1px solid $border;
@@ -15,9 +19,90 @@
   
   &:hover {
     transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.35);
-    box-shadow: $shadow-lg, 0 0 24px rgba(255, 255, 255, 0.08);
+    border-color: rgba(0, 242, 254, 0.35);
+    box-shadow: $shadow-lg, 0 0 24px rgba(0, 242, 254, 0.12);
   }
+}
+
+// Primary High-Impact Kinetic Cyan CTA Button
+@mixin button-primary-cyan {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: $radius-full;
+  background: linear-gradient(135deg, #00f2fe 0%, #38bdf8 100%);
+  color: #050507;
+  border: 1px solid rgba(0, 242, 254, 0.6);
+  font-family: $font-display;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform $transition-fast, box-shadow $transition-fast, filter $transition-fast;
+  box-shadow: 0 4px 20px rgba(0, 242, 254, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  &:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+    box-shadow: 0 8px 30px rgba(0, 242, 254, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Secondary Smoked Glass Button with Cyan Edge Hover
+@mixin button-secondary-glass {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 26px;
+  border-radius: $radius-full;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: $text-primary;
+  font-family: $font-display;
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: transform $transition-fast, border-color $transition-fast, background $transition-fast, box-shadow $transition-fast;
+
+  &:hover {
+    transform: translateY(-2px);
+    background: rgba(0, 242, 254, 0.08);
+    border-color: rgba(0, 242, 254, 0.4);
+    box-shadow: 0 6px 24px rgba(0, 242, 254, 0.18);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Telemetry Live Indicator Dot
+@mixin telemetry-dot($color: $telemetry-live, $glow: $telemetry-live-glow) {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: $color;
+  box-shadow: 0 0 10px $glow;
+}
+
+// Gradient Text
+@mixin text-gradient-cyan {
+  background: linear-gradient(135deg, #ffffff 0%, #00f2fe 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 // Eyebrow Label
@@ -30,7 +115,7 @@
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #cbd5e1;
+  color: $accent-cyan;
   margin-bottom: 12px;
 }
 
