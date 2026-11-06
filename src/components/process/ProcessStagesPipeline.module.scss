@@ -387,23 +387,24 @@
   .nodePulseRing {
     opacity: 1;
     transform: scale(1.18);
+    background: radial-gradient(circle, rgba(0, 242, 254, 0.45) 0%, rgba(0, 242, 254, 0) 70%);
     animation: nodeAura 2.2s ease-in-out infinite;
   }
 
   .nodeCoreCircle {
-    border-color: #ffffff;
-    background: #18181b;
-    box-shadow: 0 0 24px rgba(255, 255, 255, 0.45), inset 0 0 8px rgba(255, 255, 255, 0.35);
+    border-color: #00f2fe;
+    background: #090d14;
+    box-shadow: 0 0 24px rgba(0, 242, 254, 0.55), inset 0 0 10px rgba(0, 242, 254, 0.4);
   }
 
   .nodeNumeral {
     color: #ffffff;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.85);
+    text-shadow: 0 0 10px rgba(0, 242, 254, 0.9);
   }
 
   .sidelineConnectorTab {
-    background: #ffffff;
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+    background: #00f2fe;
+    box-shadow: 0 0 8px rgba(0, 242, 254, 0.85);
   }
 }
 
